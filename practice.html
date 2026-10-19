@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="khrishu">
+<title>都市交通計劃 第一次小考題庫練習</title>
+<script>
+  window.MathJax = { tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]}, svg:{fontCache:'global'} };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+  :root{
+    --paper:#f7f4ee;--ink:#232019;--muted:#6c6459;--line:#e2dccf;
+    --accent:#9a3b2e;--accent2:#2f5d50;--gold:#b08d2e;--card:#fffdf8;
+    --shadow:0 1px 2px rgba(40,30,15,.05),0 8px 28px rgba(40,30,15,.06);
+    --mono:"SF Mono",ui-monospace,"JetBrains Mono",Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);line-height:1.8;font-size:17px;
+    font-family:"PingFang TC","Noto Sans TC","Helvetica Neue",system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+  .shell{max-width:860px;margin:0 auto;padding:40px 22px 120px;}
+  header h1{font-size:27px;margin:0 0 6px;letter-spacing:-.01em;}
+  header .tag{display:inline-block;font-size:12px;letter-spacing:.1em;color:#fff;background:var(--accent);padding:3px 11px;border-radius:999px;font-weight:600;}
+  header p.sub{color:var(--muted);font-size:14.5px;margin:10px 0 0;}
+  /* tabs */
+  .tabs{display:flex;gap:8px;margin:28px 0 24px;flex-wrap:wrap;position:sticky;top:0;background:var(--paper);padding:12px 0;z-index:5;border-bottom:1px solid var(--line);}
+  .tabs button{font:inherit;font-size:15px;font-weight:600;cursor:pointer;border:1px solid var(--line);background:var(--card);
+    color:var(--muted);padding:9px 18px;border-radius:999px;transition:.15s;}
+  .tabs button:hover{color:var(--ink);}
+  .tabs button.active{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .panel{display:none;animation:fade .25s ease;}
+  .panel.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  h2.sec{font-size:20px;margin:6px 0 4px;}
+  p.hint{color:var(--muted);font-size:14.5px;margin:0 0 18px;}
+  /* flashcards */
+  .deckbar{display:flex;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap;}
+  .counter{font-family:var(--mono);font-size:14px;color:var(--muted);}
+  .btn{font:inherit;font-size:14.5px;font-weight:600;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:8px 16px;border-radius:9px;transition:.15s;box-shadow:var(--shadow);}
+  .btn:hover{border-color:var(--accent);}
+  .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent);}
+  .btn.ghost{background:transparent;box-shadow:none;}
+  .flash{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);
+    padding:38px 30px;min-height:220px;display:flex;flex-direction:column;justify-content:center;cursor:pointer;position:relative;}
+  .flash .side{font-size:12px;letter-spacing:.1em;color:var(--gold);font-weight:700;position:absolute;top:16px;left:24px;}
+  .flash .term{font-size:25px;font-weight:700;line-height:1.4;}
+  .flash .term small{display:block;font-size:14px;color:var(--muted);font-weight:500;margin-top:6px;}
+  .flash .def{font-size:16.5px;line-height:1.85;}
+  .flash .tap{position:absolute;bottom:16px;right:24px;font-size:12.5px;color:var(--muted);}
+  .deckbar2{display:flex;gap:10px;margin-top:16px;justify-content:center;}
+  .progress{height:5px;background:var(--line);border-radius:3px;margin:16px 0 0;overflow:hidden;}
+  .progress i{display:block;height:100%;background:var(--accent);width:0;transition:.3s;}
+  /* calc */
+  .calcwrap{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;}
+  .calcwrap button{font:inherit;font-size:14px;font-weight:600;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--muted);padding:8px 15px;border-radius:9px;}
+  .calcwrap button.active{background:var(--accent2);color:#fff;border-color:var(--accent2);}
+  .qcard{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent2);border-radius:14px;padding:22px 24px;box-shadow:var(--shadow);}
+  .qcard .qlabel{font-size:12.5px;letter-spacing:.08em;color:var(--accent2);font-weight:700;margin-bottom:8px;}
+  .qcard .qbody{font-size:17px;line-height:1.9;}
+  .qcard .qbody b{color:var(--accent);}
+  .sol{margin-top:18px;padding-top:16px;border-top:1px dashed var(--line);display:none;}
+  .sol.show{display:block;}
+  .sol .step{margin:6px 0;}
+  .sol .final{font-weight:700;color:var(--accent);font-size:17px;margin-top:10px;}
+  .calc-actions{display:flex;gap:10px;margin-top:18px;}
+  /* essay */
+  details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:14px 0;box-shadow:var(--shadow);overflow:hidden;}
+  summary{cursor:pointer;padding:16px 20px;font-weight:600;list-style:none;display:flex;gap:12px;}
+  summary::-webkit-details-marker{display:none}
+  summary .q{font-family:var(--mono);color:var(--accent);font-weight:700;flex-shrink:0;}
+  summary::after{content:"▸ 參考答案";margin-left:auto;color:var(--muted);font-size:13px;font-weight:600;flex-shrink:0;}
+  details[open] summary::after{content:"▾ 收起"}
+  details[open] summary{border-bottom:1px solid var(--line);}
+  .ans{padding:8px 20px 18px;background:#fbf8f1;}
+  .ans ul{margin:8px 0;padding-left:22px;}
+  .ans .kw{color:var(--accent);font-weight:700;}
+  .mem{background:#eef4f1;border:1px solid #d6e5de;border-left:3px solid var(--accent2);border-radius:12px;padding:16px 22px;margin:16px 0;}
+  .mem b{color:var(--accent2);}
+  .mem .big{font-family:var(--mono);font-size:19px;font-weight:700;color:var(--ink);letter-spacing:.04em;}
+  kbd{font-family:var(--mono);background:#efe9dd;padding:1px 6px;border-radius:5px;font-size:14px;}
+  footer{margin-top:60px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:20px;}
+  .los{font-weight:700;font-family:var(--mono)}
+  .los.A{color:#2f7d4f}.los.B{color:#3a7d2f}.los.C{color:#8d7d1e}.los.D{color:#b0792e}.los.E{color:#b0522e}.los.F{color:#9a2e2e}
+</style>
+</head>
+<body>
+<div class="shell">
+<header>
+  <span class="tag">115-1 都市交通計劃 · 第一次小考</span>
+  <h1>小考題庫練習系統</h1>
+  <p class="sub">專為「閉卷手寫」設計 → 名詞用翻卡主動回想、計算題無限出新題練手、申論背答題骨架。搭配〈小考複習課本.html〉一起用。</p>
+</header>
+
+<div class="tabs">
+  <button class="active" onclick="showTab(0,this)">🃏 名詞翻卡</button>
+  <button onclick="showTab(1,this)">🧮 計算題（無限練）</button>
+  <button onclick="showTab(2,this)">✍️ 簡答・申論</button>
+  <button onclick="showTab(3,this)">🧠 記憶法</button>
+</div>
+
+<!-- TAB 0 : flashcards -->
+<div class="panel active">
+  <h2 class="sec">名詞解釋翻卡</h2>
+  <p class="hint">先看題目在心裡默講定義，再點卡片翻面對答案。答得出按「會」，卡住按「要再看」——系統會把不會的留到最後重練。</p>
+  <div class="deckbar">
+    <span class="counter" id="fcCounter">1 / 21</span>
+    <button class="btn ghost" onclick="shuffleDeck()">🔀 洗牌</button>
+    <button class="btn ghost" onclick="resetDeck()">↺ 重置</button>
+    <span class="counter" id="fcScore" style="margin-left:auto;">會 0 ・ 要再看 0</span>
+  </div>
+  <div class="flash" id="flash" onclick="flipCard()">
+    <span class="side" id="fcSide">題目</span>
+    <div id="fcContent" class="term">—</div>
+    <span class="tap">點卡片翻面</span>
+  </div>
+  <div class="progress"><i id="fcBar"></i></div>
+  <div class="deckbar2">
+    <button class="btn" onclick="markCard(false)">😵 要再看</button>
+    <button class="btn primary" onclick="markCard(true)">✅ 會</button>
+  </div>
+</div>
+
+<!-- TAB 1 : calc -->
+<div class="panel">
+  <h2 class="sec">計算題・無限練習</h2>
+  <p class="hint">選題型 → 自己手寫算 → 按「對答案」看完整步驟 → 按「出新題」換一題。數字每次隨機，可一直練到手熟。</p>
+  <div class="calcwrap">
+    <button class="active" data-t="flow" onclick="pickCalc('flow',this)">① q = u·k</button>
+    <button data-t="speed" onclick="pickCalc('speed',this)">② 空間/時間平均速率</button>
+    <button data-t="delay" onclick="pickCalc('delay',this)">③ 停等延滯 → LOS</button>
+  </div>
+  <div class="qcard">
+    <div class="qlabel" id="calcLabel">題型</div>
+    <div class="qbody" id="calcBody">—</div>
+    <div class="sol" id="calcSol"></div>
+    <div class="calc-actions">
+      <button class="btn" onclick="toggleSol()">👁 對答案</button>
+      <button class="btn primary" onclick="newCalc()">🎲 出新題</button>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 2 : essay -->
+<div class="panel">
+  <h2 class="sec">簡答・申論題庫</h2>
+  <p class="hint">這些是高機率的手寫題。先自己在紙上列要點，再點開對參考答案（抓關鍵字即可，不必逐字）。</p>
+
+  <details><summary><span class="q">S1</span><span>說明「時間平均速率」與「空間平均速率」的差異，並指出路段分析應採用何者及原因。</span></summary>
+    <div class="ans"><ul>
+      <li><span class="kw">時間平均速率</span>：在固定「點」量測各車瞬時速率的<b>算術平均</b>。</li>
+      <li><span class="kw">空間平均速率</span>：以路段總距離÷總行駛時間的<b>調和平均</b>（定「路段」量測）。</li>
+      <li>兩者恆有 <b>時間平均 ≥ 空間平均</b>。</li>
+      <li><span class="kw">路段分析用空間平均</span>：因其以「在路段的行駛時間」為權重，龜車停留久、權重大，能正確反映其對整段路的影響；且直接對應「走完這段要多久」，與服務水準定義一致。</li>
+    </ul></div>
+  </details>
+
+  <details><summary><span class="q">S2</span><span>說明市區號誌化路口服務水準的三個績效指標（MOE）。</span></summary>
+    <div class="ans"><ul>
+      <li><span class="kw">流量/容量比（V/C Ratio）</span></li>
+      <li><span class="kw">平均延滯時間</span>（average delay）</li>
+      <li><span class="kw">每週期最長等候車隊之平均長度</span>，及剩餘交叉路口間距</li>
+      <li>（老師投影片標「重要!!」，三項要能默寫。）</li>
+    </ul></div>
+  </details>
+
+  <details><summary><span class="q">S3</span><span>說明圓環的運作原理，並各舉一種適合與不適合設置圓環的情況。</span></summary>
+    <div class="ans"><ul>
+      <li><span class="kw">運作</span>：單向繞圈；<b>內側優先</b>（入環讓出環、外車道讓內車道）；將<b>交叉車流轉為併入車流</b>；以進入角度與中心島大小控制車速。</li>
+      <li><span class="kw">適合</span>：交通量小、迴轉/左轉多、多道路交叉、大路接小路之路口。</li>
+      <li><span class="kw">不適合</span>：有大量行人及機/踏車的路口（衝突多、危險）。</li>
+      <li>成本：建設成本高（需大用地）、營運成本低（免紅綠燈）。</li>
+    </ul></div>
+  </details>
+
+  <details><summary><span class="q">S4</span><span>試述「速率-流量-密度基本關係圖」，並說明容量出現在何處。</span></summary>
+    <div class="ans"><ul>
+      <li>三個巨觀變數由 <b>\(q=u\times k\)</b> 連結。</li>
+      <li>密度低時為<span class="kw">自由車流</span>，車速高、流量小；密度升高，流量增加。</li>
+      <li><span class="kw">容量（最大流量）出現在臨界密度</span>處；超過臨界密度後，速率與流量雙雙下降，走向<b>強迫車流（壅塞）</b>。</li>
+      <li>同一流量可對應「低密度高速」與「高密度低速」兩種狀態，故需速率/密度輔助判斷。</li>
+    </ul></div>
+  </details>
+
+  <details><summary><span class="q">S5</span><span>說明停等延滯的調查與計算方法。</span></summary>
+    <div class="ans"><ul>
+      <li>設<span class="kw">參考線</span>於停等車下游約1公尺；取樣時間取最接近<b>15分鐘</b>的週期和；分割時段 T 約10–15秒，<b>T不宜為週期之因數</b>。</li>
+      <li>逐時段記錄<span class="kw">停等車輛數</span>與<span class="kw">通過車輛數</span>（分機慢車/小客車/大車）。</li>
+      <li><b>總延滯 =（Σ停等車數）× T</b>；<b>平均延滯 \(t_a\) = 總延滯 ÷ 總通過車數</b>（秒/輛）。</li>
+      <li>以 \(t_a\) 查表判 LOS（15/30/45/60/80 分界）。</li>
+    </ul></div>
+  </details>
+
+  <details><summary><span class="q">S6</span><span>列舉三種交通調查方法，並說明其量測對象。</span></summary>
+    <div class="ans"><ul>
+      <li><span class="kw">交通量調查</span>：感應線圈/影像辨識/人工計數 → 量流量。</li>
+      <li><span class="kw">速度調查（浮動車法）</span>：測試車記錄路段行駛時間與距離 → 量空間平均速率。</li>
+      <li><span class="kw">轉向調查（MCC）</span>：記錄路口各流向車數。</li>
+      <li>（其他可寫：車牌調查→旅行時間/穿越性交通；O&D起迄調查→旅次分布；停等延滯調查→路口延滯。）</li>
+    </ul></div>
+  </details>
+
+  <details><summary><span class="q">S7</span><span>解釋「小客車當量（PCU）」及其用途。</span></summary>
+    <div class="ans"><ul>
+      <li><span class="kw">PCU（Passenger Car Unit）＝ PCE</span>：將不同車種依其佔用空間與對車流的干擾，換算成相當於若干輛小客車的單位。</li>
+      <li><span class="kw">用途</span>：統一不同車種以計算道路/路口容量，故容量可用 <kbd>PCU/hr</kbd> 表示。大車 PCU&gt;1。</li>
+    </ul></div>
+  </details>
+
+  <details><summary><span class="q">S8</span><span>名詞解釋：臨界密度、佔有率、穿越性交通（Rat-run）、猶豫區間（Dilemma zone）。</span></summary>
+    <div class="ans"><ul>
+      <li><span class="kw">臨界密度</span>：流量達最大（容量）時對應的密度；超過後流量反降。</li>
+      <li><span class="kw">佔有率</span>：偵測器在一段時間內被車輛佔據的時間比例，為密度的替代量測。</li>
+      <li><span class="kw">穿越性交通</span>：抄捷徑穿越次要道路或住宅巷道的交通，可用車牌調查偵測。</li>
+      <li><span class="kw">猶豫區間</span>：綠轉黃時，駕駛既無法安全停車、又無法安全通過路口的區間。</li>
+    </ul></div>
+  </details>
+</div>
+
+<!-- TAB 3 : memory -->
+<div class="panel">
+  <h2 class="sec">快速記憶法</h2>
+  <p class="hint">閉卷考靠「少量死背 + 一張錨點圖」最省力。</p>
+
+  <div class="mem">
+    <b>① 停等延滯 LOS 臨界值（必背）</b>
+    <p class="big">15 → 30 → 45 → 60 → 80</p>
+    <p style="margin:0">口訣：<b>「十五起跳，每級加十五，最後一級加二十」</b>。對應 <span class="los A">A</span>≤15 <span class="los B">B</span>≤30 <span class="los C">C</span>≤45 <span class="los D">D</span>≤60 <span class="los E">E</span>≤80 <span class="los F">F</span>&gt;80（秒/輛）。</p>
+  </div>
+
+  <div class="mem">
+    <b>② 一張錨點圖串起半個範圍</b>
+    <p style="margin:0">把<b>「速率-流量-密度基本關係圖」</b>畫在腦中：左下自由流（高速低密）→ 頂點是容量（臨界密度）→ 右下壅塞（低速高密）。LOS A→F、\(q=u\times k\)、臨界密度、自由車流全掛在這張圖上。考前能默畫這張圖，等於複習完車流理論。</p>
+  </div>
+
+  <div class="mem">
+    <b>③ 兩種平均速率的一句話記憶</b>
+    <p style="margin:0"><b>「點算術、段調和；時間大、空間小」</b>——定<b>點</b>量測＝<b>算術</b>平均＝時間平均（值較大）；路<b>段</b>量測＝<b>調和</b>平均＝空間平均（值較小）。</p>
+  </div>
+
+  <div class="mem">
+    <b>④ 圓環論述骨架（四段背）</b>
+    <p style="margin:0"><b>單向繞圈 → 內側優先（入環讓出環）→ 交叉轉併入（較安全）→ 控速（進入角度＋中心島）</b>。再補一句適用時機（量小、左轉多）與不適用（人車多）。</p>
+  </div>
+
+  <div class="mem">
+    <b>⑤ 停等延滯公式的防呆</b>
+    <p style="margin:0">分子用<b>停等</b>車數×T、分母用<b>通過</b>車數——兩欄不同別搞混；單位是<b>秒/輛</b>。算完一定回頭對 LOS 表判級。</p>
+  </div>
+
+  <div class="mem">
+    <b>⑥ 讀書順序建議</b>
+    <p style="margin:0">名詞翻卡（每天刷一輪，不會的隔天再刷）→ 計算題每天各型 3 題手寫 → 申論看一遍骨架默列要點。<b>三天刷三輪，比讀十遍講義有效。</b></p>
+  </div>
+</div>
+
+<footer>
+  <p>都市交通計劃 115-1 · 第一次小考題庫練習 ｜ 內容依課程講義與《2022 臺灣公路容量手冊》整理。考試日期與範圍（圓環是否納入）以 Moodle 公佈欄最新公告為準。</p>
+</footer>
+</div>
+
+<script>
+/* ---------- Tabs ---------- */
+function showTab(i,btn){
+  document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.panel').forEach((p,idx)=>p.classList.toggle('active',idx===i));
+}
+
+/* ---------- Flashcards ---------- */
+const CARDS=[
+  ['服務水準 (LOS)','Level of Service','描述道路或路口交通運行品質的分級指標，分 A–F 六級；A 最佳（自由車流）、F 最差（強迫車流）。'],
+  ['容量 (Capacity)','','在特定道路、交通與管制條件下，單位時間內能通過某斷面或路口的最大車輛數（即基本關係圖的最大流量）。'],
+  ['飽和流率','Saturation flow','號誌路口綠燈期間，車隊穩定連續通過停止線時的最大流率。'],
+  ['小客車當量 PCU','PCU / PCE','將不同車種依佔用空間與干擾程度，換算成相當於若干輛小客車的單位，用以統一計算容量。大車 PCU&gt;1。'],
+  ['時間平均速率','Time mean speed','在固定地「點」量測各車輛瞬時速率的算術平均；值較空間平均大。'],
+  ['空間平均速率','Space mean speed','以路段總距離÷總行駛時間所得的平均速率（調和平均），用於路段分析；恆 ≤ 時間平均。'],
+  ['密度 (Density)','','單位道路長度上的車輛數（輛/公里 veh/km）。'],
+  ['佔有率 (Occupancy)','','偵測器在一段時間內被車輛佔據的時間比例，為密度的替代量測。'],
+  ['需求流率','','想要通過某定點的流率（含受阻而未能通過者）；相對於現場觀察到的「實際流率」。'],
+  ['臨界密度','Critical density','流量達到最大（容量）時所對應的密度；超過此密度後流量反而下降。'],
+  ['自由車流','Free flow','密度低、車輛幾乎不受彼此干擾、車速接近期望速度的狀態，對應 LOS A。'],
+  ['V/C 比','流量容量比','實際流量與容量之比，為衡量路口壅塞程度的績效指標之一。'],
+  ['停等延滯','','車輛因號誌管制而在路口停等所損失的時間（秒/輛），是判定路口服務水準的主要指標。'],
+  ['尖峰小時係數 PHF','','尖峰小時流量與該小時內尖峰時段（如 15 分鐘）換算流率之比，反映流量集中程度。'],
+  ['浮動車法','Floating car','以測試車隨車流行駛，記錄路段行駛時間與距離，用以求得空間平均速率的速度調查法。'],
+  ['穿越性交通','Rat-run','利用次要道路或住宅區巷道抄捷徑穿越的交通；可用車牌調查偵測。'],
+  ['起迄調查 O&D','Origin & Destination','調查旅次起點與終點分布的調查，為運輸規劃的基礎資料，常採抽樣（路邊訪問、問卷）。'],
+  ['轉向調查 MCC','Manual-classified count','以人工記錄路口各進口道車輛左轉/直行/右轉流向的調查。'],
+  ['猶豫區間','Dilemma zone','綠燈轉黃燈時，駕駛既無法安全停車、又無法安全通過路口的區間。'],
+  ['基本關係圖','Fundamental diagram','速率-流量-密度三者的關係圖，描述車流由自由流經容量到壅塞的演變。'],
+  ['圓環','Roundabout','車輛單向繞行中心島、採「入環讓出環」運作，將交叉車流轉為併入車流的路口形式。'],
+];
+let deck=[...Array(CARDS.length).keys()], idx=0, flipped=false, good=0, bad=0, redo=[];
+const $=id=>document.getElementById(id);
+function renderCard(){
+  const c=CARDS[deck[idx]];
+  if(!flipped){ $('fcSide').textContent='題目｜名詞'; $('fcContent').className='term';
+    $('fcContent').innerHTML=c[0]+(c[1]?'<small>'+c[1]+'</small>':''); }
+  else { $('fcSide').textContent='參考定義'; $('fcContent').className='def'; $('fcContent').innerHTML=c[2]; }
+  $('fcCounter').textContent=(idx+1)+' / '+deck.length;
+  $('fcScore').textContent='會 '+good+' ・ 要再看 '+bad;
+  $('fcBar').style.width=(idx/deck.length*100)+'%';
+}
+function flipCard(){ flipped=!flipped; renderCard(); }
+function markCard(ok){
+  if(ok)good++; else{bad++; redo.push(deck[idx]);}
+  flipped=false;
+  if(idx<deck.length-1){ idx++; renderCard(); }
+  else if(redo.length){ deck=redo; redo=[]; idx=0; renderCard();
+    $('fcSide').textContent='題目｜名詞'; }
+  else{ $('fcContent').className='term'; $('fcContent').innerHTML='🎉 全部答「會」了！<small style="color:var(--muted)">按重置可再刷一輪</small>';
+    $('fcSide').textContent='完成'; $('fcBar').style.width='100%'; }
+}
+function shuffleDeck(){ for(let i=deck.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[deck[i],deck[j]]=[deck[j],deck[i]];} idx=0;flipped=false;redo=[];renderCard(); }
+function resetDeck(){ deck=[...Array(CARDS.length).keys()]; idx=0;flipped=false;good=0;bad=0;redo=[];renderCard(); }
+renderCard();
+
+/* ---------- Calculation drills ---------- */
+let calcType='flow', solShown=false;
+const rnd=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+function pickCalc(t,btn){ calcType=t; document.querySelectorAll('.calcwrap button').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); newCalc(); }
+function losDelay(ta){ if(ta<=15)return'A';if(ta<=30)return'B';if(ta<=45)return'C';if(ta<=60)return'D';if(ta<=80)return'E';return'F';}
+function newCalc(){
+  solShown=false; $('calcSol').classList.remove('show');
+  if(calcType==='flow'){
+    const mode=rnd(0,2), u=rnd(20,60), k=rnd(20,80), q=u*k;
+    $('calcLabel').textContent='題型 ①　車流基本關係 q = u × k';
+    if(mode===0){ $('calcBody').innerHTML=`某路段速率 u = <b>${u}</b> km/hr、密度 k = <b>${k}</b> 輛/km，求流率 q。`;
+      $('calcSol').innerHTML=`<div class="step">\\( q = u\\times k = ${u}\\times ${k}\\)</div><div class="final">q = ${q} 輛/小時（veh/hr）</div>`;}
+    else if(mode===1){ $('calcBody').innerHTML=`某路段流率 q = <b>${q}</b> veh/hr、密度 k = <b>${k}</b> 輛/km，求速率 u。`;
+      $('calcSol').innerHTML=`<div class="step">\\( u = q / k = ${q} / ${k}\\)</div><div class="final">u = ${u} km/hr</div>`;}
+    else{ $('calcBody').innerHTML=`某路段流率 q = <b>${q}</b> veh/hr、速率 u = <b>${u}</b> km/hr，求密度 k。`;
+      $('calcSol').innerHTML=`<div class="step">\\( k = q / u = ${q} / ${u}\\)</div><div class="final">k = ${k} 輛/公里（veh/km）</div>`;}
+  }
+  else if(calcType==='speed'){
+    const L=rnd(1,3), t=[rnd(3,8),rnd(3,8),rnd(3,8)];
+    const spd=t.map(x=>L/(x/60)); // km/hr
+    const tms=(spd[0]+spd[1]+spd[2])/3;
+    const totT=(t[0]+t[1]+t[2])/60; const sms=(3*L)/totT;
+    $('calcLabel').textContent='題型 ②　時間平均 vs 空間平均速率';
+    $('calcBody').innerHTML=`三輛測試車各通過同一條 <b>${L}</b> 公里路段，花費時間分別為 <b>${t[0]}</b>、<b>${t[1]}</b>、<b>${t[2]}</b> 分鐘。求時間平均速率與空間平均速率。`;
+    $('calcSol').innerHTML=`
+      <div class="step">各車速率 u = L/t：<br>
+      車1 = ${L}÷(${t[0]}/60) = ${spd[0].toFixed(2)}；車2 = ${spd[1].toFixed(2)}；車3 = ${spd[2].toFixed(2)} km/hr</div>
+      <div class="step"><b>時間平均</b>（算術）= (${spd[0].toFixed(2)}+${spd[1].toFixed(2)}+${spd[2].toFixed(2)})/3 = <b>${tms.toFixed(2)} km/hr</b></div>
+      <div class="step"><b>空間平均</b>（總距離/總時間）= (3×${L}) ÷ (${t[0]}+${t[1]}+${t[2]})/60 = ${(3*L)}÷${totT.toFixed(3)} = <b>${sms.toFixed(2)} km/hr</b></div>
+      <div class="final">時間平均 ${tms.toFixed(2)} ≥ 空間平均 ${sms.toFixed(2)} ✔（恆成立）</div>`;
+  }
+  else{
+    const T=15, mc=rnd(150,450), car=rnd(60,180), big=rnd(10,50);
+    const pmc=rnd(90,250), pcar=rnd(40,120), pbig=rnd(5,30);
+    const stop=mc+car+big, pass=pmc+pcar+pbig;
+    const total=stop*T; const ta=total/pass; const los=losDelay(ta);
+    $('calcLabel').textContent='題型 ③　停等延滯 → 服務水準';
+    $('calcBody').innerHTML=`某路口停等延滯調查（分割時段 T = ${T} 秒）。各時段<b>停等車輛數</b>總和：機慢車 <b>${mc}</b>、小客車 <b>${car}</b>、大車 <b>${big}</b>；<b>通過車輛數</b>：機慢車 <b>${pmc}</b>、小客車 <b>${pcar}</b>、大車 <b>${pbig}</b>。求平均停等延滯並判定 LOS。`;
+    $('calcSol').innerHTML=`
+      <div class="step">① 停等車數總和 = ${mc}+${car}+${big} = <b>${stop}</b> 輛</div>
+      <div class="step">② 總延滯時間 = ${stop} × ${T} = <b>${total}</b> 秒</div>
+      <div class="step">③ 通過車數總和 = ${pmc}+${pcar}+${pbig} = <b>${pass}</b> 輛</div>
+      <div class="step">④ 平均停等延滯 = ${total} ÷ ${pass} = <b>${ta.toFixed(2)} 秒/輛</b></div>
+      <div class="final">${ta.toFixed(2)} → 服務水準 <span class="los ${los}">${los}</span> 級</div>`;
+  }
+  if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise([$('calcSol')]);
+}
+function toggleSol(){ solShown=!solShown; $('calcSol').classList.toggle('show',solShown);
+  if(solShown&&window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise([$('calcSol')]); }
+newCalc();
+</script>
+</body>
+</html>
