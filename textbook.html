@@ -124,8 +124,12 @@
     <a href="#arterial">5　路段／幹道服務水準</a>
     <a href="#survey">6　交通調查方法</a>
     <a href="#round">7　圓環</a>
-    <a href="#cheat">8　公式速查表</a>
-    <a href="#quiz">9　模擬練習題</a>
+    <a href="#demand">8　需求流率與設計流量</a>
+    <a href="#demand" class="sub">流量／流率／PHF★</a>
+    <a href="#gapi">9　Google API 旅行時間</a>
+    <a href="#hier">10　道路層級</a>
+    <a href="#cheat">11　公式速查表</a>
+    <a href="#quiz">12　模擬練習題</a>
   </nav>
 </aside>
 
@@ -373,9 +377,85 @@
   <div class="note"><b>延伸思考題（老師在 lec1 結尾丟的）：</b>「圓環的停等延滯怎麼算？」圓環屬無號誌/讓路運作，延滯來自「讓出環車流」的等待，與號誌路口的紅燈停等機制不同——答得出這個差異是加分點。</div>
 </section>
 
-<!-- 8 -->
+<!-- 8 需求流率 -->
+<section id="demand">
+  <h2><span class="num">08</span>需求流率與設計流量</h2>
+  <p class="lead">這塊是 lec1 第 8–12 頁、也是考古題 Q5 的全部內容。把四個名詞和一條公式搞懂就穩。</p>
+
+  <h3>流量 → 流率 → 需求流率</h3>
+  <ul>
+    <li><strong>流量 Volume</strong>：一段<b>不特定</b>時間內實際數到的車數（例：18 分鐘數到 251 輛）。</li>
+    <li><strong>流率 Flow rate</strong>：換算到<b>固定單位時間</b>（車：輛/小時；行人：人/分鐘）。<br>　251 輛 ÷ 18 分 × 60 = <b>837 輛/小時</b>。</li>
+    <li><strong>需求流率</strong>：<b>想</b>通過某點的流率（含被塞住過不去的）。<strong>實際流率</strong>：現場真正觀察到的流率。</li>
+  </ul>
+  <div class="key"><b>需求 vs 實際（塞車時最清楚）：</b>容量每小時只能放 1000 輛，但想通過的有 1200 輛/hr → 需求 1200、實際 1000，剩 200 輛回堵。<b>不塞車時需求＝實際；設計道路要用「需求流率」。</b></div>
+
+  <h3>尖峰 15 分鐘之需求流率 與 PHF</h3>
+  <p>車流在一小時內不平均，抓<strong>最忙 15 分鐘</strong>推估（×4）才夠保守。</p>
+  <div class="formula">
+    <div class="lbl">尖峰小時係數 PHF</div>
+    \[ \text{PHF} = \frac{\text{尖峰小時流率}}{\text{尖峰 15 分鐘流率}} = \frac{\text{尖峰小時流率}}{\text{尖峰15分量}\times 4} \quad(\le 1) \]
+  </div>
+  <div class="worked"><span class="wtitle">範例　lec1 p11 原始例題</span>
+    <p>尖峰小時流率 = 264 輛/hr。各 5 分鐘流量中，最忙 15 分鐘（第 4、5、6 時段）= 24+26+27 = 77 輛。</p>
+    <p>該 15 分鐘之流率 = 77 × 60/15 = <b>308 輛/hr</b></p>
+    <p class="final" style="color:var(--accent);font-weight:700;margin-bottom:0">PHF = 264 ÷ 308 = 0.86（＝考古題 Q5 的 PHF 來源）</p>
+  </div>
+
+  <h3>需求流率設計公式（Q5 考題）</h3>
+  <div class="formula">
+    <div class="lbl">★ 單方向尖峰 15 分鐘需求流率</div>
+    \[ q = \frac{ADT \times K \times D}{PHF} \quad(\text{pcu/hr}) \]
+  </div>
+  <table>
+    <tr><th>係數</th><th>意義</th><th>代表值（lec1 p10）</th></tr>
+    <tr><td>ADT</td><td>設計年平均每日流量</td><td>題目給定</td></tr>
+    <tr><td><b>K</b> 設計小時流量係數</td><td>設計小時流量 ÷ 年日均；挑出「設計那一小時」</td><td>大都會 <b>0.08–0.12</b>；其他地區 <b>0.12–0.18</b></td></tr>
+    <tr><td><b>D</b> 方向分布係數</td><td>尖峰較大方向流率佔總流率比例；取單方向</td><td><b>0.5–0.65</b>；市區≈0.5、市郊/城際較高</td></tr>
+    <tr><td><b>PHF</b> 尖峰小時係數</td><td>÷PHF 把小時流量放大回尖峰 15 分</td><td>越接近 1 越平均</td></tr>
+  </table>
+  <div class="note"><b>邏輯鏈：</b>ADT×K＝設計小時流量 → ×D 取單方向 → ÷PHF 放大到尖峰 15 分。<b>記住：鄉村 K 大、城際 D 大</b>（考古題 Q5-2 選 0.15、Q5-3 選「大」）。</div>
+</section>
+
+<!-- 9 Google API -->
+<section id="gapi">
+  <h2><span class="num">09</span>Google API 旅行時間擷取</h2>
+  <p class="lead">老師剛教、又是你們作業的方法，很可能出情境題。</p>
+  <h3>方法步驟</h3>
+  <ol>
+    <li>用 Google Maps API 設 <strong>departure_time 為指定時段的當下/未來</strong>，取得「考量即時交通的<b>預估旅行時間</b>」與距離。</li>
+    <li>算<strong>平均旅行速率 = 距離 ÷ 旅行時間</strong>。</li>
+    <li>判 LOS：以<strong>平均行駛速率</strong>對照手冊第 16 章；本課/作業用簡化法——<b>平均旅行速率 ÷ 速限（近似自由流速率）</b>，比值越高 LOS 越好。</li>
+    <li>保留原始資料：查詢時間、旅行時間、距離、速限、方向、計算結果。</li>
+  </ol>
+  <div class="worked"><span class="wtitle">範例　幹道 LOS</span>
+    <p>路段長 1.2 km，API 尖峰旅行時間 180 秒，速限 50 km/hr。</p>
+    <p>平均旅行速率 = 1.2 ÷ (180/3600) = 24 km/hr；比值 = 24 ÷ 50 = <b>0.48</b></p>
+    <p class="final" style="color:var(--accent);font-weight:700;margin-bottom:0">車速僅約速限一半 → 壅塞偏嚴重、LOS 偏差等級。</p>
+  </div>
+  <div class="key"><b>申論要寫到優缺點＋假設：</b>優點＝免現場、省人力、可大量、可比較時段/方向/平假日；缺點＝API 給的是<b>「預估」非實測</b>、演算法黑箱、依賴 Google 資料品質，且<b>以速限近似自由流速率</b>是簡化假設。</div>
+</section>
+
+<!-- 10 道路層級 -->
+<section id="hier">
+  <h2><span class="num">10</span>道路層級</h2>
+  <p>考古題 Q6 兩題選擇都考這塊，屬 lec2/lec3「都市交通路網」。</p>
+  <h3>分辨準則（層級越高者）</h3>
+  <ul>
+    <li>一段距離內<strong>交叉路口數越少</strong>（出入管制強）→ 層級越高。</li>
+    <li>車流<strong>速度越高</strong>→ 層級越高。</li>
+    <li>車流<strong>量越大</strong>→ 層級越高。</li>
+    <li>有<strong>中央分隔島</strong>→ 層級較高。</li>
+  </ul>
+  <div class="note"><b>考古題陷阱（Q6-1）：</b>「交叉路口數越多層級越高」是<b>錯的</b>（方向相反，路口多＝地方性道路＝層級低）。</div>
+  <h3>功能分類</h3>
+  <p>主要道路、次要道路、集散（收集）道路、出入道路。</p>
+  <div class="key"><b>考古題（Q6-2）：</b><b>公園道</b>屬景觀/類型分類，<b>不在</b>功能性道路層級之內。</div>
+</section>
+
+<!-- 11 -->
 <section id="cheat">
-  <h2><span class="num">08</span>公式速查表（考前最後一眼）</h2>
+  <h2><span class="num">11</span>公式速查表（考前最後一眼）</h2>
   <div class="card">
     <table>
       <tr><th>名稱</th><th>公式</th><th>單位／備註</th></tr>
@@ -385,6 +465,9 @@
       <tr><td>總停等延滯</td><td>\((\sum \text{停等車數})\times T\)</td><td>T＝分割時段（如 15 秒）</td></tr>
       <tr><td>平均停等延滯</td><td>\(\bar{t}_a = \frac{\text{總延滯}}{\text{總通過車數}}\)</td><td>秒/輛 → 查表判 LOS</td></tr>
       <tr><td>幹道平均行駛速率</td><td>\(\frac{\text{路段長}}{\text{總行駛時間}}\)</td><td>除速限 → 推估幹道 LOS</td></tr>
+      <tr><td>流量 → 流率</td><td>流量 × (60 ÷ 觀測分鐘)</td><td>換算成輛/小時</td></tr>
+      <tr><td>尖峰小時係數 PHF</td><td>\(\frac{\text{尖峰小時流率}}{\text{尖峰15分量}\times4}\)</td><td>≤ 1；越小越集中</td></tr>
+      <tr><td>需求流率（設計）</td><td>\(q = \frac{ADT\times K\times D}{PHF}\)</td><td>K:大都會0.08–0.12；D:0.5–0.65</td></tr>
     </table>
     <p style="margin-bottom:0"><b>停等延滯 LOS 臨界值：</b><span class="los A">A</span> ≤15 ｜ <span class="los B">B</span> ≤30 ｜ <span class="los C">C</span> ≤45 ｜ <span class="los D">D</span> ≤60 ｜ <span class="los E">E</span> ≤80 ｜ <span class="los F">F</span> &gt;80（秒/輛）</p>
   </div>
@@ -392,7 +475,7 @@
 
 <!-- 9 -->
 <section id="quiz">
-  <h2><span class="num">09</span>模擬練習題</h2>
+  <h2><span class="num">12</span>模擬練習題</h2>
   <p class="lead">先遮住解答自己算一遍，再點開對答案。計算題務必動手寫，閉卷考不能只看懂。</p>
 
   <details>
@@ -458,6 +541,31 @@
     <div class="answer">
       <p>空間平均速率以「在路段上行駛的時間」為權重，<b>龜車（慢車）停留久、權重大</b>，能正確反映其對整段路的交通影響；時間平均速率是定點量測的算術平均，會高估整段的真實運行速率。</p>
       <p class="final">且空間平均速率 = 總距離／總時間，直接對應「走完這段路要多久」，與服務水準的定義一致。</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span class="q">Q7</span><span>已知 ADT = 24,000 pcu、K = 0.12、D = 0.55、PHF = 0.90，求單方向尖峰 15 分鐘需求流率 q。</span></summary>
+    <div class="answer">
+      <p>q = (24,000 × 0.12 × 0.55) ÷ 0.90 = 1,584 ÷ 0.90</p>
+      <p class="final">q ≈ 1,760 pcu/hr</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span class="q">Q8</span><span>尖峰最忙 15 分鐘數到 360 輛，尖峰小時總共 1,260 輛。求尖峰 15 分鐘需求流率與 PHF。</span></summary>
+    <div class="answer">
+      <p>尖峰 15 分需求流率 = 360 × 4 = <b>1,440 pcu/hr</b></p>
+      <p>PHF = 尖峰小時流量 ÷（尖峰15分量×4）= 1,260 ÷ 1,440</p>
+      <p class="final">PHF = 0.875</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span class="q">Q9</span><span>（選擇＋觀念）下列何者不是提高道路層級的特徵：(A) 交叉路口數多 (B) 車速高 (C) 流量大 (D) 有中央分隔島。並說明「公園道」是否屬功能性道路層級。</span></summary>
+    <div class="answer">
+      <p>答：(A)。路口越<b>少</b>（出入管制強）層級越高，路口多代表地方性道路、層級低。</p>
+      <p class="final">公園道屬景觀/類型分類，<b>不在</b>功能性道路層級（主要／次要／集散／出入道路）之內。</p>
     </div>
   </details>
 </section>
