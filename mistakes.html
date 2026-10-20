@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="khrishu">
+<title>都市交通計劃 錯題本</title>
+<style>
+  :root{--paper:#f7f4ee;--ink:#232019;--muted:#6c6459;--line:#e2dccf;--accent:#9a3b2e;--accent2:#2f5d50;--gold:#b08d2e;--card:#fffdf8;--shadow:0 1px 2px rgba(40,30,15,.05),0 8px 28px rgba(40,30,15,.06);--mono:"SF Mono",ui-monospace,Menlo,monospace;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);line-height:1.85;font-size:17px;font-family:"PingFang TC","Noto Sans TC",system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:820px;margin:0 auto;padding:40px 22px 100px;}
+  header .tag{display:inline-block;font-size:12px;letter-spacing:.1em;color:#fff;background:var(--accent);padding:3px 11px;border-radius:999px;font-weight:600;}
+  header h1{font-size:27px;margin:14px 0 6px;}
+  header p{color:var(--muted);font-size:14.5px;margin:0;}
+  .item{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:12px;padding:18px 22px;margin:20px 0;box-shadow:var(--shadow);}
+  .item .no{font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--accent);letter-spacing:.06em;}
+  .item h3{font-size:17px;margin:4px 0 10px;}
+  .q{background:#fbf8f1;border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:15px;margin:8px 0;}
+  .lab{font-size:12.5px;font-weight:700;letter-spacing:.05em;margin:12px 0 2px;}
+  .wrong{color:var(--accent);}
+  .right{color:var(--accent2);}
+  .mono{font-family:var(--mono);font-size:14.5px;background:#f3efe6;border-radius:6px;padding:8px 12px;margin:6px 0;white-space:pre-wrap;line-height:1.7;}
+  .key{background:#fdf3f0;border:1px solid #f0d8d1;border-left:3px solid var(--accent);border-radius:8px;padding:10px 14px;margin:10px 0;font-size:14.5px;}
+  .key b{color:var(--accent);}
+  .star{background:#fff6e6;border:1px solid #f0e0b8;border-left:3px solid var(--gold);border-radius:8px;padding:10px 14px;margin:10px 0;font-size:14.5px;}
+  .star b{color:var(--gold);}
+  footer{margin-top:40px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:18px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <span class="tag">115-1 都市交通計劃</span>
+  <h1>錯題本</h1>
+  <p>第一次小考複習測驗的錯題與補充。考前最後看這本，效率最高。</p>
+</header>
+
+<div class="item">
+  <div class="no">錯題 01 ・ 計算</div>
+  <h3>平均速率（時間 / 空間）★ 單位陷阱</h3>
+  <div class="q">三台測試車通過同一段 2 公里路段，分別花 3、4、5 分鐘。求時間平均速率與空間平均速率。</div>
+  <div class="lab wrong">✗ 我的錯</div>
+  <div>算出「4m、0.5」——單位沒換、步驟跳掉了。</div>
+  <div class="lab right">✓ 正解</div>
+  <div class="mono">先各自算速率（距離÷時間，時間要換成小時）：
+車1 = 2 ÷ (3/60) = 40 km/hr
+車2 = 2 ÷ (4/60) = 30 km/hr
+車3 = 2 ÷ (5/60) = 24 km/hr
+
+時間平均 = (40+30+24)/3 = 31.3 km/hr
+空間平均 = 總距離÷總時間 = (3×2) ÷ (12/60) = 6 ÷ 0.2 = 30 km/hr
+→ 31.3 ≥ 30 ✓（時間平均 ≥ 空間平均）</div>
+  <div class="star"><b>★ 關鍵教訓（我不知道的）：</b>算速率前，<b>距離和時間單位要一致</b>。距離用「公里」、時間用「分鐘」時，<b>要先把分鐘 ÷ 60 換成小時</b>，速率才會是 km/hr。別直接用分鐘除！</div>
+  <div class="key"><b>步驟定型：</b>① 各車速率＝距離÷時間（時間先換小時）→ ② 時間平均＝算術平均、空間平均＝總距離÷總時間 → ③ 驗證時間平均 ≥ 空間平均。</div>
+</div>
+
+<div class="item">
+  <div class="no">錯題 02 ・ 名詞</div>
+  <h3>流量 ≠ 流率</h3>
+  <div class="q">用一句話說明流量、流率各是什麼。</div>
+  <div class="lab wrong">✗ 我的錯</div>
+  <div>把「流量」說成「單位時間內通過」——那其實是流率的定義。</div>
+  <div class="lab right">✓ 正解</div>
+  <div><b>流量</b>＝一段「<b>不特定（任意）時間</b>」數到的車數（生計數，例：18 分數到 251 輛）。<br>
+  <b>流率</b>＝換算成「<b>固定單位時間</b>」（車→輛/小時、人→人/分鐘）。流率＝流量÷觀測時間×標準單位。</div>
+  <div class="key"><b>判斷：</b>有「每小時/每分鐘」固定基準＝流率；只是「某段時間數到幾台」＝流量。基本關係圖/公式裡的「流量」其實是流率。</div>
+</div>
+
+<div class="item">
+  <div class="no">錯題 03 ・ 名詞補充</div>
+  <h3>為什麼路段分析要用空間平均速率</h3>
+  <div class="q">時間平均和空間平均哪個大？為什麼路段分析用空間平均？</div>
+  <div class="lab right">✓ 要補的理由</div>
+  <div>大小：時間平均 ≥ 空間平均（對）。<br>
+  <b>路段用空間平均的理由</b>：它以「車停留在路段的<b>時間</b>」為權重 → <b>慢車權重大</b> → 能真實反映路段塞不塞；而且＝總距離÷總時間，對應「走完這段要多久」。</div>
+  <div class="key"><b>補充：</b>所有車速一樣時，時間平均＝空間平均（看不出差別）；車速越參差，時間平均越大於空間平均。</div>
+</div>
+
+<div class="item">
+  <div class="no">錯題 04 ・ 觀念方向</div>
+  <h3>防鎖死是塞到「上游」路口</h3>
+  <div class="q">第三個績效指標（車隊長度＋剩餘交叉路口間距）在防什麼？</div>
+  <div class="lab wrong">✗ 我的小錯</div>
+  <div>說成塞到「下一個（下游）」路段。</div>
+  <div class="lab right">✓ 正解</div>
+  <div>車隊往後排 → 塞住<b>「上游（後面）」</b>的路口 → 上游也動不了 → 連鎖卡死整片路網（<b>grid-lock、鎖死</b>）。<br>單一路口的「延滯」看不出這點，所以要用「車隊長度 vs 剩餘間距」從<b>路網角度</b>把關。</div>
+  <div class="key"><b>關鍵字：</b>防鎖死 / grid-lock / 上游路口 / 路網角度。</div>
+</div>
+
+<footer>
+  <p>都市交通計劃 115-1 ・ 錯題本 ｜ 測驗全 12 題約對 10 題，主要加強：平均速率單位換算、流量≠流率、空間平均權重理由、防鎖死方向。</p>
+</footer>
+</div>
+</body>
+</html>
