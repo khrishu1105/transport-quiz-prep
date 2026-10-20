@@ -699,25 +699,118 @@
   <div class="key"><b>重點對應（這樣考）：</b>穿越性交通(Rat-run)→<b>車牌調查</b>；旅次起迄分布→<b>O&D</b>；路段速度→<b>floating car / google traffic</b>（你們作業）；路口轉向→<b>MCC</b>。</div>
 </section>
 <section id="gapi"><h2><span class="num">lec2</span>Google API 旅行時間擷取</h2><div class="pending">待補</div></section>
-<section id="round"><h2><span class="num">補充</span>圓環</h2><div class="pending">待補</div></section>
+<section id="round"><h2><span class="num">補充・低優先</span>圓環</h2><div class="note"><b>不在明列範圍：</b>lec2 p31 的小考範圍只有「交通調查大單元＋路網結構與道路層級」，<b>沒有列圓環</b>；圓環在教材裡掛「補充資料」。兩年前(1131)第一次考曾出圓環，故今年<b>以公告為準</b>。建議只順手讀概念（為什麼用圓環、優缺點、讓行規則），不用練計算；時間優先放停等延滯計算與道路層級判別。</div></section>
 <section id="hier">
-  <h2><span class="num">★ 考試範圍</span>道路層級</h2>
-  <p class="srcline">★ lec2 p31 小考範圍明列「路網結構與道路層級」；考古題 Q6 也考</p>
+  <h2><span class="num">★ 考試範圍</span>路網結構與道路層級</h2>
+  <p class="srcline">★ lec2 p31 小考範圍明列「路網結構與道路層級」；出自 lec3＋《道路層級與路網結構》講義；考古題 Q6 也考</p>
 
-  <h3>分辨準則（層級越高者）</h3>
+  <h3>為什麼要判斷（前言）</h3>
+  <p>老師用<b>血管比喻</b>：都市像身體，<b>道路像血管</b>——動脈（高層級）把血快速送到各方，微血管（低層級）把養分送到末梢。診斷道路層級與路網，就是看一個都市「體質」好不好。口訣：<b>「車潮就是錢潮」</b>（到得了才有活動，有活動才有發展）。</p>
+  <p>判斷得當與否，從<b>兩大項目</b>檢視：</p>
   <ul>
-    <li>一段距離內交叉路口數越<b>少</b> → 層級越高（出入管制強）</li>
-    <li>車流<b>速度越高</b> → 層級越高</li>
-    <li>車流<b>量越大</b> → 層級越高</li>
-    <li>有<b>中央分隔島</b> → 層級較高</li>
+    <li><b>土地使用分區</b>：管道路兩旁「能做什麼使用」（商/住/工）＋「能做多強的使用」（蓋多滿、多高）。</li>
+    <li><b>交通計畫</b>：不同層級道路有不同角色——出入道路只能接次要道路、不能直連快速道路；快速道路最快最適合聯外、出入道路最慢最適合社區。</li>
   </ul>
-  <div class="note"><b>考古題陷阱（Q6-1）：</b>「交叉路口數越<b>多</b>層級越高」是<b>錯的</b>（方向相反——路口多＝地方性道路＝層級低）。</div>
 
-  <h3>功能分類</h3>
-  <p>主要道路、次要道路、集散（收集）道路、出入道路。</p>
-  <div class="key"><b>考古題（Q6-2）：</b><b>公園道</b>屬景觀/類型分類，<b>不在</b>功能性道路層級（主要/次要/集散/出入）之內。</div>
+  <h3>★ 核心觀念：移動性 vs 可及性（方向相反）</h3>
+  <div class="card" style="padding:12px 16px">
+    <div style="font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:4px">層級越高越重「移動」，越低越重「可及」</div>
+    <svg viewBox="0 0 560 230" style="width:100%;max-width:560px;height:auto;font-family:'PingFang TC',sans-serif">
+      <line x1="70" y1="185" x2="510" y2="185" stroke="#232019" stroke-width="1.5"/>
+      <line x1="70" y1="185" x2="70" y2="30" stroke="#232019" stroke-width="1.5"/>
+      <text x="40" y="40" font-size="11" fill="#6c6459">高</text>
+      <text x="40" y="182" font-size="11" fill="#6c6459">低</text>
+      <line x1="110" y1="48" x2="470" y2="168" stroke="#9a3b2e" stroke-width="2.6"/>
+      <line x1="110" y1="168" x2="470" y2="48" stroke="#2f5d50" stroke-width="2.6"/>
+      <text x="118" y="42" font-size="12.5" fill="#9a3b2e" font-weight="700">移動性 Mobility</text>
+      <text x="360" y="42" font-size="12.5" fill="#2f5d50" font-weight="700">可及性 Accessibility</text>
+      <text x="110" y="205" font-size="11.5" text-anchor="middle" font-weight="700">快速</text>
+      <text x="230" y="205" font-size="11.5" text-anchor="middle">主要</text>
+      <text x="350" y="205" font-size="11.5" text-anchor="middle">次要</text>
+      <text x="470" y="205" font-size="11.5" text-anchor="middle" font-weight="700">服務</text>
+    </svg>
+    <div style="font-size:12px;color:var(--muted)">層級高（快速端）→ 強調快速通過（移動性）；層級低（服務端）→ 強調到得了家門口（可及性）。兩條線交叉，方向相反。</div>
+  </div>
+  <div class="key"><b>一句話記住：</b>寬度／車道數／路口距離／<b>移動性</b>都是「主要&gt;次要&gt;服務」，<b>只有可及性反過來</b>（服務&gt;次要&gt;主要）。</div>
 
-  <div class="note"><b>提醒：</b>「路網結構與道路層級」的完整講義在 <b>lec3（都市交通路網）</b>，若老師把小考範圍擴到這塊，建議去 Moodle 補 lec3 教材；目前課本先放考古題 Q6 考過的核心。</div>
+  <h3>★ 判別要素（p17 完整版，大題靠這個當論據）</h3>
+  <ul>
+    <li><b>路網體系</b>：起迄點（連到哪）、連結關係（連結的層級、交叉路口數、<b>平均交叉路口間距</b>）</li>
+    <li><b>道路工程設計</b>：進出限制、分隔島、交叉路口設計、路型、交通設施（紅綠燈秒數）、道路寬度（車道數、車道寬度）</li>
+    <li><b>兩旁土地使用</b>、<b>建物型式</b>、<b>地籍分割</b></li>
+    <li><b>車流特性</b>：車流量、車流速度</li>
+  </ul>
+  <div class="note"><b>判別心法：</b>這些要素<b>要彼此比較</b>才客觀，不能只看一項。例外：台南金華路雖歸「主要道路」，但每 30m 一路口、60m 一紅綠燈，服務水準其實被拉低——所以單看路口間距會誤判。都市會變，拓寬後層級也可能升。</div>
+
+  <h3>★ 四大層級分類（法源：市區道路及附屬工程設計標準 §3）</h3>
+  <table>
+    <tr><th>層級</th><th>定義重點</th><th>成大／台南例</th></tr>
+    <tr><td><b>快速道路</b></td><td>穿越都市的<b>通過性交通</b>＋連結各聚落；平面+立體交叉、設中央分隔島、進出管制</td><td>台86線（台南關廟線），連國道1、3號</td></tr>
+    <tr><td><b>主要道路</b></td><td>各區域間或連接鄰近市鎮的<b>主幹線</b>，路網主骨架</td><td>小東路、林森路</td></tr>
+    <tr><td><b>次要道路</b></td><td>連接主要與服務道路的<b>次幹線</b>，穿插於主要道路間</td><td>大學路、勝利路、前鋒路、長榮路、東寧路</td></tr>
+    <tr><td><b>服務道路</b></td><td>社區人車出入、連到次要道路；<b>可及性最高</b>；別名出入形巷道／鄉街道路，規劃用語以「服務道路」為準</td><td>育樂街、大學路18巷、大學路22巷</td></tr>
+  </table>
+  <div class="key"><b>★ 中英＋術語對照（兩份講義混用，看到別慌）：</b>快速道路＝<b>Expressway</b>；主要道路＝<b>Major arterial</b>；次要道路＝<b>收集道路 Collector</b>；服務道路＝<b>出入道路 Local streets</b>；<b>囊底路 cul-de-sac</b>＝只有一個出入口的死巷（出入道路典型）。</div>
+
+  <div class="card" style="padding:12px 16px">
+    <div style="font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:4px">逐級連接：服務 → 次要 → 主要 → 快速（不可跨級直連）</div>
+    <svg viewBox="0 0 560 170" style="width:100%;max-width:560px;height:auto;font-family:'PingFang TC',sans-serif">
+      <line x1="40" y1="95" x2="160" y2="95" stroke="#2f5d50" stroke-width="11"/>
+      <line x1="40" y1="95" x2="160" y2="95" stroke="#fff" stroke-width="1.4" stroke-dasharray="6 5"/>
+      <line x1="160" y1="95" x2="300" y2="95" stroke="#9a3b2e" stroke-width="7.5"/>
+      <line x1="300" y1="95" x2="420" y2="95" stroke="#b08d2e" stroke-width="4.5"/>
+      <line x1="420" y1="95" x2="498" y2="95" stroke="#6c6459" stroke-width="2.6"/>
+      <circle cx="516" cy="95" r="11" fill="none" stroke="#6c6459" stroke-width="2.6"/>
+      <circle cx="160" cy="95" r="3.5" fill="#232019"/>
+      <circle cx="300" cy="95" r="3.5" fill="#232019"/>
+      <circle cx="420" cy="95" r="3.5" fill="#232019"/>
+      <text x="100" y="120" font-size="11" text-anchor="middle" font-weight="700" fill="#2f5d50">快速</text>
+      <text x="230" y="120" font-size="11" text-anchor="middle" font-weight="700" fill="#9a3b2e">主要</text>
+      <text x="360" y="120" font-size="11" text-anchor="middle" font-weight="700" fill="#b08d2e">次要</text>
+      <text x="459" y="120" font-size="11" text-anchor="middle" fill="#6c6459">服務</text>
+      <text x="516" y="132" font-size="9.5" text-anchor="middle" fill="#6c6459">囊底路</text>
+      <path d="M460,88 C420,30 160,30 110,80" fill="none" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="5 4"/>
+      <text x="285" y="30" font-size="11" text-anchor="middle" fill="#c0392b" font-weight="700">✗ 服務道路不可直接連快速道路</text>
+    </svg>
+    <div style="font-size:12px;color:var(--muted)">線越粗＝層級越高（快速含中央分隔島雙線）。連接須逐級，末端服務道路可接囊底路（cul-de-sac）。</div>
+  </div>
+
+  <h3>★ 特性比較表（反向是陷阱題最愛）</h3>
+  <table>
+    <tr><th>特性</th><th>大小關係</th></tr>
+    <tr><td>道路寬度 / 車道數目 / 路口距離</td><td>主要 &gt; 次要 &gt; 服務</td></tr>
+    <tr><td><b>移動性 Mobility</b></td><td>主要 &gt; 次要 &gt; 服務</td></tr>
+    <tr><td><b>可及性 Accessibility</b></td><td><b>服務 &gt; 次要 &gt; 主要</b>（反過來！）</td></tr>
+  </table>
+  <div class="note"><b>陷阱題（Q6-1）：</b>「交叉路口數越<b>多</b>層級越高」是<b>錯的</b>（路口多＝地方性道路＝層級低）。<b>「層級越高可及性越高」也是錯的</b>（可及性反向）。</div>
+  <div class="key"><b>考古題（Q6-2）：</b><b>公園道</b>屬景觀/類型分類，<b>不在</b>功能性道路層級（快速/主要/次要/服務）之內。</div>
+
+  <h3>路網結構（另一套系統，別跟道路層級混）</h3>
+  <ul>
+    <li><b>聯外道路</b>：連結一區域對外的動線。是<b>相對性概念</b>——隨尺度改變：台南市尺度的聯外道路可能是高速/快速道路；台南東區尺度可能是市區主要道路；大學路18巷尺度可能是次要/服務道路。報告要與「道路層級」<b>分兩套系統講</b>。</li>
+    <li><b>環狀道路</b>：解決都市擴張後的交通需求。功能＝<b>降低過境性旅次、減輕核心商業區負擔、增強區域連結</b>。可層層外擴成<b>內環／中環／外環</b>；東京有「<b>三環九射</b>」（三組環狀＋九條聯外）；台南內環＝東豐路/公園路/西門路/健康路/林森路，外環＝中華路系統。環狀道路層級通常較高、有分隔島、路口距離長。</li>
+    <li><b>市區道路</b>：法源《市區道路條例 §2》＝都市計畫區內所有道路＋直轄市/市轄區都計區外所有道路＋中央核定人口集居區道路；《設計標準 §3》再分快速/主要/次要/服務四類。</li>
+  </ul>
+
+  <h3>道路紋理（路網的幾何個性）</h3>
+  <ul>
+    <li><b>幾何型</b>：<b>棋盤狀</b>（理性先進，科比意「光輝城市」、紐約 street/avenue、高雄「一心二聖三多四維」）；<b>放射狀</b>（彰顯政權，巴黎羅浮宮為端景；霍華德「花園城市」同心圓＋放射）。</li>
+    <li><b>有機型</b>：自然村演變的「自發城市（Spontaneous City）」，街道狹窄彎曲富人情味（威尼斯、台南中西區巷弄）。看似沒規劃，佈局其實合理。</li>
+  </ul>
+  <div class="note"><b>申論角度：</b>健康的都市<b>兩者都要</b>——只有棋盤格會索然無味，只有有機型欠缺效率；無優劣，視發展情形融合。</div>
+
+  <h3>道路規劃五要點（很適合出是非/簡答）</h3>
+  <ul>
+    <li>服務（出入）道路<b>避免直接連接主要道路</b>。</li>
+    <li>主要道路<b>路口數盡量減少</b>。</li>
+    <li>道路應<b>直交，避免斜交</b>（不得已先進街廓再轉向）。</li>
+    <li>新舊區域道路應<b>銜接，避免阻斷</b>。</li>
+    <li>路口應順暢連結，<b>避免偏移、縮減</b>。</li>
+  </ul>
+
+  <div class="key"><b>★ 兩套分類系統別混（lec3 p3「不能混搭」、p4「圖例不互斥令人困惑」）：</b>「路網結構」（聯外/環狀/市區道路）與「道路層級」（快速/主要/次要/服務）是<b>兩套</b>依據不同的分類；同一條路可同時是「主要道路」又是「聯外道路」。畫圖、寫報告時<b>圖例要分兩套</b>。另老師有用<b>空間型構指標（space syntax）</b>系統化客觀判層級（鄭屹翔、李子璋 2021/2023）——知道有此法即可。</div>
+
+  <div class="note"><b>法源整理：</b>行政分類（國道/省道/縣道/鄉道）＝<b>公路法 §2</b>；功能分類（快速/主要/次要/服務）＝<b>市區道路及附屬工程設計標準 §3</b>；市區道路定義＝<b>市區道路條例 §2</b>。</div>
 </section>
 
 <section id="confuse">
