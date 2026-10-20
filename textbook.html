@@ -68,7 +68,7 @@
     <a class="done" href="#moe">績效指標與服務水準</a>
     <a class="done" href="#delay">號誌控制＋停等延滯★</a>
     <div class="grp">第二講 lec2</div>
-    <a class="todo" href="#arterial">路段／幹道服務水準</a>
+    <a class="done" href="#arterial">市區幹道服務水準</a>
     <a class="todo" href="#survey">交通調查方法</a>
     <a class="todo" href="#gapi">Google API 旅行時間</a>
     <div class="grp">補充</div>
@@ -614,6 +614,10 @@
     總停等時間 ＝ 6 × 15 ＝ <b>90 秒</b>（驗證：A停 60＋B停 15＋D停 15 ＝ 90 ✓）<br>
     平均停等延滯 ta ＝ 90 ÷ 4 ＝ <b>22.5 秒/車</b>。</div>
   <div class="note"><b>所以「重複計算」是故意的、也是對的：</b>一台車被數幾次 ×T，剛好＝它停了多久，是在<b>累積總時間</b>（分子）；分母 N 用通過車數（每台一次、含沒停的 0 延滯車），平均才公平。<b>Σmᵢ 數的是「車·時段」、N 數的是「車數」，兩者本來就不相等。</b></div>
+  <div class="key"><b>Σmᵢ 跟 N 誰大？由延滯決定（好用）：</b>把公式變形 → <span style="font-family:var(--mono)">Σmᵢ / N = ta / T</span>。所以<br>
+  ・延滯 ta ＞ T（15 秒）→ <b>Σmᵢ ＞ N</b>（偏忙的路口，LOS B 以上差）<br>
+  ・延滯 ta ＜ T（15 秒）→ <b>Σmᵢ ＜ N</b>（很順的 LOS A 路口）<br>
+  不是「一定大於」，是<b>看路口塞不塞</b>。有停的「車台數」≤ 通過 N（直覺對）；但 Σmᵢ 含重複，可 ＞ N。</div>
 
   <h3>服務水準判定表（停等延滯 ta，秒/輛）— 必默背</h3>
   <table>
@@ -638,7 +642,41 @@
     <li><b>圓環的停等延滯怎麼算？</b>圓環無號誌，延滯來自「<b>入環車輛等待讓出環車流</b>」，不是紅燈停等，<b>不能直接套號誌路口公式</b>（那以週期為基礎）；要用<b>間隙接受（gap acceptance）</b>或實測等待時間來估。</li>
   </ul>
 </section>
-<section id="arterial"><h2><span class="num">lec2</span>路段／幹道服務水準</h2><div class="pending">待補</div></section>
+<section id="arterial">
+  <h2><span class="num">lec2 p1–6</span>市區幹道服務水準</h2>
+  <p class="srcline">對應 lec2 第 1–6 頁　｜　直接對應你們的 Google API 作業</p>
+  <p class="lead">lec1 看「路口」(停等延滯)，lec2 看「一整條幹道」——用<b>平均旅行速率</b>評估整條路順不順。</p>
+
+  <h3>幹道定義與目的（p2）</h3>
+  <ul>
+    <li><b>市區幹道</b>＝市區中<b>連貫的號誌化道路</b>（路口間距 &lt;3km、路寬 &gt;20m 四線、轉向量 &lt;20%），幾何標準高、交通量大。</li>
+    <li><b>分析目的：估「平均旅行速率」來評估整條路的服務水準。</b></li>
+  </ul>
+
+  <h3>判定表（表16.12）★ 用「平均速率÷速限」比值</h3>
+  <table>
+    <tr><th>LOS</th><th>V̄/VL（平均速率÷速限）</th><th>LOS</th><th>V̄/VL</th></tr>
+    <tr><td><b style="color:#2f7d4f">A</b></td><td>≥ 0.80</td><td><b style="color:#b0792e">D</b></td><td>0.40 ~ 0.50</td></tr>
+    <tr><td><b style="color:#3a7d2f">B</b></td><td>0.60 ~ 0.80</td><td><b style="color:#b0522e">E</b></td><td>0.20 ~ 0.40</td></tr>
+    <tr><td><b style="color:#8d7d1e">C</b></td><td>0.50 ~ 0.60</td><td><b style="color:#9a2e2e">F</b></td><td>&lt; 0.20</td></tr>
+  </table>
+  <p style="font-size:14px;color:var(--muted)">例：平均速率 24、速限 50 → 24/50 = 0.48 → <b>D 級</b>。</p>
+
+  <h3>平均旅行速率公式（p5，式16.16）</h3>
+  <div class="formula">
+    <p style="font-family:var(--mono);font-size:15px">平均旅行速率 V̄ = 3.6 × (總路段長度 ÷ 總旅行時間)　＝空間平均速率</p>
+    <p style="font-size:13.5px;color:var(--muted)">3.6 是單位換算：距離用「公尺」、時間用「秒」→ m/s × 3.6 = km/hr。</p>
+  </div>
+
+  <h3>調查方法：Floating car 測試車法（p6，式16.6）</h3>
+  <div class="formula">
+    <p style="font-family:var(--mono);font-size:15px">V = 3600 × L ÷ (Σtᵢ / n)</p>
+    <p style="font-size:13.5px;color:var(--muted)">L＝道路長度(公里)、tᵢ＝第 i 台測試車旅行時間(秒)、n＝樣本數。開測試車來回跑取平均。</p>
+  </div>
+  <div class="note"><b>單位提醒：</b>L 用<b>公里</b>→乘 <b>3600</b>（式16.6）；L 用<b>公尺</b>→乘 <b>3.6</b>（式16.16）。同一件事，看 L 單位決定。</div>
+
+  <div class="key"><b>串到你們的作業：</b>Google API 取旅行時間與距離 → 算平均旅行速率（空間平均）→ ÷ 速限 → 查表16.12 → 判 A–F。老師把官方的「floating car 測試車」換成「Google API 當虛擬測試車」。</div>
+</section>
 <section id="survey"><h2><span class="num">lec2</span>交通調查方法</h2><div class="pending">待補</div></section>
 <section id="gapi"><h2><span class="num">lec2</span>Google API 旅行時間擷取</h2><div class="pending">待補</div></section>
 <section id="round"><h2><span class="num">補充</span>圓環</h2><div class="pending">待補</div></section>
