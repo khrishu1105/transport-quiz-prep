@@ -447,6 +447,63 @@
 
   <h3>延滯有三種（p71，先分清楚）</h3>
   <p>平均延滯時間＝每車因<b>減速、停等、加速</b>而增加的旅行時間。在時間-距離軌跡圖上分成三種：</p>
+
+  <div class="card" style="padding:12px 16px">
+    <div style="font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:4px">時間-距離軌跡圖（含三種延滯）</div>
+    <svg viewBox="0 0 600 395" style="width:100%;max-width:600px;height:auto;font-family:'PingFang TC',sans-serif">
+      <!-- 軸 -->
+      <line x1="70" y1="340" x2="565" y2="340" stroke="#232019" stroke-width="1.6"/>
+      <line x1="70" y1="340" x2="70" y2="32" stroke="#232019" stroke-width="1.6"/>
+      <text x="58" y="26" font-size="13" fill="#232019">距離</text>
+      <text x="536" y="362" font-size="13" fill="#232019">時間</text>
+      <!-- 自由軌跡（無號誌）虛線 -->
+      <line x1="205" y1="235" x2="508" y2="50" stroke="#2f5d50" stroke-width="1.4" stroke-dasharray="5 4"/>
+      <text x="430" y="70" font-size="11" fill="#2f5d50" transform="rotate(-31 430 70)">自由軌跡（無號誌）</text>
+      <!-- 實際軌跡 -->
+      <path d="M95,338 L205,235 C222,222 236,218 252,218 L368,218 C390,218 404,200 420,175 L505,95" fill="none" stroke="#9a3b2e" stroke-width="2.6"/>
+      <!-- 時間點 -->
+      <g font-size="12" fill="#232019">
+        <circle cx="205" cy="235" r="3.2" fill="#9a3b2e"/><text x="196" y="252">t₁</text>
+        <circle cx="252" cy="218" r="3.2" fill="#9a3b2e"/><text x="246" y="236">t₂</text>
+        <circle cx="368" cy="218" r="3.2" fill="#9a3b2e"/><text x="364" y="236">t₃</text>
+        <circle cx="420" cy="175" r="3.2" fill="#9a3b2e"/><text x="424" y="190">t₄</text>
+        <circle cx="438" cy="95" r="3.2" fill="#2f5d50"/><text x="428" y="90">t₅</text>
+        <circle cx="505" cy="95" r="3.2" fill="#9a3b2e"/><text x="510" y="92">t₆</text>
+      </g>
+      <!-- 曲線段標註 -->
+      <text x="212" y="214" font-size="11" fill="#b0522e">減速(煞車)</text>
+      <text x="290" y="211" font-size="11" fill="#b0522e">停等</text>
+      <text x="392" y="168" font-size="11" fill="#b0522e">加速</text>
+      <!-- 紅燈 -->
+      <line x1="205" y1="150" x2="340" y2="150" stroke="#9a2e2e" stroke-width="1.3"/>
+      <line x1="205" y1="145" x2="205" y2="155" stroke="#9a2e2e" stroke-width="1.3"/>
+      <line x1="340" y1="145" x2="340" y2="155" stroke="#9a2e2e" stroke-width="1.3"/>
+      <text x="248" y="144" font-size="11" fill="#9a2e2e">紅燈</text>
+      <!-- 停等延滯 t2-t3 -->
+      <line x1="252" y1="208" x2="368" y2="208" stroke="#8d7d1e" stroke-width="1.3"/>
+      <line x1="252" y1="203" x2="252" y2="213" stroke="#8d7d1e" stroke-width="1.3"/>
+      <line x1="368" y1="203" x2="368" y2="213" stroke="#8d7d1e" stroke-width="1.3"/>
+      <text x="268" y="202" font-size="11.5" fill="#8d7d1e" font-weight="700">停等延滯 (t₂–t₃)</text>
+      <!-- 路段延滯 t1-t4 -->
+      <line x1="205" y1="262" x2="420" y2="262" stroke="#2f7d4f" stroke-width="1.3"/>
+      <line x1="205" y1="257" x2="205" y2="267" stroke="#2f7d4f" stroke-width="1.3"/>
+      <line x1="420" y1="257" x2="420" y2="267" stroke="#2f7d4f" stroke-width="1.3"/>
+      <text x="258" y="278" font-size="11.5" fill="#2f7d4f" font-weight="700">路段延滯 (t₁–t₄)</text>
+      <!-- 總延滯 t5-t6 -->
+      <line x1="438" y1="88" x2="505" y2="88" stroke="#9a3b2e" stroke-width="1.3"/>
+      <line x1="438" y1="83" x2="438" y2="93" stroke="#9a3b2e" stroke-width="1.3"/>
+      <line x1="505" y1="83" x2="505" y2="93" stroke="#9a3b2e" stroke-width="1.3"/>
+      <text x="430" y="80" font-size="11.5" fill="#9a3b2e" font-weight="700">總延滯 (t₅–t₆)</text>
+    </svg>
+    <div style="font-size:12px;color:var(--muted)">實線＝實際軌跡（被路口耽誤）；虛線＝沒號誌時的自由軌跡。縱軸距離、橫軸時間。</div>
+  </div>
+
+  <div class="note"><b>每段時間在幹嘛：</b><br>
+  ・<b>t₁→t₂</b>：看到紅燈開始<b>減速（煞車）</b>，軌跡斜率變平。<br>
+  ・<b>t₂→t₃</b>：<b>完全停住</b>（軌跡水平、距離沒變）＝<b>停等延滯</b>。<br>
+  ・<b>t₃→t₄</b>：綠燈/前車疏解，開始<b>加速</b>回到原速。<br>
+  ・<b>t₁→t₄</b>：整個被影響的過程（減速＋停＋加速）＝<b>路段延滯</b>。<br>
+  ・<b>t₅→t₆</b>：跟自由軌跡（虛線）比，整個被耽誤的＝<b>總延滯</b>。</div>
   <ul>
     <li><b>停等延滯（stopped delay）</b>：只算車<b>完全停住</b>那一段（最窄）。<b>我們計算的就是這個。</b></li>
     <li><b>路段延滯（approach delay）</b>：含<b>減速＋停等＋加速</b>，比停等延滯長。</li>
