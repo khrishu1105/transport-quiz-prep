@@ -450,50 +450,55 @@
 
   <div class="card" style="padding:12px 16px">
     <div style="font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:4px">時間-距離軌跡圖（含三種延滯）</div>
-    <svg viewBox="0 0 600 395" style="width:100%;max-width:600px;height:auto;font-family:'PingFang TC',sans-serif">
+    <svg viewBox="0 0 620 430" style="width:100%;max-width:620px;height:auto;font-family:'PingFang TC',sans-serif">
       <!-- 軸 -->
-      <line x1="70" y1="340" x2="565" y2="340" stroke="#232019" stroke-width="1.6"/>
-      <line x1="70" y1="340" x2="70" y2="32" stroke="#232019" stroke-width="1.6"/>
-      <text x="58" y="26" font-size="13" fill="#232019">距離</text>
-      <text x="536" y="362" font-size="13" fill="#232019">時間</text>
-      <!-- 自由軌跡（無號誌）虛線 -->
-      <line x1="205" y1="235" x2="508" y2="50" stroke="#2f5d50" stroke-width="1.4" stroke-dasharray="5 4"/>
-      <text x="430" y="70" font-size="11" fill="#2f5d50" transform="rotate(-31 430 70)">自由軌跡（無號誌）</text>
+      <line x1="90" y1="400" x2="600" y2="400" stroke="#232019" stroke-width="1.6"/>
+      <line x1="90" y1="400" x2="90" y2="35" stroke="#232019" stroke-width="1.6"/>
+      <text x="76" y="30" font-size="13" fill="#232019">距離</text>
+      <text x="565" y="422" font-size="13" fill="#232019">時間</text>
+      <!-- 自由軌跡虛線（陡） -->
+      <line x1="150" y1="400" x2="442" y2="54" stroke="#2f5d50" stroke-width="1.4" stroke-dasharray="5 4"/>
+      <text x="356" y="70" font-size="11" fill="#2f5d50" transform="rotate(-44 356 70)">自由軌跡（無號誌）</text>
       <!-- 實際軌跡 -->
-      <path d="M95,338 L205,235 C222,222 236,218 252,218 L368,218 C390,218 404,200 420,175 L505,95" fill="none" stroke="#9a3b2e" stroke-width="2.6"/>
+      <path d="M140,400 L250,275 C270,260 282,262 288,262 L415,262 C440,262 450,242 462,215 L545,120" fill="none" stroke="#9a3b2e" stroke-width="2.6"/>
       <!-- 時間點 -->
       <g font-size="12" fill="#232019">
-        <circle cx="205" cy="235" r="3.2" fill="#9a3b2e"/><text x="196" y="252">t₁</text>
-        <circle cx="252" cy="218" r="3.2" fill="#9a3b2e"/><text x="246" y="236">t₂</text>
-        <circle cx="368" cy="218" r="3.2" fill="#9a3b2e"/><text x="364" y="236">t₃</text>
-        <circle cx="420" cy="175" r="3.2" fill="#9a3b2e"/><text x="424" y="190">t₄</text>
-        <circle cx="438" cy="95" r="3.2" fill="#2f5d50"/><text x="428" y="90">t₅</text>
-        <circle cx="505" cy="95" r="3.2" fill="#9a3b2e"/><text x="510" y="92">t₆</text>
+        <circle cx="250" cy="275" r="3.2" fill="#9a3b2e"/><text x="236" y="290">t₁</text>
+        <circle cx="288" cy="262" r="3.2" fill="#9a3b2e"/><text x="280" y="283">t₂</text>
+        <circle cx="415" cy="262" r="3.2" fill="#9a3b2e"/><text x="411" y="283">t₃</text>
+        <circle cx="462" cy="215" r="3.2" fill="#9a3b2e"/><text x="467" y="229">t₄</text>
+        <circle cx="386" cy="120" r="3.2" fill="#2f5d50"/><text x="372" y="116">t₅</text>
+        <circle cx="545" cy="120" r="3.2" fill="#9a3b2e"/><text x="551" y="118">t₆</text>
       </g>
-      <!-- 曲線段標註 -->
-      <text x="212" y="214" font-size="11" fill="#b0522e">減速(煞車)</text>
-      <text x="290" y="211" font-size="11" fill="#b0522e">停等</text>
-      <text x="392" y="168" font-size="11" fill="#b0522e">加速</text>
+      <!-- 曲線段文字 -->
+      <text x="186" y="256" font-size="11" fill="#b0522e">減速(煞車)</text>
+      <text x="334" y="281" font-size="11" fill="#b0522e">停等</text>
+      <text x="472" y="202" font-size="11" fill="#b0522e">加速</text>
       <!-- 紅燈 -->
-      <line x1="205" y1="150" x2="340" y2="150" stroke="#9a2e2e" stroke-width="1.3"/>
-      <line x1="205" y1="145" x2="205" y2="155" stroke="#9a2e2e" stroke-width="1.3"/>
-      <line x1="340" y1="145" x2="340" y2="155" stroke="#9a2e2e" stroke-width="1.3"/>
-      <text x="248" y="144" font-size="11" fill="#9a2e2e">紅燈</text>
-      <!-- 停等延滯 t2-t3 -->
-      <line x1="252" y1="208" x2="368" y2="208" stroke="#8d7d1e" stroke-width="1.3"/>
-      <line x1="252" y1="203" x2="252" y2="213" stroke="#8d7d1e" stroke-width="1.3"/>
-      <line x1="368" y1="203" x2="368" y2="213" stroke="#8d7d1e" stroke-width="1.3"/>
-      <text x="268" y="202" font-size="11.5" fill="#8d7d1e" font-weight="700">停等延滯 (t₂–t₃)</text>
-      <!-- 路段延滯 t1-t4 -->
-      <line x1="205" y1="262" x2="420" y2="262" stroke="#2f7d4f" stroke-width="1.3"/>
-      <line x1="205" y1="257" x2="205" y2="267" stroke="#2f7d4f" stroke-width="1.3"/>
-      <line x1="420" y1="257" x2="420" y2="267" stroke="#2f7d4f" stroke-width="1.3"/>
-      <text x="258" y="278" font-size="11.5" fill="#2f7d4f" font-weight="700">路段延滯 (t₁–t₄)</text>
-      <!-- 總延滯 t5-t6 -->
-      <line x1="438" y1="88" x2="505" y2="88" stroke="#9a3b2e" stroke-width="1.3"/>
-      <line x1="438" y1="83" x2="438" y2="93" stroke="#9a3b2e" stroke-width="1.3"/>
-      <line x1="505" y1="83" x2="505" y2="93" stroke="#9a3b2e" stroke-width="1.3"/>
-      <text x="430" y="80" font-size="11.5" fill="#9a3b2e" font-weight="700">總延滯 (t₅–t₆)</text>
+      <line x1="250" y1="182" x2="392" y2="182" stroke="#9a2e2e" stroke-width="1.3"/>
+      <line x1="250" y1="177" x2="250" y2="187" stroke="#9a2e2e" stroke-width="1.3"/>
+      <line x1="392" y1="177" x2="392" y2="187" stroke="#9a2e2e" stroke-width="1.3"/>
+      <text x="300" y="176" font-size="11" fill="#9a2e2e">紅燈</text>
+      <!-- 停等延滯 -->
+      <line x1="288" y1="252" x2="415" y2="252" stroke="#8d7d1e" stroke-width="1.3"/>
+      <line x1="288" y1="247" x2="288" y2="257" stroke="#8d7d1e" stroke-width="1.3"/>
+      <line x1="415" y1="247" x2="415" y2="257" stroke="#8d7d1e" stroke-width="1.3"/>
+      <text x="298" y="245" font-size="11.5" fill="#8d7d1e" font-weight="700">停等延滯 (t₂–t₃)</text>
+      <!-- 路段延滯 -->
+      <line x1="250" y1="308" x2="462" y2="308" stroke="#2f7d4f" stroke-width="1.3"/>
+      <line x1="250" y1="303" x2="250" y2="313" stroke="#2f7d4f" stroke-width="1.3"/>
+      <line x1="462" y1="303" x2="462" y2="313" stroke="#2f7d4f" stroke-width="1.3"/>
+      <text x="300" y="325" font-size="11.5" fill="#2f7d4f" font-weight="700">路段延滯 (t₁–t₄)</text>
+      <!-- 總延滯 -->
+      <line x1="386" y1="110" x2="545" y2="110" stroke="#9a3b2e" stroke-width="1.3"/>
+      <line x1="386" y1="105" x2="386" y2="115" stroke="#9a3b2e" stroke-width="1.3"/>
+      <line x1="545" y1="105" x2="545" y2="115" stroke="#9a3b2e" stroke-width="1.3"/>
+      <text x="420" y="102" font-size="11.5" fill="#9a3b2e" font-weight="700">總延滯 (t₅–t₆)</text>
+      <!-- S -->
+      <line x1="564" y1="120" x2="564" y2="100" stroke="#232019" stroke-width="1.1"/>
+      <line x1="561" y1="120" x2="567" y2="120" stroke="#232019" stroke-width="1.1"/>
+      <line x1="561" y1="100" x2="567" y2="100" stroke="#232019" stroke-width="1.1"/>
+      <text x="570" y="114" font-size="11" fill="#232019">S</text>
     </svg>
     <div style="font-size:12px;color:var(--muted)">實線＝實際軌跡（被路口耽誤）；虛線＝沒號誌時的自由軌跡。縱軸距離、橫軸時間。</div>
   </div>
