@@ -573,6 +573,47 @@
     <p style="font-family:var(--mono);font-size:15px">總延滯 =（Σ各時段停等車數）× T</p>
     <p style="font-family:var(--mono);font-size:15px">平均停等延滯 ta = 總延滯 ÷ 總通過車數　（秒/輛）</p>
   </div>
+
+  <h3>為什麼 Σmᵢ ≠ 通過車數 N？（最容易卡）</h3>
+  <p>這個方法用「<b>每隔 T 秒拍一張快照、數當下停著幾台車（mᵢ）</b>」來估延滯。關鍵：</p>
+  <ul>
+    <li><b>N＝通過車數</b>：每台車只數<b>一次</b>。</li>
+    <li><b>Σmᵢ＝所有快照停等車數加總</b>：一台車停了幾張快照，就被<b>數幾次</b>（是「車·時段數」，不是車數）。</li>
+    <li><b>沒停的車</b>（綠燈順過）→ 算進 N、<b>不算進 Σmᵢ</b>。</li>
+  </ul>
+  <div class="card" style="padding:12px 16px">
+    <div style="font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:6px">每隔 T=15 秒拍快照，塗格＝那一刻停著（停越久被數越多次）</div>
+    <svg viewBox="0 0 560 210" style="width:100%;max-width:560px;height:auto;font-family:'PingFang TC',sans-serif">
+      <g font-size="11.5" fill="#232019" text-anchor="middle">
+        <text x="110" y="34">0s</text><text x="180" y="34">15s</text><text x="250" y="34">30s</text>
+        <text x="320" y="34">45s</text><text x="390" y="34">60s</text><text x="460" y="34">75s</text>
+      </g>
+      <g font-size="12" fill="#232019"><text x="40" y="61">車A</text><text x="40" y="91">車B</text><text x="40" y="121">車C</text><text x="40" y="151">車D</text></g>
+      <!-- 停等格（塗色） -->
+      <g fill="#9a3b2e">
+        <rect x="145" y="42" width="70" height="30"/><rect x="215" y="42" width="70" height="30"/><rect x="285" y="42" width="70" height="30"/><rect x="355" y="42" width="70" height="30"/>
+        <rect x="145" y="72" width="70" height="30"/>
+        <rect x="355" y="132" width="70" height="30"/>
+      </g>
+      <!-- 格線 -->
+      <g stroke="#c9c0b0" stroke-width="1">
+        <line x1="75" y1="42" x2="495" y2="42"/><line x1="75" y1="72" x2="495" y2="72"/><line x1="75" y1="102" x2="495" y2="102"/><line x1="75" y1="132" x2="495" y2="132"/><line x1="75" y1="162" x2="495" y2="162"/>
+        <line x1="75" y1="42" x2="75" y2="162"/><line x1="145" y1="42" x2="145" y2="162"/><line x1="215" y1="42" x2="215" y2="162"/><line x1="285" y1="42" x2="285" y2="162"/><line x1="355" y1="42" x2="355" y2="162"/><line x1="425" y1="42" x2="425" y2="162"/><line x1="495" y1="42" x2="495" y2="162"/>
+      </g>
+      <!-- mᵢ -->
+      <text x="40" y="184" font-size="12" fill="#9a2e2e" font-weight="700">mᵢ</text>
+      <g font-size="12.5" fill="#9a2e2e" text-anchor="middle" font-weight="700">
+        <text x="110" y="184">0</text><text x="180" y="184">2</text><text x="250" y="184">1</text><text x="320" y="184">1</text><text x="390" y="184">2</text><text x="460" y="184">0</text>
+      </g>
+    </svg>
+    <div style="font-size:12.5px;color:var(--muted)">車A 停了 4 張快照 → 被數 4 次；車C 沒停 → 一次都沒數到（但有通過）。</div>
+  </div>
+  <div class="key"><b>算出來：</b>
+    Σmᵢ ＝ 0+2+1+1+2+0 ＝ <b>6</b>（車·時段）、通過車數 N ＝ <b>4</b>（車A/B/C/D）→ <b>Σmᵢ ≠ N</b>。<br>
+    總停等時間 ＝ 6 × 15 ＝ <b>90 秒</b>（驗證：A停 60＋B停 15＋D停 15 ＝ 90 ✓）<br>
+    平均停等延滯 ta ＝ 90 ÷ 4 ＝ <b>22.5 秒/車</b>。</div>
+  <div class="note"><b>所以「重複計算」是故意的、也是對的：</b>一台車被數幾次 ×T，剛好＝它停了多久，是在<b>累積總時間</b>（分子）；分母 N 用通過車數（每台一次、含沒停的 0 延滯車），平均才公平。<b>Σmᵢ 數的是「車·時段」、N 數的是「車數」，兩者本來就不相等。</b></div>
+
   <h3>服務水準判定表（停等延滯 ta，秒/輛）— 必默背</h3>
   <table>
     <tr><th>LOS</th><th>ta（秒/輛）</th><th>LOS</th><th>ta（秒/輛）</th></tr>
