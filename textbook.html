@@ -69,11 +69,11 @@
     <a class="done" href="#delay">號誌控制＋停等延滯★</a>
     <div class="grp">第二講 lec2</div>
     <a class="done" href="#arterial">市區幹道服務水準</a>
-    <a class="todo" href="#survey">交通調查方法</a>
+    <a class="done" href="#survey">交通調查方法</a>
     <a class="todo" href="#gapi">Google API 旅行時間</a>
     <div class="grp">補充</div>
     <a class="todo" href="#round">圓環</a>
-    <a class="todo" href="#hier">道路層級</a>
+    <a class="done" href="#hier">道路層級 ★</a>
     <div class="grp">工具</div>
     <a class="done" href="#confuse">★ 容易混淆名詞</a>
     <a class="done" href="mistakes.html" style="color:#b08d2e">📕 錯題本</a>
@@ -682,10 +682,43 @@
 
   <div class="key"><b>串到你們的作業：</b>Google API 取旅行時間與距離 → 算平均旅行速率（空間平均）→ ÷ 速限 → 查表16.12 → 判 A–F。老師把官方的「floating car 測試車」換成「Google API 當虛擬測試車」。</div>
 </section>
-<section id="survey"><h2><span class="num">lec2</span>交通調查方法</h2><div class="pending">待補</div></section>
+<section id="survey">
+  <h2><span class="num">lec2 p13–28</span>交通調查方法</h2>
+  <p class="srcline">名詞/選擇題等級——認得「哪種調查量什麼」即可</p>
+  <table>
+    <tr><th>調查類型</th><th>方法</th><th>量什麼</th></tr>
+    <tr><td><b>交通量</b>・自動</td><td>氣壓管、感應線圈 ILD、影像辨識、ANPR 車牌辨識</td><td>車數</td></tr>
+    <tr><td><b>交通量</b>・人工</td><td>計數器、紙筆畫正字、錄影</td><td>車數（可分車種）</td></tr>
+    <tr><td><b>轉向調查</b></td><td>MCC 人工轉向、影像辨識</td><td>路口各方向流向</td></tr>
+    <tr><td><b>車牌調查</b></td><td>記錄進出時間比對車牌</td><td>穿越性交通(Rat-run)、旅行時間、旅行路徑、旅次終點</td></tr>
+    <tr><td><b>錄影機</b></td><td>一機多用</td><td>交通量/轉向/速度/延滯/行人</td></tr>
+    <tr><td><b>起迄 O&D</b></td><td>路邊訪問、問卷（需抽樣）</td><td>旅次起點終點（運輸規劃基礎）</td></tr>
+    <tr><td><b>速度調查</b></td><td>測速槍、Time of flight、<b>floating car、google traffic</b></td><td>點速率／路段速率</td></tr>
+    <tr><td><b>停等調查</b></td><td>停等延滯、回堵長度</td><td>路口延滯／排隊長度</td></tr>
+  </table>
+  <div class="key"><b>重點對應（這樣考）：</b>穿越性交通(Rat-run)→<b>車牌調查</b>；旅次起迄分布→<b>O&D</b>；路段速度→<b>floating car / google traffic</b>（你們作業）；路口轉向→<b>MCC</b>。</div>
+</section>
 <section id="gapi"><h2><span class="num">lec2</span>Google API 旅行時間擷取</h2><div class="pending">待補</div></section>
 <section id="round"><h2><span class="num">補充</span>圓環</h2><div class="pending">待補</div></section>
-<section id="hier"><h2><span class="num">補充</span>道路層級</h2><div class="pending">待補</div></section>
+<section id="hier">
+  <h2><span class="num">★ 考試範圍</span>道路層級</h2>
+  <p class="srcline">★ lec2 p31 小考範圍明列「路網結構與道路層級」；考古題 Q6 也考</p>
+
+  <h3>分辨準則（層級越高者）</h3>
+  <ul>
+    <li>一段距離內交叉路口數越<b>少</b> → 層級越高（出入管制強）</li>
+    <li>車流<b>速度越高</b> → 層級越高</li>
+    <li>車流<b>量越大</b> → 層級越高</li>
+    <li>有<b>中央分隔島</b> → 層級較高</li>
+  </ul>
+  <div class="note"><b>考古題陷阱（Q6-1）：</b>「交叉路口數越<b>多</b>層級越高」是<b>錯的</b>（方向相反——路口多＝地方性道路＝層級低）。</div>
+
+  <h3>功能分類</h3>
+  <p>主要道路、次要道路、集散（收集）道路、出入道路。</p>
+  <div class="key"><b>考古題（Q6-2）：</b><b>公園道</b>屬景觀/類型分類，<b>不在</b>功能性道路層級（主要/次要/集散/出入）之內。</div>
+
+  <div class="note"><b>提醒：</b>「路網結構與道路層級」的完整講義在 <b>lec3（都市交通路網）</b>，若老師把小考範圍擴到這塊，建議去 Moodle 補 lec3 教材；目前課本先放考古題 Q6 考過的核心。</div>
+</section>
 
 <section id="confuse">
   <h2><span class="num">★</span>容易混淆的名詞（考前快速釐清）</h2>
