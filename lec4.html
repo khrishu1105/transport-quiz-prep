@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="author" content="khrishu">
+<title>lec4 經典規劃論述 申論讀本</title>
+<style>
+  :root{--paper:#f7f4ee;--ink:#232019;--muted:#6c6459;--line:#e2dccf;--accent:#9a3b2e;--accent2:#2f5d50;--gold:#b08d2e;--card:#fffdf8;--shadow:0 1px 2px rgba(40,30,15,.05),0 8px 28px rgba(40,30,15,.06);--mono:"SF Mono",ui-monospace,Menlo,monospace;}
+  *{box-sizing:border-box}html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);line-height:1.85;font-size:17px;font-family:"PingFang TC","Noto Sans TC",system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+  .wrap{display:grid;grid-template-columns:250px minmax(0,1fr);max-width:1180px;margin:0 auto;}
+  aside{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;padding:26px 18px 60px;border-right:1px solid var(--line);}
+  aside h2{font-size:12px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;margin:0 0 2px;}
+  aside .ex{font-size:12.5px;color:var(--accent);font-weight:600;margin-bottom:16px;}
+  aside .grp{font-size:11.5px;letter-spacing:.1em;color:var(--gold);font-weight:700;margin:14px 0 4px;}
+  aside nav a{display:block;color:var(--muted);text-decoration:none;font-size:14px;padding:4px 10px;border-radius:7px;border-left:2px solid transparent;margin:1px 0;line-height:1.5;}
+  aside nav a:hover{color:var(--ink);background:#efe9dd;}
+  aside nav a.done::before{content:"✅ ";}
+  aside nav a.todo{color:#b5ad9f;}
+  aside nav a.todo::before{content:"○ ";}
+  main{padding:44px 54px 120px;min-width:0;}
+  header.hero{margin-bottom:32px;}
+  .tag{display:inline-block;font-size:12px;letter-spacing:.1em;color:#fff;background:var(--accent);padding:3px 11px;border-radius:999px;font-weight:600;}
+  header.hero h1{font-size:28px;line-height:1.3;margin:14px 0 6px;}
+  header.hero p.sub{color:var(--muted);margin:0;font-size:15px;}
+  section{margin:48px 0 0;scroll-margin-top:20px;}
+  section>h2{font-size:23px;margin:0 0 6px;padding-bottom:10px;border-bottom:2px solid var(--ink);display:flex;align-items:baseline;gap:12px;}
+  section>h2 .num{font-family:var(--mono);font-size:14px;color:var(--accent);font-weight:700;}
+  .srcline{font-size:12.5px;color:var(--muted);margin:0 0 14px;}
+  h3{font-size:18px;margin:28px 0 8px;color:var(--accent2);}
+  p{margin:10px 0;}ul,ol{margin:10px 0;padding-left:24px;}li{margin:5px 0;}
+  .lead{font-size:16px;color:var(--muted);}
+  strong{color:#111;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 22px;margin:16px 0;box-shadow:var(--shadow);}
+  .formula{background:#fbf8f1;border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:10px;padding:6px 20px;margin:16px 0;overflow-x:auto;}
+  .formula .lbl{font-size:13px;color:var(--gold);font-weight:700;margin-top:10px;}
+  .key{background:#fdf3f0;border:1px solid #f0d8d1;border-left:3px solid var(--accent);border-radius:10px;padding:14px 20px;margin:16px 0;}
+  .key b{color:var(--accent);}
+  .note{background:#eef4f1;border:1px solid #d6e5de;border-left:3px solid var(--accent2);border-radius:10px;padding:14px 20px;margin:16px 0;font-size:15px;}
+  .note b{color:var(--accent2);}
+  .worked{background:#fff;border:1px dashed var(--gold);border-radius:12px;padding:6px 22px 18px;margin:18px 0;}
+  .worked .wtitle{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.08em;color:#fff;background:var(--gold);padding:3px 12px;border-radius:0 0 8px 8px;margin:0 0 6px 6px;}
+  .worked .final{font-weight:700;color:var(--accent);}
+  table{border-collapse:collapse;width:100%;margin:16px 0;font-size:15px;background:var(--card);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);}
+  th,td{padding:9px 14px;text-align:left;border-bottom:1px solid var(--line);}
+  th{background:#efe9dd;font-size:13.5px;}tr:last-child td{border-bottom:none;}
+  kbd{font-family:var(--mono);background:#efe9dd;padding:1px 6px;border-radius:5px;font-size:14px;}
+  .pending{color:#b5ad9f;font-style:italic;padding:20px;text-align:center;border:1px dashed var(--line);border-radius:12px;}
+  footer{margin-top:70px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;}
+  @media(max-width:860px){.wrap{grid-template-columns:1fr}aside{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}main{padding:28px 20px 80px}}
+  details.card>summary{cursor:pointer;list-style:none;line-height:1.6}
+  details.card>summary::-webkit-details-marker{display:none}
+  details.card>summary::before{content:"▸ 範文  ";color:var(--gold);font-weight:700;font-size:13px}
+  details.card[open]>summary::before{content:"▾ 範文  "}
+  details.card[open]>summary{margin-bottom:8px;padding-bottom:8px;border-bottom:1px dashed var(--line)}
+  td ul,td ol{margin:4px 0;padding-left:18px}
+</style>
+</head><body><div class="wrap">
+<aside>
+  <h2>lec4 申論讀本</h2>
+  <div class="ex">第一次小考 11/19（四）9:10–10:20</div>
+  <nav>
+    <div class="grp">讀本</div>
+    <a href="#how">00 怎麼用</a>
+    <a href="#bg">01 工業革命背景</a>
+    <a href="#garden">02 花園城市</a>
+    <a href="#nu">03 鄰里單元・雷特朋</a>
+    <a href="#corb">04 柯比意</a>
+    <a href="#jacobs">05 珍雅各</a>
+    <a href="#newurb">06 新都市主義</a>
+    <a href="#neo">07 新傳統設計</a>
+    <a href="#tod">08 TOD</a>
+    <a href="#livable">09 生活化道路</a>
+    <a href="#history">10 土地細分五階段</a>
+    <a href="#fourway">11 人車關係四論述 ★</a>
+    <div class="grp">考前</div>
+    <a href="#compare">12 比較專區 ★</a>
+    <a href="#essay">13 申論題庫 ★</a>
+    <a href="#numbers">14 數字速記</a>
+    <div class="grp">其他</div>
+    <a href="textbook.html">← 回重編版課本</a>
+  </nav>
+</aside>
+<main>
+<header class="hero">
+  <span class="tag">115-1 都市交通計劃 · 第一次小考 11/19</span>
+  <h1>lec4 經典規劃論述<br>申論讀本</h1>
+  <p class="sub">涵蓋講義 p1–169 全部文字內容，再加上比較專區、申論題庫與範文。直接從頭讀到尾即可，不用再翻 PDF；每段標了講義頁碼，想看原圖再翻。</p>
+</header>
+
+<section id="how">
+  <h2><span class="num">00</span>怎麼用這份讀本</h2>
+  <div class="key"><b>申論的萬用骨架（每一題都套得上）：</b><br>
+  ①<b>定位</b>：人物、年代、著作、提出背景（他在解決什麼問題）<br>
+  ②<b>空間主張</b>：規模、配置、土地使用、密度<br>
+  ③<b>路網與交通</b>：路網型態、道路層級、主要運具<br>
+  ④<b>人車關係</b>：放進老師的四論述（人車分道／低速街道／人車共享空間／完全街道）<br>
+  ⑤<b>評價與影響</b>：優點、被批評之處、對後來的影響<br>
+  ⑥<b>連結臺灣／臺南</b>：老師上課很愛問「在臺南的影子」，舉一個例子就加分</div>
+  <div class="note"><b>讀法：</b>第 01–11 節照講義順序寫，內容比講義完整（講義很多是圖，這裡把圖的意思用文字講出來）。第 12 節是比較專區，第 13 節是申論題庫（範文先收起來，自己想過再點開），第 14 節是數字速記。考前一天只讀 12＋14。</div>
+</section>
+
+<!-- 01 -->
+<section id="bg">
+  <h2><span class="num">01 · p1–21</span>背景：一切從工業革命講起</h2>
+  <p><b>講義大綱（p2）</b>：霍華德花園城市 → 培里的鄰里單元 → 柯比意的現代城市 → 珍雅各的社區規劃 → 新都市主義 → 新傳統設計 → 大眾運輸為導向的發展 → 生活化道路 → 綜合論述 → 交通路網規劃。</p>
+  <h3>工業革命的影響（p3）</h3>
+  <ul>
+    <li>都市出現大量的<b>工廠</b></li>
+    <li>都市裡有大量<b>工作機會</b></li>
+    <li>人口從<b>鄉村遷徙至都市</b></li>
+    <li><b>人口成長</b></li>
+  </ul>
+  <p>講義用 Gustave Doré 的版畫《Ludgate Hill》（1872）描繪工業革命後擁擠混亂的倫敦：一條馬路上擠滿了人及牲畜、大人及小孩、買東西及要東西的人、公家車及私用車、載水果及載棺材的，頭上有火車通過，還有看板及廣告。</p>
+  <div class="key"><b>申論開頭可用：</b>工業革命使人口與工廠大量集中於都市，造成居住擁擠、衛生不良、交通混雜（人、畜、各種車輛共用同一路面）。後續的花園城市、鄰里單元、現代城市等經典規劃概念，都是對這個「工業城市問題」提出的解方；而汽車普及之後，「人與車如何相處」成為貫穿各家論述的核心議題。</div>
+  <div class="note"><b>p4–21 是圖片頁：</b>p4–11 為倫敦與各城市街道路網的歷史圖、街道網絡研究圖（Masucci 等人 2015 年研究倫敦街道網絡的邊界與尺度）；p12–21 為蘇格蘭 Falkirk Wheel 旋轉升船機（兩端車廂永遠等重，依阿基米得原理，轉半圈只需 1.5 度電、約等於燒 8 壺開水），是老師的課堂插曲，<b>非考點</b>。</div>
+</section>
+
+<!-- 02 -->
+<section id="garden">
+  <h2><span class="num">02 · p22–34</span>霍華德的花園城市（Garden City）</h2>
+  <h3>人物與著作（p23）</h3>
+  <ul>
+    <li><b>Sir Ebenezer Howard 霍華德</b>：1850 年生於倫敦；1871 年移居美國，見到芝加哥大火（1871）後的重建。</li>
+    <li>著作 <b><i>Garden Cities of To-morrow</i>（1902）</b>，受烏托邦小說啟發。</li>
+    <li>身分：他不是建築師或規劃師，而是速記員出身的社會改革者（補充），所以他的方案重點在社會與財務制度，不只是空間圖。</li>
+  </ul>
+  <h3>三個磁鐵論述（The Three Magnets，p24）</h3>
+  <table>
+    <tr><th>磁鐵</th><th>吸引力</th><th>缺點</th></tr>
+    <tr><td><b>城市 Town</b></td><td>工作機會、高薪、娛樂、社交</td><td>擁擠、污染、高房租、遠離自然</td></tr>
+    <tr><td><b>鄉村 Country</b></td><td>自然美景、新鮮空氣、低房租</td><td>缺工作、缺社交、缺公共服務</td></tr>
+    <tr><td><b>城鄉 Town-Country（花園城市）</b></td><td colspan="2">結合兩者的優點、避開兩者的缺點</td></tr>
+  </table>
+  <p>霍華德名言：「<b>城與鄉必須結婚，從這歡樂的結合中，將產生新的希望、新的生活與新的文明。</b>」（Town and country must be married, and out of this joyous union will spring a new hope, a new life, and a new civilization.）</p>
+  <h3>花園城市概念圖與花園城市群（p25）</h3>
+  <ul>
+    <li>中間是一座<b>中心都市</b>（約 5.8 萬人），周圍環繞多座<b>花園城市</b>（每座約 3.2 萬人）（補充人口數）。</li>
+    <li>城市與城市之間以<b>鐵路、運河</b>相連，中間隔著<b>綠帶</b>，綠帶內有農學院、牧場等農業使用。</li>
+    <li>城市長到預定人口就不再擴張，而是在綠帶外另建新城，用鐵路串成「<b>花園城市群</b>」（Social City）。</li>
+  </ul>
+  <div class="card" style="padding:12px 16px">
+    <div style="font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:4px">花園城市的一個分區（Ward）：同心圓、放射林蔭大道、工廠放最外圈</div>
+    <svg viewBox="0 0 600 300" style="width:100%;max-width:600px;height:auto;font-family:'PingFang TC',sans-serif">
+      <g transform="translate(150,150)">
+        <circle r="135" fill="#e7efe0" stroke="#2f5d50" stroke-width="1.2"/>
+        <circle r="112" fill="#efe9dd" stroke="#6c6459" stroke-width="1"/>
+        <circle r="84" fill="#fff" stroke="#6c6459" stroke-width="1"/>
+        <circle r="62" fill="none" stroke="#b08d2e" stroke-width="6" opacity=".55"/>
+        <circle r="40" fill="#fdf3f0" stroke="#9a3b2e" stroke-width="1"/>
+        <circle r="18" fill="#cfe0d4" stroke="#2f5d50"/>
+        <g stroke="#232019" stroke-width="1.4">
+          <line x1="0" y1="-135" x2="0" y2="135"/><line x1="-135" y1="0" x2="135" y2="0"/>
+          <line x1="-95" y1="-95" x2="95" y2="95"/><line x1="-95" y1="95" x2="95" y2="-95"/>
+        </g>
+        <circle r="124" fill="none" stroke="#232019" stroke-width="2.2" stroke-dasharray="9 5"/>
+      </g>
+      <g font-size="12">
+        <line x1="150" y1="150" x2="330" y2="40" stroke="#6c6459" stroke-width=".7"/><text x="335" y="44">中央公園（中心）</text>
+        <line x1="180" y1="140" x2="330" y2="72" stroke="#6c6459" stroke-width=".7"/><text x="335" y="76">公共設施（市政廳、劇院、醫院…）</text>
+        <line x1="190" y1="160" x2="330" y2="104" stroke="#6c6459" stroke-width=".7"/><text x="335" y="108">商業區＋「水晶宮」（玻璃拱廊）</text>
+        <line x1="212" y1="150" x2="330" y2="136" stroke="#6c6459" stroke-width=".7"/><text x="335" y="140" fill="#b08d2e" font-weight="700">林蔭大道（Grand Avenue，含學校）</text>
+        <line x1="225" y1="180" x2="330" y2="168" stroke="#6c6459" stroke-width=".7"/><text x="335" y="172">低密度住宅區（有前後院）</text>
+        <line x1="255" y1="200" x2="330" y2="200" stroke="#6c6459" stroke-width=".7"/><text x="335" y="204">工廠、倉庫（最外圈，與住宅分開）</text>
+        <line x1="268" y1="222" x2="330" y2="232" stroke="#6c6459" stroke-width=".7"/><text x="335" y="236" font-weight="700">環狀鐵路（貨運直接接工廠）</text>
+        <line x1="270" y1="255" x2="330" y2="264" stroke="#6c6459" stroke-width=".7"/><text x="335" y="268" fill="#2f5d50" font-weight="700">農業綠帶（限制長大）</text>
+      </g>
+    </svg>
+    <div style="font-size:12px;color:var(--muted)">原創示意，依講義 p25–26 概念圖重畫。整體尺度：中心都市（約 5.8 萬人）＋周邊多個花園城市（各約 3.2 萬人），以<b>鐵路與運河</b>串成「花園城市群」，中間隔著農業綠帶。</div>
+
+  <h3>花園城市的一個分區配置（Ward，p26）</h3>
+  <p>由內而外：<b>中央公園</b> → <b>公共設施</b>（市政廳、劇院、圖書館、醫院等）→ <b>商業區</b>與「<b>水晶宮</b>」（環繞公園的玻璃拱廊商場）→ <b>低密度住宅區</b>（中間穿過一條環狀<b>林蔭大道</b>，學校與教堂設在林蔭大道上）→ 最外圈<b>工廠</b>、倉庫 → <b>環狀鐵路</b> → <b>農業綠帶</b>。放射狀林蔭大道從中心向外切分成六個分區（Ward）。</p>
+  <h3>第一個花園城市：Letchworth（p27）</h3>
+  <ul>
+    <li>第一個花園城市，<b>1903 年</b>建立（英國）</li>
+    <li><b>工業區跟住宅區分開</b></li>
+    <li>都市開放空間</li>
+    <li><b>以農業區當綠帶</b></li>
+    <li>住宅有前後院</li>
+  </ul>
+  <p class="srcline">p28–33 為 Letchworth、Welwyn 等實景照片。</p>
+  <h3>影響與討論（p34）</h3>
+  <table>
+    <tr><th>花園城市概念的影響</th><th>說明</th></tr>
+    <tr><td>新市鎮運動 New town movement</td><td>二戰後英國大規模興建新市鎮疏散倫敦人口；臺灣的林口、淡海、高雄新市鎮也是這個脈絡</td></tr>
+    <tr><td>花園郊區 Garden suburb</td><td>只學到「低密度、有花園」的外型，卻沒有自足的就業，變成通勤郊區</td></tr>
+    <tr><td>以綠帶規範成長 Green Belt</td><td>倫敦綠帶；概念類似今日的都市成長邊界</td></tr>
+    <tr><td>生態城市 Eco-towns</td><td>綠色、低碳、自足的新城鎮</td></tr>
+    <tr><td>鄰里單元 Neighborhood unit</td><td>培里的鄰里單元就像花園城市中的一個分區</td></tr>
+  </table>
+  <div class="key"><b>★ 花園城市中的交通論述＝以大眾運輸為主（Public transport）。</b>城市規模小到城內可以步行；城際以鐵路與運河連結；環狀鐵路直接服務外圈的工廠，貨運不必穿過住宅區。人口成長由「增建新城＋鐵路串連」吸收，而不是城市向外蔓延。</div>
+  <div class="card"><b>四個課堂討論題（p34）</b>
+    <ol>
+      <li><b>花園城市中的財務計畫</b>：土地由社區（信託）以農地價格整體取得，開發後地價上漲的利益歸社區，用來支付公共建設與社會福利（漲價歸公的概念）。這是花園城市能自給自足的關鍵，但後來多數仿效者只學空間形式，沒學財務制度。</li>
+      <li><b>新加坡是花園城市嗎？</b>新加坡自稱 Garden City／City in a Garden，指的是大量綠化的城市意象；但它是高密度、高樓、沒有綠帶限制成長的城市國家，與霍華德「小規模、低密度、以綠帶圍住、城市群以鐵路連結」的原意不同。可以說「形似而神不同」，但它重視大眾運輸這點與花園城市一致。</li>
+      <li><b>科技對花園城市概念的影響</b>：汽車與高速公路讓人可以住得更遠，花園城市被稀釋成郊區蔓延；但遠距工作、網路通訊、軌道運輸進步，又讓「小型自足城鎮＋快速聯外」更可行。</li>
+      <li><b>花園城市中的交通論述</b>：大眾運輸為主（見上）。</li>
+    </ol>
+  </div>
+</section>
+
+<!-- 03 -->
+<section id="nu">
+  <h2><span class="num">03 · p35–54</span>培里的鄰里單元（Neighborhood Unit）與雷特朋</h2>
+  <h3>人物與背景（p36）</h3>
+  <ul>
+    <li><b>Clarence Perry 培里</b>（1872–1944），1929 年提出 <i>The Neighborhood Unit, a Scheme of Arrangement for the Family-Life Community</i>（為紐約區域計畫所寫）。</li>
+    <li>類似<b>花園城市裡的一個分區</b>（Ward）</li>
+    <li>為了在<b>工業化都市</b>中創造更好的生活型態</li>
+    <li><b>因應汽車時代</b>（The rise of automobile）：讓兒童能<b>安全步行到遊戲場</b>，<b>兒童交通安全</b>是核心動機</li>
+    <li>配合<b>郊區開發</b></li>
+    <li>作為<b>空間規劃的工具與準則</b></li>
+  </ul>
+  <h3>社區規劃的重點（p37）</h3>
+  <p>社區中心（Community centers）、學校（School）、公園（Parks）、社區設施（Community facilities）、地方商店（Local shopping）、人口（Population）。</p>
+  <h3>六大原則（p38–41）</h3>
+  <table>
+    <tr><th>原則</th><th>內容</th></tr>
+    <tr><td><b>①鄰里機構在中心</b></td><td><b>小學是鄰里的「首都」</b>（capital），教堂等鄰里機構一起放在中心；距離中心<b>半徑 1/4 英里（400m）內，最遠不超過 1/2 英里（800m）</b>；上學<b>不必穿越主要幹道</b></td></tr>
+    <tr><td><b>②規模</b></td><td><b>5,000–9,000 位居民</b>（剛好支撐一所小學）；<b>160 英畝（約 65 公頃）</b>；<b>每英畝 10 戶（約每公頃 25 戶）</b></td></tr>
+    <tr><td><b>③開放空間</b></td><td><b>公園與開放空間佔 10%</b></td></tr>
+    <tr><td><b>④邊界</b></td><td><b>幹道沿周邊</b>（Arterial streets along the perimeter）：界定鄰里邊界；<b>沒有穿越性交通</b>（No through-traffic）</td></tr>
+    <tr><td><b>⑤內部街道</b></td><td><b>彎曲街道設計</b>（Curvilinear）：勸退不想要的穿越車流、<b>提高安全</b></td></tr>
+    <tr><td><b>⑥商店</b></td><td><b>商業區放在角落</b>（Shopping districts at corners），即幹道交叉處，可與相鄰鄰里共用</td></tr>
+  </table>
+  <div class="card" style="padding:12px 16px">
+    <div style="font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:4px">鄰里單元示意：小學在中心、幹道當邊界、內部彎曲路、商店在角落</div>
+    <svg viewBox="0 0 600 320" style="width:100%;max-width:600px;height:auto;font-family:'PingFang TC',sans-serif">
+      <rect x="30" y="20" width="280" height="280" fill="#fbf8f1" stroke="#9a3b2e" stroke-width="10"/>
+      <circle cx="170" cy="160" r="112" fill="none" stroke="#b08d2e" stroke-width="1.4" stroke-dasharray="6 4"/>
+      <g fill="none" stroke="#2f5d50" stroke-width="3.2" stroke-linecap="round">
+        <path d="M35 90 C 90 70, 120 120, 150 105"/>
+        <path d="M305 230 C 250 250, 220 200, 190 215"/>
+        <path d="M100 295 C 110 240, 70 210, 95 175"/>
+        <path d="M240 25 C 230 80, 270 110, 245 145"/>
+        <path d="M95 175 C 120 165, 140 140, 150 105"/>
+        <path d="M245 145 C 230 170, 205 190, 190 215"/>
+      </g>
+      <rect x="140" y="132" width="60" height="56" rx="4" fill="#cfe0d4" stroke="#2f5d50"/>
+      <text x="170" y="157" font-size="12" text-anchor="middle" font-weight="700">小學</text>
+      <text x="170" y="174" font-size="10.5" text-anchor="middle">＋社區中心</text>
+      <g fill="#e7efe0" stroke="#2f5d50" stroke-width=".8"><rect x="60" y="215" width="36" height="28" rx="4"/><rect x="235" y="60" width="40" height="30" rx="4"/></g>
+      <g fill="#f2c9a6" stroke="#9a3b2e" stroke-width=".8"><rect x="36" y="26" width="30" height="30"/><rect x="274" y="264" width="30" height="30"/><rect x="274" y="26" width="30" height="30"/><rect x="36" y="264" width="30" height="30"/></g>
+      <g font-size="12">
+        <text x="330" y="40" fill="#9a3b2e" font-weight="700">■ 外圍幹道＝鄰里邊界</text><text x="344" y="58" fill="#6c6459">沒有穿越性交通（no through-traffic）</text>
+        <text x="330" y="88" fill="#2f5d50" font-weight="700">〰 內部彎曲道路（curvilinear）</text><text x="344" y="106" fill="#6c6459">勸退不想要的穿越車流、提高安全</text>
+        <text x="330" y="136" fill="#b08d2e" font-weight="700">◌ 步行半徑 1/4 mile ≈ 400m</text><text x="344" y="154" fill="#6c6459">最多不超過 1/2 mile ≈ 800m</text><text x="344" y="172" fill="#6c6459">上學途中<tspan font-weight="700">不穿越主要幹道</tspan></text>
+        <text x="330" y="202" fill="#2f5d50" font-weight="700">▢ 公園與開放空間 10%</text>
+        <text x="330" y="232" fill="#9a3b2e" font-weight="700">▣ 商店放在角落（幹道交會處）</text>
+        <text x="330" y="262" font-weight="700">規模 5,000–9,000 人</text><text x="344" y="280" fill="#6c6459">160 英畝（約 65 公頃）</text><text x="344" y="298" fill="#6c6459">10 戶/英畝（約 25 戶/公頃）</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="note"><b>和道路層級連起來（申論加分）：</b>鄰里單元就是「道路層級」的空間版。外圍幹道負責<b>移動性</b>，內部彎曲的低層級道路負責<b>可及性</b>；道路必須逐級連接，使高速、大量的車流留在邊界，鄰里內部只有到達本地的車。這與 lec3 的「移動性與可及性反向」、「不可跨級直連」是同一套邏輯。</div>
+
+  <h3>雷特朋（Radburn, New Jersey，p42–50）</h3>
+  <ul>
+    <li><b>A town for the motor age</b>（汽車時代的城鎮），1929 年。</li>
+    <li>設計者：<b>Clarence Stein ＆ Henry Wright</b></li>
+    <li>概念來源：<b>花園城市＋鄰里單元</b></li>
+  </ul>
+  <div class="key"><b>雷特朋四手法：</b>①<b>超大街廓 Superblock</b>　②<b>囊底路 Cul-de-sac</b>　③<b>人車分道 Separate traffic by mode</b>　④<b>道路層級分明 Hierarchical street network</b></div>
+  <div class="card" style="padding:12px 16px">
+    <div style="font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:4px">傳統棋盤 vs 雷特朋超大街廓（同一塊地）</div>
+    <svg viewBox="0 0 600 262" style="width:100%;max-width:600px;height:auto;font-family:'PingFang TC',sans-serif">
+      <g transform="translate(20,20)">
+        <rect width="240" height="190" fill="#fbf8f1" stroke="#9a3b2e" stroke-width="6"/>
+        <g stroke="#6c6459" stroke-width="3">
+          <line x1="60" y1="0" x2="60" y2="190"/><line x1="120" y1="0" x2="120" y2="190"/><line x1="180" y1="0" x2="180" y2="190"/>
+          <line x1="0" y1="48" x2="240" y2="48"/><line x1="0" y1="95" x2="240" y2="95"/><line x1="0" y1="142" x2="240" y2="142"/>
+        </g>
+        <path d="M -10 70 L 60 70 L 60 120 L 180 120 L 180 200" fill="none" stroke="#9a3b2e" stroke-width="2" stroke-dasharray="5 3"/>
+        <text x="120" y="215" font-size="12" text-anchor="middle" font-weight="700">傳統棋盤式</text>
+        <text x="120" y="232" font-size="11" text-anchor="middle" fill="#9a3b2e">路口多、過境車可以任意抄捷徑（紅虛線）</text>
+      </g>
+      <g transform="translate(330,20)">
+        <rect width="240" height="190" fill="#e7efe0" stroke="#9a3b2e" stroke-width="6"/>
+        <g stroke="#2f5d50" stroke-width="3" stroke-linecap="round" fill="#2f5d50">
+          <line x1="0" y1="40" x2="70" y2="40"/><circle cx="70" cy="40" r="6"/>
+          <line x1="0" y1="95" x2="80" y2="95"/><circle cx="80" cy="95" r="6"/>
+          <line x1="0" y1="150" x2="70" y2="150"/><circle cx="70" cy="150" r="6"/>
+          <line x1="240" y1="40" x2="170" y2="40"/><circle cx="170" cy="40" r="6"/>
+          <line x1="240" y1="95" x2="160" y2="95"/><circle cx="160" cy="95" r="6"/>
+          <line x1="240" y1="150" x2="170" y2="150"/><circle cx="170" cy="150" r="6"/>
+        </g>
+        <path d="M120 0 C 105 50, 135 70, 120 100 C 105 130, 135 160, 120 190" fill="none" stroke="#b08d2e" stroke-width="7" opacity=".7"/>
+        <text x="120" y="215" font-size="12" text-anchor="middle" font-weight="700">雷特朋超大街廓</text>
+        <text x="120" y="232" font-size="11" text-anchor="middle" fill="#2f5d50">車從外圍進囊底路就停；中間金色是綠地步道</text>
+      </g>
+    </svg>
+  </div>
+
+  <h3>雷特朋的設計原則（p43，講義原文要點）</h3>
+  <ol>
+    <li><b>汽車時代道路系統設計的典範。</b></li>
+    <li>道路系統功能分明，由<b>一群超大街廓</b>組成，<b>取代傳統的狹長小街廓</b>。</li>
+    <li>以<b>主要幹道或快速道路為分界</b>，<b>幹道上禁止停車</b>，兩側<b>盡量避免住戶直接進出</b>，使主要幹道發揮流量大、快速、安全的功能。</li>
+    <li><b>盡量減少次要道路與主要幹道的交叉</b>，保持主要道路順暢。</li>
+    <li>每一超大街廓內以<b>環形路及囊底路</b>分割住宅區，<b>取代傳統棋盤式路網</b>，使車輛不能任意穿梭住宅區，<b>減少汽車與行人的衝突點</b>，確保居民安全與安寧。（住宅前門面向中央綠地與步道，後門面向囊底路車道；步道與車道交會處以<b>地下道</b>立體分隔，補充）</li>
+    <li>雷特朋設計原則不僅可用於<b>新市鎮建設及新社區開發</b>，亦可應用於<b>都市更新</b>。</li>
+  </ol>
+  <h3>雷特朋的歷史意義（p44）</h3>
+  <ul>
+    <li>是<b>美國郊區歷史的典範</b>，同時反映<b>工業化及汽車化</b>對居住環境的影響。</li>
+    <li>造成兩大趨勢，至今仍受影響：<b>①土地發展郊區化；②住宅區內小汽車及行人各行其道。</b></li>
+    <li>花園都市的設計者以<b>人車分離</b>為設計理念；而「<b>新傳統設計師</b>」倡議相反意見：<b>讓小汽車回到活動地區，但改變街道設計，以行人優先，其設計包容小汽車，卻不鼓勵使用小汽車。</b></li>
+    <li>講義提示：<b>比較 Jane Jacobs</b>（見第 12 節）。</li>
+  </ul>
+  <p class="srcline">p45–50 為雷特朋配置圖、空拍與實景照片（Cornell 大學 Clarence Stein 檔案）。</p>
+  <div class="card"><b>課堂討論（p51）與參考觀點</b>
+    <ul>
+      <li><b>社區規劃的經典</b>：鄰里單元與雷特朋至今仍是社區規劃的基本範本（臺灣的新市鎮、重劃區、社區規劃都可見其影子）。</li>
+      <li><b>小汽車依賴</b>（Car-dependent lifestyle）：囊底路與超大街廓讓步行到外面的距離變長，路網連通性低，出門幾乎都得開車。</li>
+      <li><b>都市蔓延</b>（Urban sprawl）：低密度郊區住宅不斷向外擴張；講義問「這是鄉村社區生活方式嗎？還是都市蔓延？」</li>
+      <li><b>社會隔離</b>（Segregation）：同質性高的封閉社區，可能造成不同所得、族群的隔離；鄰里（Neighborhood）是凝聚還是隔離？</li>
+      <li><b>鄰里單元在臺南的影子</b>：臺南都市計畫的「鄰里單元」劃設方式（以主要道路圍出街廓，中間配置國小、鄰里公園、市場用地）就是培里的手法，例如以國小為中心、外圍主次要道路為邊界的住宅區。</li>
+      <li><b>騎機車鑽小巷子比較快，還是走大馬路比較快？</b>臺南的巷弄多半互通、不是囊底路，機車會把內部服務道路當捷徑，鄰里單元「內部沒有穿越性交通」的設計意圖被打破；這說明鄰里單元的效果取決於<b>路網連通設計</b>與<b>運具特性</b>（機車小、靈活），也是臺灣推動生活化道路、交通寧靜措施的原因。</li>
+    </ul>
+  </div>
+  <p class="srcline">p52–54 為相關圖片。</p>
+</section>
+
+<!-- 04 -->
+<section id="corb">
+  <h2><span class="num">04 · p55–65</span>柯比意的現代城市（Contemporary City）</h2>
+  <h3>人物與著作（p56）</h3>
+  <ul>
+    <li><b>Le Corbusier 柯比意</b>（1887–1965）：建築師、設計師、都市規劃師、作家；被稱為國際樣式（International style）之父。</li>
+    <li>著作 <b><i>The City of To-morrow and its Planning</i></b>（講義 p56 標 1922 年）。</li>
+    <li><b>從功能和理性主義角度出發</b>；<b>從現代建築的角度去規劃都市</b>。</li>
+  </ul>
+  <div class="note"><b>年份小心：</b>講義 p56 寫「當代城市 1922」，p153（人車關係論述）寫「1924 提出的現代城市」。作答寫「1920 年代（1922 年提出當代城市方案）」最安全。另外 <b>modern（現代）vs. contemporary（當代）</b>（p57）：modern 是一種主義與風格（現代主義），contemporary 指「同時代、現在」。他的方案名叫 Contemporary City（當代城市），但他的思想屬於<b>現代主義</b>。</div>
+  <h3>當代城市的內容（p60–62）</h3>
+  <table>
+    <tr><th>項目</th><th>內容</th></tr>
+    <tr><td>規模</td><td>容納 <b>300 萬人</b>的城市</td></tr>
+    <tr><td>中央</td><td>城市中心：各種<b>機關、商業、公共設施</b>；<b>交通中心</b>（巴士、火車、機場）</td></tr>
+    <tr><td>中心區交通<b>分三層</b></td><td><b>地下</b>走重型車輛；<b>地面</b>用於市內交通；<b>高架道路</b>用於快速交通</td></tr>
+    <tr><td>中心區住宅</td><td><b>40 萬人</b>住在 <b>24 棟 60 層</b>高的摩天大樓；高樓外圍有<b>大片綠地</b>；建築<b>僅佔地 5%</b>；<b>鋼骨玻璃帷幕</b>建築；住<b>有錢人</b></td></tr>
+    <tr><td>再外圍</td><td><b>環形居住帶</b>：<b>60 萬</b>居民住在多層連續的<b>板式住宅</b></td></tr>
+    <tr><td>最外圍</td><td>容納 <b>200 萬</b>居民的<b>花園住宅</b></td></tr>
+    <tr><td>平面</td><td><b>嚴格的幾何構圖</b>：<b>矩形及對角線</b>切割的道路</td></tr>
+    <tr><td>交通</td><td><b>以小汽車為主</b>；<b>城際及郊區交通以軌道為主</b></td></tr>
+  </table>
+  <div class="card" style="padding:12px 16px">
+    <div style="font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:4px">當代城市的同心配置＋中心區交通分三層</div>
+    <svg viewBox="0 0 620 262" style="width:100%;max-width:620px;height:auto;font-family:'PingFang TC',sans-serif">
+      <g transform="translate(130,130)">
+        <rect x="-115" y="-115" width="230" height="230" fill="#e7efe0" stroke="#6c6459"/>
+        <rect x="-82" y="-82" width="164" height="164" fill="#efe9dd" stroke="#6c6459"/>
+        <rect x="-50" y="-50" width="100" height="100" fill="#fff" stroke="#9a3b2e" stroke-width="1.4"/>
+        <g fill="#9a3b2e">
+          <rect x="-40" y="-40" width="10" height="10"/><rect x="-15" y="-40" width="10" height="10"/><rect x="5" y="-40" width="10" height="10"/><rect x="30" y="-40" width="10" height="10"/>
+          <rect x="-40" y="30" width="10" height="10"/><rect x="-15" y="30" width="10" height="10"/><rect x="5" y="30" width="10" height="10"/><rect x="30" y="30" width="10" height="10"/>
+          <rect x="-40" y="-15" width="10" height="10"/><rect x="30" y="-15" width="10" height="10"/><rect x="-40" y="5" width="10" height="10"/><rect x="30" y="5" width="10" height="10"/>
+        </g>
+        <circle r="10" fill="#b08d2e"/>
+        <g stroke="#232019" stroke-width="1.6"><line x1="-115" y1="-115" x2="115" y2="115"/><line x1="-115" y1="115" x2="115" y2="-115"/><line x1="0" y1="-115" x2="0" y2="115"/><line x1="-115" y1="0" x2="115" y2="0"/></g>
+      </g>
+      <g font-size="11.5">
+        <text x="260" y="138" fill="#6c6459">正中心：交通中心（巴士、火車、機場）</text>
+        <text x="260" y="28" font-weight="700" fill="#9a3b2e">中心區：24 棟 60 層摩天樓，住 40 萬人</text>
+        <text x="272" y="46" fill="#6c6459">建築只佔地 5%，外圍大片綠地；鋼骨玻璃帷幕；住有錢人</text>
+        <text x="260" y="72" font-weight="700">環形居住帶：60 萬人住多層連續板式住宅</text>
+        <text x="260" y="96" font-weight="700" fill="#2f5d50">最外圍：200 萬人的花園住宅</text>
+        <text x="260" y="120" fill="#6c6459">平面嚴格幾何：矩形＋對角線切割道路</text>
+      </g>
+      <g transform="translate(260,150)">
+        <rect width="340" height="104" rx="8" fill="#fbf8f1" stroke="#e2dccf"/>
+        <line x1="20" y1="30" x2="320" y2="30" stroke="#9a3b2e" stroke-width="5"/><text x="20" y="22" font-size="11.5" font-weight="700" fill="#9a3b2e">高架：快速交通</text>
+        <line x1="20" y1="62" x2="320" y2="62" stroke="#232019" stroke-width="3"/><text x="20" y="55" font-size="11.5" font-weight="700">地面：市內交通</text>
+        <line x1="20" y1="94" x2="320" y2="94" stroke="#6c6459" stroke-width="5" stroke-dasharray="10 4"/><text x="20" y="87" font-size="11.5" font-weight="700" fill="#6c6459">地下：重型車輛</text>
+        <g stroke="#9a3b2e" stroke-width="1"><line x1="200" y1="30" x2="200" y2="62"/><line x1="290" y1="30" x2="290" y2="62"/></g>
+      </g>
+    </svg>
+  </div>
+
+  <h3>1925 年巴黎市中心區改建規劃方案（Plan Voisin，p63）</h3>
+  <ul>
+    <li><b>概念式</b>的構想</li>
+    <li><b>200 公尺</b>高的大樓</li>
+    <li><b>拆掉他認為沒有價值的建築</b>，只留最珍貴的歷史性建築</li>
+    <li>大樓<b>分布在城市公園中</b>，<b>地面完全開敞</b></li>
+    <li>人口密度由<b>每公頃 800 人增加至 3,500 人</b></li>
+    <li>受到注目，但被批評<b>激進</b>、<b>將巴黎幾乎夷為平地</b></li>
+  </ul>
+  <h3>人車關係（p153）</h3>
+  <div class="key"><b>柯比意＝人車分道（立體分隔）：</b>以小汽車為主的交通系統；市中心交通分<b>地下、地面、高架三層</b>；大樓<b>地面層架空</b>做為開放空間供行人活動；<b>行人與車行道路完全分離</b>。</div>
+  <h3>討論：生活中有哪些現代城市的例子？（p64–65）</h3>
+  <p>講義舉<b>上海</b>天際線（浦東陸家嘴）。其他可舉：巴西利亞（柯比意弟子規劃）、印度昌迪加爾（柯比意本人規劃）、臺北信義計畫區（超大街廓、高樓、寬馬路、空橋人車分道）、各地的高架快速道路與立體交叉。</p>
+  <div class="note"><b>評價（申論用）：</b>優點：高密度釋放地面綠地、交通效率高、採光通風好、立體分層交通容量大。缺點：大尺度、單一功能分區使街道失去活力；以汽車為中心、行人被邊緣化；拆除舊城破壞歷史紋理與社區網絡；由上而下的理性規劃忽略居民生活。這些正是珍雅各批評的對象。</div>
+</section>
+
+<!-- 05 -->
+<section id="jacobs">
+  <h2><span class="num">05 · p66–78</span>珍雅各的社區規劃論述（Jane Jacobs）</h2>
+  <h3>人物（p67–68）</h3>
+  <ul>
+    <li><b>Jane Jacobs 珍雅各</b>（1916–2006）：<b>美裔加拿大作家</b>。</li>
+    <li>著作 <b><i>The Death and Life of Great American Cities</i>（1961）</b>《美國大都市的死與生》。</li>
+    <li><b>未受過建築及都市計畫的專業訓練</b>。</li>
+    <li><b>社區規劃及都市計畫的激進主義者</b>（activist）。</li>
+    <li>以<b>草根運動</b>的手法阻止<b>都市更新計畫</b>。</li>
+    <li><b>反對開闢快速道路</b>：成功阻止兩個快速道路計畫，<b>紐約 Lower Manhattan Expressway</b> 與<b>多倫多 Spadina Expressway</b>（她的對手是紐約權力掮客 Robert Moses，補充）。</li>
+    <li>核心提問：<b>Whether we are building cities for people or for cars?</b> 我們是在建造人的城市，還是車的城市？</li>
+    <li><b>支持鄰里生活</b>。</li>
+  </ul>
+  <p class="srcline">p69–71 為 Lower Manhattan Expressway 計畫圖與抗爭照片。</p>
+  <h3>《美國大都市的死與生》的主張（p72–76）</h3>
+  <table>
+    <tr><th>批評對象</th><th>內容</th></tr>
+    <tr><td>挑戰「當代城市」概念</td><td>直接挑戰柯比意的 Contemporary City</td></tr>
+    <tr><td><b>批評現代主義規劃政策</b></td><td>批評<b>理性規劃者</b>：用<b>演繹推理</b>找出原則來規劃城市，<b>過於簡化問題</b>；主張<b>廢除土地使用分區管制</b></td></tr>
+    <tr><td><b>批評 1950 年代都市更新政策</b></td><td><b>摧毀社區</b>（<b>Federal Bulldozer 聯邦推土機</b>）；創造出<b>孤立且不自然的都市空間</b></td></tr>
+  </table>
+  <div class="key"><b>★ 多樣性的四個產生條件（Four generators of diversity，p74）</b><br>
+  ①<b>混合使用</b>（Mixed uses）：讓街道在一天中不同時段都活躍，<b>使用時間的混合</b><br>
+  ②<b>小街廓</b>（Short blocks）：提高<b>行人穿透性</b>（pedestrian permeability）<br>
+  ③<b>新舊建物混合</b>（Buildings of various ages and states of repair）：各種年代、新舊程度的建物聚集，租金高低不一，容納不同行業與人<br>
+  ④<b>密度</b>（Density）：<b>維持人口密度</b>（密度的混合）<br>
+  <span style="color:var(--muted);font-size:14px">口訣：混・短・老・密</span></div>
+  <div class="card"><b>★ 街道之眼（Eyes on the street，p75–76）</b>
+    <ol>
+      <li><b>建物開口面對街道</b>（Buildings must be facing the street）</li>
+      <li><b>街道兩旁建物的使用者可以看到街道</b></li>
+      <li><b>人行道要一直有人使用</b>（The sidewalk should be used continuously）</li>
+      <li><b>小孩可以在街上及路邊遊玩</b></li>
+      <li><b>社區內的街道要儘可能狹窄</b></li>
+      <li><b>社區內要有大量商店及公共空間</b></li>
+      <li><b>人行道及騎樓要有良好照明</b>，讓想在夜間使用人行道的人安心</li>
+    </ol>
+    <p style="font-size:15px;color:var(--muted)">邏輯：街道安全不是靠警察，而是靠街上持續有人活動、兩旁住戶與店家的自然監視。人多 → 安全 → 更多人願意走 → 更有活力，形成正向循環。臺灣的騎樓、一樓店面、夜市就是很好的例子（講義 p77 也附了臺灣街景）。</p>
+  </div>
+  <h3>珍雅各的人車關係：低速街道（p157）</h3>
+  <ul>
+    <li><b>過度重視道路的交通機能</b>，會對社區生活環境帶來負面影響。</li>
+    <li>社區又需要使用車輛，<b>不必完全把車輛排除在社區之外</b>。</li>
+    <li>社區內的道路要<b>適度減小寬度</b>，<b>容許車輛慢速通過</b>。</li>
+    <li><b>重視人行道的功能</b>。</li>
+    <li>以<b>小街廓</b>的設計方便行人到達目的地。</li>
+    <li><b>適度的土地混合使用</b>，以<b>減少交通旅次長度</b>，降低對車輛的依賴。</li>
+  </ul>
+  <div class="card" style="padding:12px 16px">
+    <div style="font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:4px">講義 p157 的 A–E 圖：為什麼小街廓對行人比較好</div>
+    <svg viewBox="0 0 600 220" style="width:100%;max-width:600px;height:auto;font-family:'PingFang TC',sans-serif">
+      <g transform="translate(20,20)">
+        <rect width="250" height="150" fill="#fbf8f1" stroke="#6c6459"/>
+        <rect x="0" y="0" width="250" height="70" fill="#efe9dd" stroke="#6c6459"/>
+        <rect x="0" y="80" width="250" height="70" fill="#efe9dd" stroke="#6c6459"/>
+        <circle cx="10" cy="40" r="6" fill="#9a3b2e"/><text x="10" y="30" font-size="12" text-anchor="middle" font-weight="700">A</text>
+        <circle cx="240" cy="115" r="6" fill="#2f5d50"/><text x="240" y="140" font-size="12" text-anchor="middle" font-weight="700">B</text>
+        <path d="M10 40 L10 75 L240 75 L240 115" fill="none" stroke="#9a3b2e" stroke-width="2.4" stroke-dasharray="5 3"/>
+        <text x="125" y="178" font-size="12" text-anchor="middle" font-weight="700">長街廓：只有一條路可走</text>
+        <text x="125" y="195" font-size="11" text-anchor="middle" fill="#6c6459">繞遠、街上店少、路線單調</text>
+      </g>
+      <g transform="translate(330,20)">
+        <rect width="250" height="150" fill="#fbf8f1" stroke="#6c6459"/>
+        <g fill="#efe9dd" stroke="#6c6459">
+          <rect x="0" y="0" width="56" height="70"/><rect x="64" y="0" width="56" height="70"/><rect x="128" y="0" width="56" height="70"/><rect x="192" y="0" width="58" height="70"/>
+          <rect x="0" y="80" width="56" height="70"/><rect x="64" y="80" width="56" height="70"/><rect x="128" y="80" width="56" height="70"/><rect x="192" y="80" width="58" height="70"/>
+        </g>
+        <circle cx="10" cy="40" r="6" fill="#9a3b2e"/><text x="10" y="30" font-size="12" text-anchor="middle" font-weight="700">A</text>
+        <circle cx="240" cy="115" r="6" fill="#2f5d50"/><text x="240" y="140" font-size="12" text-anchor="middle" font-weight="700">B</text>
+        <path d="M10 40 L10 75 L124 75 L124 115 L240 115" fill="none" stroke="#2f5d50" stroke-width="2.4"/>
+        <path d="M10 40 L60 40 L60 75 L188 75 L188 115 L240 115" fill="none" stroke="#b08d2e" stroke-width="2" stroke-dasharray="4 3"/>
+        <text x="125" y="178" font-size="12" text-anchor="middle" font-weight="700">小街廓：路線選擇多（C、D、E…）</text>
+        <text x="125" y="195" font-size="11" text-anchor="middle" fill="#6c6459">穿透性高、經過的街角與店面更多</text>
+      </g>
+    </svg>
+  </div>
+  <h3>珍雅各的影響（p78）</h3>
+  <table>
+    <tr><th>面向</th><th>影響</th></tr>
+    <tr><td><b>對現代主義的反思</b></td><td><b>土地使用分區</b>（單一分區 vs 混合使用）；<b>都市密度</b>（低密度 vs 適當密度）</td></tr>
+    <tr><td><b>小汽車的影響</b></td><td><b>超大街廓 vs 小街廓</b>；<b>人車分道</b>的反省</td></tr>
+    <tr><td><b>社區的概念</b></td><td>催生<b>新都市主義</b>（New Urbanism）</td></tr>
+    <tr><td><b>都市更新</b></td><td><b>拆除</b>（聯邦推土機）的反省；<b>仕紳化</b>（gentrification：老社區變熱門後房價上漲、原居民被迫遷出）；<b>草根運動</b>（grassroots movement）</td></tr>
+    <tr><td><b>臺灣的都市形態</b></td><td>臺灣舊市區本身就是珍雅各式的城市：住商混合、小街廓、騎樓、新舊建物並存、高密度、機車與行人共用巷道</td></tr>
+  </table>
+</section>
+
+<!-- 06 -->
+<section id="newurb">
+  <h2><span class="num">06 · p79–87</span>新都市主義（New Urbanism）</h2>
+  <h3>Urbanism 是什麼（p80）</h3>
+  <ul>
+    <li>都市居民與<b>建成環境</b>互動的特性：生活方式、組織形式、都市問題（都市主義）</li>
+    <li>研究這種特性，或都市社會實質需求的學問（都市研究）</li>
+    <li>在世界許多地方也就是指都市計畫、都市設計</li>
+  </ul>
+  <h3>起源（p81）</h3>
+  <ul>
+    <li><b>1970 年代起於美國</b>。</li>
+    <li><b>1993 年成立新都市主義協會（Congress for the New Urbanism, CNU）</b>，是推動新都市主義的主要組織。</li>
+    <li>發表<b>《新都市主義憲章》（Charter of the New Urbanism）</b>。</li>
+  </ul>
+  <h3>新都市主義憲章的主張（p81–87）</h3>
+  <table>
+    <tr><th>尺度</th><th>主張</th></tr>
+    <tr><td><b>都會區域</b><br>Metropolitan regions</td><td>
+      <ul>
+        <li>要有<b>邊界</b></li>
+        <li>是<b>基本的經濟單元</b></li>
+        <li><b>農地與自然</b>對都會很重要</li>
+        <li><b>填入式發展</b>（infill development）：優先開發既有都市內的空地，而不是往外擴</li>
+        <li><b>毗連</b>的擴張用鄰里與地區（neighborhoods and districts）；<b>不毗連</b>的擴張用<b>自足的城鎮</b>（self-sufficient towns）</li>
+        <li>廣泛多元的土地使用支撐經濟</li>
+        <li>由<b>多種交通替代方案</b>的架構支撐（a framework of transportation alternatives）</li>
+        <li><b>三個基本元素</b>：<b>鄰里</b>（緊湊、步行友善、混合使用）；<b>地區</b>（強調特殊的單一使用，例如大學城、機場區）；<b>廊道</b>（鄰里之間的連接者，例如林蔭大道、軌道線、河川綠帶）</li>
+      </ul></td></tr>
+    <tr><td><b>城市</b><br>Cities</td><td>實體上有<b>清楚界定</b>；<b>公共空間容易到達</b>；<b>社區機構容易到達</b></td></tr>
+    <tr><td><b>交通</b><br>Transport</td><td><b>為行人</b>：可步行的鄰里（walkable neighborhoods）；<b>為大眾運輸</b>；<b>適度容納汽車</b>（adequately accommodate automobiles）</td></tr>
+    <tr><td><b>在地性</b></td><td>都市空間應尊重當地的<b>歷史、氣候、生態、營建方式</b></td></tr>
+    <tr><td><b>開放空間</b></td><td><b>分布在鄰里之中</b>；用來<b>界定並連接</b>鄰里與地區</td></tr>
+    <tr><td><b>鄰里</b><br>Neighborhoods</td><td>
+      <ul>
+        <li>要<b>多元</b>：種族、住宅型式、所得、年齡、家庭型態、工作、土地使用</li>
+        <li><b>每個鄰里有一個中心</b>：<b>大眾運輸站</b>、<b>公共建築</b>，離多數住宅<b>步行可達</b></li>
+        <li>有<b>商店與辦公</b>、<b>小學</b>、<b>遊戲場</b></li>
+      </ul></td></tr>
+    <tr><td><b>街道</b><br>Streets</td><td>
+      <ul>
+        <li><b>適合行人與自行車</b></li>
+        <li><b>穿透性</b>（permeability）</li>
+        <li><b>安全與安心</b>（safe and secure）</li>
+        <li><b>慢速交通</b></li>
+        <li><b>相對狹窄</b></li>
+        <li><b>行道樹遮蔭</b></li>
+        <li><b>建物貼近街道</b>以塑造戶外空間</li>
+        <li><b>停車放在建物後方</b>，<b>經由後巷</b>進出</li>
+      </ul></td></tr>
+  </table>
+  <p class="srcline">p84–85 為《Sustainable Urban Design》書中的新都市主義圖解。</p>
+  <div class="note"><b>新都市主義＝把珍雅各的觀察變成可操作的設計準則，並結合大眾運輸。</b>它保留了鄰里單元「步行距離內有中心」的概念，但把中心從「小學」換成「大眾運輸站＋公共建築」，把內部路網從「彎曲、囊底路」換回「互通、可穿透」。</div>
+</section>
+
+<!-- 07 -->
+<section id="neo">
+  <h2><span class="num">07 · p88–100</span>新傳統設計（Neotraditional Design）</h2>
+  <h3>相關名詞（p89）</h3>
+  <p>以下名詞都屬同一脈絡，常常互相替代使用：</p>
+  <ul>
+    <li><b>Neotraditional Neighborhood Design</b>（新傳統鄰里設計）</li>
+    <li><b>Transit-Oriented Development</b>（TOD，大眾運輸導向發展）</li>
+    <li><b>Traditional Neighborhood Development</b>（TND，傳統鄰里開發）</li>
+    <li><b>Pedestrian Pockets</b>（步行口袋：以輕軌站為中心、步行範圍內的小型混合使用社區）</li>
+    <li><b>New Urbanism</b>（新都市主義）</li>
+  </ul>
+  <p>「新傳統」的意思：回到汽車普及前<b>傳統小鎮</b>的空間型態（可步行、有市鎮中心、互通街道），但用新的設計手法實現。</p>
+  <h3>新傳統設計的特性（p90，6 點）</h3>
+  <ol>
+    <li>有一<b>市鎮中心</b>，為<b>商業及辦公</b>使用，內部以<b>人行步道</b>相連。</li>
+    <li>鄰里內<b>混合土地使用</b>，包括住宅、商業、學校、教堂及娛樂設施，不同土地使用間緊密相連。</li>
+    <li>必須在<b>有相當人口密度</b>的地方實施，方能鼓勵民眾使用大眾運輸。</li>
+    <li>重視<b>行人、腳踏車及大眾運輸使用者</b>，<b>優先考慮市民活動的公共空間之區位</b>。</li>
+    <li>有<b>完整的路網</b>，道路網<b>互通</b>，<b>常用棋盤式</b>。</li>
+    <li><b>住宅基地較小</b>，可連接公園及娛樂設施；住宅區內<b>街道較窄</b>，<b>允許停車</b>，兩旁<b>種行道樹</b>。</li>
+  </ol>
+  <p>大部分新傳統式都市路網概念設計的都市，均配合良好的<b>都市景觀設計</b>，來鼓勵民眾使用大眾運輸系統，避免使用小汽車。</p>
+  <p class="srcline">p91–94 為新傳統設計案例配置圖。</p>
+  <h3>新傳統設計策略（p95–96，11 點）</h3>
+  <p class="srcline">綜合 Ryan and McNally（1995）、Shinbein（1997）及 Furuseth（1997）等文獻</p>
+  <ol>
+    <li>鼓勵<b>混合土地使用</b>，包括住宅、商業、學校、教堂及娛樂設施，使步行更方便到達活動地點。</li>
+    <li><b>降低基地面積</b>，以減少步行距離；新傳統設計的基地為過去的<b>四分之三</b>。</li>
+    <li><b>減少建築物退縮長度</b>，以縮短建築物出入口至公車站的距離。</li>
+    <li><b>不鼓勵提供足夠的免費停車空間</b>；研究顯示每個停車位需要 <b>27 平方公尺</b>，對土地利用並不經濟。</li>
+    <li>提供豐富的街景、舒適的人行道及安全穿越街道設施，<b>使街道對行人的服務至少和服務汽車一樣</b>。</li>
+    <li><b>新建街道應該比傳統街道更窄</b>，而且需要有人行道、樹栽及其他街道傢俱。</li>
+    <li>鄰里單元以<b>步行距離（400 公尺）為半徑</b>，中央為社區活動中心、辦公及商店。</li>
+    <li><b>中心地區鼓勵高層建築、高密度土地使用</b>，周圍<b>密度漸減</b>，以人行道及腳踏車道與中心連接。</li>
+    <li>鄰里內有<b>完整的路網</b>，街道互通；<b>除非囊底路允許行人或腳踏車穿越，否則不採用囊底路</b>；鼓勵<b>棋盤式或修正後的棋盤式</b>道路，讓行人與腳踏車四通八達。</li>
+    <li><b>提供更多連接道路</b>，避免社區成為「<b>孤島式</b>」的發展。</li>
+    <li><b>優先考慮市民活動的公共空間之區位</b>。</li>
+  </ol>
+  <h3>傳統與新傳統設計比較：實證研究（p97–98）</h3>
+  <table>
+    <tr><th>研究</th><th>方法與發現</th></tr>
+    <tr><td><b>Gordon and Peers（1991）</b></td><td>分析 Laguna West 的新傳統設計，可<b>減少 20%–25% 的延車公里數</b>。原因：①部分旅次轉化成區內旅次；②降低小汽車旅次比率；③工作地點與居住地接近</td></tr>
+    <tr><td><b>Stone and Johnson（1992）</b></td><td>以基地影響分析方法比較兩種土地細分方式：新傳統設計可<b>減少 25% 車旅次</b>，並<b>降低 20% 總旅次數</b></td></tr>
+    <tr><td><b>McNally and Ryan（1992）</b></td><td>以傳統旅運需求模式分析：新傳統路網比傳統（郊區）路網<b>節省 10% 延車公里</b>、<b>降低 27% 延車小時</b>、<b>總旅次里程降低 15%</b></td></tr>
+    <tr><td><b>Friedman et al.（1992）</b></td><td>新傳統設計可影響<b>旅次發生及運量分配</b>。以舊金山地區旅次調查資料比較：傳統社區旅次比郊區社區少 18%，<b>車旅次少 38%</b>；傳統社區小汽車旅次佔 <b>54%</b>，郊區社區佔 <b>68%</b></td></tr>
+  </table>
+  <div class="note"><b>申論怎麼用這些數據：</b>不必背每個數字，記住結論「多項研究顯示，新傳統設計相較於傳統郊區設計，可降低約 10%–25% 的延車公里數與汽車旅次，主因是旅次內部化、汽車使用比率下降與職住接近」，再舉一個例子（Laguna West 減少 20%–25% 延車公里）即可。</div>
+  <p class="srcline">p99–100 為比較圖。</p>
+</section>
+
+<!-- 08 -->
+<section id="tod">
+  <h2><span class="num">08 · p101–111</span>大眾運輸導向發展（TOD）</h2>
+  <h3>定義與重點（p102）</h3>
+  <ul>
+    <li><b>Transit-Oriented Development, TOD</b>。</li>
+    <li>所謂大眾運輸導向的發展，通常係指<b>如何建構大眾運輸場站附近地區，以善加利用公共運輸並提昇其使用率</b>。</li>
+    <li>重點：①<b>創造緊密的鄰里社區</b>；②使居住、工作、購物、社區服務、娛樂等活動，都可以<b>透過步行距離內的大眾運輸車站</b>達成；③<b>減少使用私有機動車輛</b>。</li>
+  </ul>
+  <h3>TOD 五特性（p103）</h3>
+  <ol>
+    <li><b>混合使用</b>：包括住宅、商業與娛樂等活動。</li>
+    <li><b>緊密發展</b>：<b>中到高強度</b>的發展，以及<b>對於停車之限制</b>。</li>
+    <li><b>步行範圍</b>：發展範圍介於公共運輸場站的步行距離內。</li>
+    <li><b>地區節點</b>：車站附近的空間（例如開放空間與廣場）做為<b>社區匯集點</b>。</li>
+    <li><b>步行導向</b>：街道、開放空間必須有利於行人。</li>
+  </ol>
+  <div class="key"><b>講義要你自己查：TOD 的 3D、5D</b><br>
+  <b>3D</b>（Cervero &amp; Kockelman, 1997）：<b>Density 密度</b>、<b>Diversity 多樣性（混合使用）</b>、<b>Design 設計（步行友善）</b><br>
+  <b>5D</b>（Ewing &amp; Cervero）：3D ＋ <b>Destination accessibility 目的地可及性</b> ＋ <b>Distance to transit 到大眾運輸的距離</b><br>
+  <span style="font-size:14px;color:var(--muted)">之後還有人加上 Demand management 需求管理（例如停車管理），稱 6D。</span></div>
+  <h3>TOD 的規劃設計觀（p104）</h3>
+  <ul>
+    <li><b>規劃設計的</b>：想法、手段、技巧、特性。</li>
+    <li><b>規劃的</b>：主體、標的物、最後呈現。</li>
+    <li><b>基本配備＝整個運作的核心</b>：大眾運輸車站與周邊（Transit Station &amp; Environs）。</li>
+    <li>Cervero（2010）：車站應該是「<b>A Place to Be… Not Just to Pass Through</b>」，<b>一個值得停留的地方，而不只是路過的地方</b>。</li>
+  </ul>
+  <h3>臺南火車站 TOD 了嗎？（p105–111）</h3>
+  <table>
+    <tr><th>老師的觀察</th><th>意思</th></tr>
+    <tr><td><b>火車站只是個傳送門</b></td><td>「使命必達，直接送到門口，不需要步行環境」；來去匆匆，<b>只有站點、沒有站區</b>；「我們捨得犧牲效率嗎？<b>打破交通效率導向的思維</b>」</td></tr>
+    <tr><td><b>這裡不好玩</b></td><td>休息站都比這裡好逛；是一個可以專心等車的地方；除了高中生外，沒聽過有人要去車頭晃一下（車站沒有成為目的地）</td></tr>
+    <tr><td><b>不讓我出去玩</b></td><td>去新光三越的路層層險阻（步行環境不友善）；「<b>以人為本，還是以車子內的人為本？</b>」</td></tr>
+    <tr><td><b>這附近明明這麼好玩</b></td><td>車站周邊其實有很多活動與景點，但車站與它們之間沒有好的步行連結</td></tr>
+  </table>
+  <div class="note"><b>結論：</b>臺南火車站目前只做到「運輸節點」，沒有做到 TOD 的「地區節點」與「步行導向」。改善方向：車站周邊混合使用與廣場、優先改善步行動線、車站本身成為停留的場所（臺南鐵路地下化與車站周邊再開發正是機會）。</div>
+</section>
+
+<!-- 09 -->
+<section id="livable">
+  <h2><span class="num">09 · p112–130</span>生活化道路</h2>
+  <h3>定義（p113）</h3>
+  <p>「生活化道路」是<b>以人為本</b>之交通建設與管理，根據某一社區及附近社區居民活動之交通（如通勤、購物等），以及為確保居民<b>生活環境品質</b>（即衛生、舒適、休閒）、<b>生命安全</b>（如救護、消防等）而提出之交通計畫，<b>使道路能發揮多重功能</b>，讓車輛通行，同時也能確保居民的生活環境品質及安全。</p>
+  <table>
+    <tr><th>國家</th><th>名稱</th></tr>
+    <tr><td>德國</td><td><b>Verkehrsberuhigung</b>（交通抑制措施）</td></tr>
+    <tr><td>丹麥</td><td><b>Slow Street</b>（低速道路）</td></tr>
+    <tr><td>澳洲</td><td><b>Local Area Traffic Management, LATM</b>（住宅社區交通管理）</td></tr>
+    <tr><td>英國</td><td><b>Traffic Calming</b>（交通寧靜區）</td></tr>
+    <tr><td>日本</td><td><b>人車共存道路</b></td></tr>
+    <tr><td>我國</td><td>《運輸政策白皮書》稱為<b>「生活化道路」</b></td></tr>
+  </table>
+  <p>英國與美國所稱的「交通寧靜區」與生活化道路觀念類似，是指<b>在道路上設置硬體設施，以減少機動車輛所帶來的負面影響，並且改變駕駛人行為，以改善街道使用者的生活品質</b>（Lockwood；講義標 1977）。</p>
+  <h3>生活化道路之特徵（p114，5 點）</h3>
+  <ol>
+    <li>主要位於<b>住宅區</b>，少數在商業區。</li>
+    <li>道路機能不僅供<b>交通功能</b>，同時提供<b>社交、遊戲及休閒</b>等非交通功能。</li>
+    <li>在交通功能等級分類中，<b>大多數為出入道路</b>。</li>
+    <li>可讓<b>行人、腳踏車及汽車使用同一路面</b>。</li>
+    <li><b>極少過境交通</b>。</li>
+  </ol>
+  <p class="srcline">p115–116 為臺灣的實例新聞照片（例如巷道停車格改為休憩空間）。</p>
+  <h3>建立生活化道路之策略（p117–118）</h3>
+  <table>
+    <tr><th>策略一：減少交通量</th><th>策略二：減少車速</th></tr>
+    <tr><td>
+      <ol>
+        <li><b>重新調整道路網</b>：將四通八達的道路<b>封閉若干路口</b>，使棋盤式路網變成若干<b>環形路或死巷</b></li>
+        <li>在進口處設置<b>牌樓</b>，提醒過境交通車輛勿入</li>
+        <li><b>改變巷道鋪面材質</b>，提醒非必要之車輛勿入</li>
+        <li>以<b>標誌管制通行時間</b></li>
+      </ol></td><td>
+      <ol>
+        <li>以<b>植栽或槽化島縮減道路寬度</b>：實驗結果，若將<b>雙向車道寬度減少至 4.5 公尺、單向車道 2.75 公尺</b>，則車速可<b>降至 30 公里以下</b></li>
+        <li>以<b>停車位或植栽</b>將道路形成<b>鋸齒狀</b></li>
+        <li>以<b>槽化島改變路型</b></li>
+        <li>巷道交叉路口<b>設置圓環</b></li>
+        <li>設置<b>跳動路面</b></li>
+        <li>以<b>標誌限制最高時速</b></li>
+      </ol></td></tr>
+  </table>
+  <h3>美國運輸工程學會（ITE, 2001）交通寧靜措施 18 種（p122–127）</h3>
+  <table>
+    <tr><th>#</th><th>措施</th><th>說明</th></tr>
+    <tr><td>1</td><td><b>完全封閉</b></td><td>封閉道路，避免穿越性交通</td></tr>
+    <tr><td>2</td><td><b>半封閉</b></td><td>禁止進入或轉出，限制路口的交通車流</td></tr>
+    <tr><td>3</td><td><b>對角封閉</b></td><td>使棋盤式路網變為環形路，避免穿越性交通</td></tr>
+    <tr><td>4</td><td><b>中央分隔</b></td><td>道路中央狹小的突出分隔島，提供行人安全的停等地區</td></tr>
+    <tr><td>5</td><td><b>強制轉彎島</b></td><td>強制車流以特定方向行進的突出分隔島，例如僅限右轉</td></tr>
+    <tr><td>6</td><td><b>駝峰</b></td><td><b>7–10 公分高</b>彎曲突起，<b>3–4 公尺長</b></td></tr>
+    <tr><td>7</td><td><b>減速平台</b></td><td>類似駝峰，只是突起物的上方較平坦</td></tr>
+    <tr><td>8</td><td><b>昇高人行穿越道</b></td><td>斜坡表面高於道路，<b>高 7–10 公分，長 3–6 公尺</b></td></tr>
+    <tr><td>9</td><td><b>昇高路口</b></td><td>將路口加高，使駕駛人在路口減速</td></tr>
+    <tr><td>10</td><td><b>改變鋪面材質</b></td><td>以特殊鋪面材質（大卵石、磚塊等）和斑紋標示特別地區</td></tr>
+    <tr><td>11</td><td><b>小圓環</b></td><td>設置於路口的小型交通圓環</td></tr>
+    <tr><td>12</td><td><b>圓環</b></td><td>設置於路口，中型至大型的圓環</td></tr>
+    <tr><td>13</td><td><b>路面轉彎</b></td><td>將原來筆直的路權改為彎曲，使駕駛人減速</td></tr>
+    <tr><td>14</td><td><b>路口槽化</b></td><td>在路口進行槽化，減少路口面積，使駕駛人在路口減速</td></tr>
+    <tr><td>15</td><td><b>路口瓶頸</b></td><td>路緣延伸至街道車道的一半，以控制交通且減少行人穿越距離</td></tr>
+    <tr><td>16</td><td><b>中央島</b></td><td>縮減車道寬度的中線交通分隔島</td></tr>
+    <tr><td>17</td><td><b>中央瓶頸</b></td><td>縮減車道寬度的兩側交通槽化島</td></tr>
+    <tr><td>18</td><td><b>減速設施</b></td><td>類似中央瓶頸，只是路型較不規則</td></tr>
+  </table>
+  <div class="note"><b>分類記法：</b>①<b>擋</b>（減量）：完全封閉、半封閉、對角封閉、強制轉彎島。②<b>抬</b>（垂直變化降速）：駝峰、減速平台、昇高人行穿越道、昇高路口、改變鋪面。③<b>彎與窄</b>（水平變化降速）：小圓環、圓環、路面轉彎、路口槽化、路口瓶頸、中央分隔、中央島、中央瓶頸、減速設施。</div>
+  <h3>生活化道路實施之議題（p128–129，5 個「要有」）</h3>
+  <ol>
+    <li><b>要有法律基礎</b>：生活化道路是新嘗試，合法性值得注意。例如將道路用地變更使用，是否違背都市計畫法？將道路封閉，是否有法律依據？改變道路幾何設計使車速降到時速 30 公里以下，是否合乎設計規範？應在實施前先釐清。</li>
+    <li><b>要有公民參與的程序</b>：社會價值多元化，措施必然引起爭議；解決爭議最好的方法是<b>廣徵民意、規劃過程透明化</b>。任何變革都會有受益者與受害者，應讓民眾在規劃過程中充分表達看法並協調各方意見；民眾有參與感才會凝聚共識，甚至出錢出力。</li>
+    <li><b>要有明確的執行機關</b>：縣市政府恐怕無力承擔；短期可由中央支援人力或委託顧問公司規劃設計，長期應有專責機構負責執行，才能累積經驗。</li>
+    <li><b>要有生活化道路措施的施行規範</b>：中央主管機關應參考國外經驗、參酌國情與民意，訂立一套規範與準則（範圍設定、調查項目及方法、分析項目及方法、作業程序），提供地方政府使用。</li>
+    <li><b>要有示範性地區</b>：先選擇較單純的地區（如<b>公教住宅社區</b>）先行試辦、做為示範，再廣為宣傳，較易被其他地區接受。</li>
+  </ol>
+  <h3>實施績效（p130）</h3>
+  <p>國內都市人口密集、街道狹窄，與歐洲及日本相似；生活化道路在這些國家實施成效良好。以<b>德國柏林</b>為例，實施前後比較，<b>交通量、卡車百分比、噪音及車速</b>各項指標均明顯減少。</p>
+</section>
+
+<!-- 10 -->
+<section id="history">
+  <h2><span class="num">10 · p131–150</span>綜合論述（一）：美國住宅社區土地細分設計的歷史演變</h2>
+  <p>根據 <b>Ryan and McNally（1995）</b>的分類，美國住宅社區土地細分設計的歷史演變可分成 <b>5 個階段</b>（講義表 13-6）：</p>
+  <table>
+    <tr><th>時期</th><th>設計趨勢</th><th>內容</th></tr>
+    <tr><td><b>1. 1928 以前</b></td><td><b>傳統棋盤式</b><br>Traditional gridiron</td><td>土地分割<b>只考慮地主的利益</b>；路網以棋盤式為主，是為了<b>方便測量與分割登記</b>。棋盤式街廓<b>較適用於慢速的交通工具</b>；汽車行駛其上，<b>交叉路口過多</b>，對行人及車輛皆不安全，而且會造成<b>大量過境交通</b>，帶來污染與噪音。</td></tr>
+    <tr><td><b>2. 1928–1945</b></td><td><b>花園都市</b><br>Garden city（Garden Suburban Development）</td><td>1929 年美國 <b>Henry Wright 與 Clarence Stein</b> 有鑒於 20 世紀初土地發展的缺失，及小汽車帶來的都市擁塞、單調醜陋及不安全，規劃了<b>美國第一個花園都市 Radburn</b>。</td></tr>
+    <tr><td><b>3. 1945–1963</b></td><td><b>擴建期</b><br>Build-Out</td><td>此時期的特徵<b>不是設計理念，而是土地發展大量擴張</b>。二戰後美國土地發展受到四項措施影響：①<b>國民住宅政策</b>、②<b>都市更新</b>、③<b>房屋抵押貸款</b>、④<b>公路建設</b>。這四項措施造成<b>郊區蔓延</b>發展，尤其大量興建道路後，房地產業者能在郊區找到便宜土地大興土木，加速人口郊區化。</td></tr>
+    <tr><td><b>4. 1960–1980</b></td><td><b>計畫單元整體開發與簇群式開發</b><br>Planned-Unit Development（PUD）, Cluster Development</td><td>擴建期使土地使用缺乏效率，許多市政府在 1960–1980 年間開始<b>立法管制土地細分</b>；1970 年代幾乎所有開發業者必須<b>自行提供道路、自來水及污水管線</b>，並考慮環境保護與開發時程控制，避免過度蔓延。開發業者不只賣地，而是<b>社區整體開發後連地帶屋一併出售</b>，社區含單棟房屋、公寓、購物中心、學校及娛樂設施。</td></tr>
+    <tr><td><b>5. 1980–現在</b></td><td><b>新傳統</b><br>Neotraditional Neighborhood Design</td><td>從<b>永續都市發展</b>理念出發，以<b>高效率的大眾運輸系統為都市發展的主幹</b>，全方位落實大眾運輸優先，鼓勵搭乘大眾運輸、<b>抑制私人運具</b>，使民眾降低對自用小汽車的依賴，創造高品質都市環境，達到永續發展。</td></tr>
+  </table>
+  <div class="note"><b>p134 的概念清單</b>（老師列出各時期的城市理想）：花園城市 → 現代化、現代主義 → 緊縮城市、緊湊城市（Compact city）→ 永續發展（綠能、節能）→ 人性化。可以當作申論「規劃思潮演變」的骨架。</div>
+  <h3>PUD 計畫單元整體開發（p138–140）</h3>
+  <ul>
+    <li>計畫單元是<b>以汽車為主的設計理念</b>，此型式形成美國社會的生活方式。</li>
+    <li>例：美國亞利桑那州 <b>Tucson</b> 市的住宅社區單元，<b>長寬各 1,600 公尺</b>，在統一規劃下提供舒適的公園、學校及購物中心；<b>兩條主要道路平分社區</b>，利用<b>囊底路減少過境交通</b>，提供安靜及安全的生活環境。</li>
+  </ul>
+  <h3>簇群式開發（p141–142）</h3>
+  <ul>
+    <li>型態與計畫單元相似，以<b>曲線街道</b>提供變化的街道景色並<b>降低車速</b>，並以<b>囊底路</b>降低車速、避免不必要的交通進入。</li>
+    <li>透過簇群設計，規劃師重新配置土地使用以充分利用空間，<b>減少土地浪費及建造成本</b>（住宅集中成群，留下大片共同綠地）。</li>
+    <li>比較不同設計方式：簇群式開發可<b>減少 25% 的道路面積</b>，同時<b>增加 3% 的住宅單元</b>。</li>
+  </ul>
+  <h3>新傳統的兩個案例（p143–147）</h3>
+  <table>
+    <tr><th>Laguna West（加州 Sacramento County）</th><th>Belmont Forest（維吉尼亞州 Loudoun County）</th></tr>
+    <tr><td>典型<b>以大眾運輸為導向的發展</b>；計畫有許多囊底路，但<b>各街道仍能互通</b>。特色：
+      <ol><li>中心區位做為<b>零售業及辦公</b>使用</li><li>規劃有<b>公車接駁路線</b>，未來可<b>升級為輕軌</b></li><li>全區有完善的<b>腳踏車及行人路網</b>，<b>囊底路開放讓行人通行</b></li><li><b>較窄的街道</b>以降低車速及避免過境交通</li></ol></td>
+    <td>有一<b>傳統的市鎮中心</b>，各住戶可<b>步行 10 分鐘（約 400 公尺）</b>到達；路邊種植行道樹以利步行；採用<b>棋盤式路網、無囊底路</b>。新傳統設計的特性：
+      <ol><li>多樣式住宅</li><li>混合土地使用</li><li>重視行人的舒適與便利</li><li>方便搭乘大眾運輸</li><li>提供開放空間方便居民使用</li><li>將市民活動中心與商業中心放在一起</li></ol></td></tr>
+  </table>
+  <h3>道路系統設計之比較（p148–150）</h3>
+  <p>講義以 De Chiara &amp; Koppelman（1975）的圖比較同一塊臨湖基地的不同設計：<b>棋盤式</b>切成大量規則街廓、道路長且路口多；<b>曲線式與簇群式</b>以環形路、囊底路配合地形，道路總長度減少、留下更多開放空間。</p>
+  <div class="key"><b>比較平面圖的五個角度：</b>①<b>路網連通度</b>（互通 vs 樹枝狀）②<b>過境交通</b>（容易穿越 vs 被擋在外）③<b>道路面積與建設成本</b>④<b>步行距離與路線選擇</b>⑤<b>車速與安全</b>（直線長路 vs 曲線短路）。</div>
+</section>
+
+<!-- 11 -->
+<section id="fourway">
+  <h2><span class="num">11 · p151–168</span>綜合論述（二）：規劃理論中人車關係之論述 ★</h2>
+  <p>老師把所有流派整理成四種人車關係：<b>(1) 人車分道 (2) 低速街道 (3) 人車共享空間 (4) 完全街道</b>。這是全章最可能出申論的地方。</p>
+  <div class="card" style="padding:12px 16px">
+    <div style="font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:4px">從「人車完全分開」到「人車完全混合」的光譜</div>
+    <svg viewBox="0 0 640 200" style="width:100%;max-width:640px;height:auto;font-family:'PingFang TC',sans-serif">
+      <defs><linearGradient id="spec" x1="0" x2="1"><stop offset="0" stop-color="#9a3b2e"/><stop offset="1" stop-color="#2f5d50"/></linearGradient></defs>
+      <rect x="30" y="70" width="580" height="14" rx="7" fill="url(#spec)"/>
+      <text x="30" y="60" font-size="11.5" fill="#9a3b2e" font-weight="700">人車分離</text>
+      <text x="610" y="60" font-size="11.5" fill="#2f5d50" font-weight="700" text-anchor="end">人車混合</text>
+      <g font-size="12" text-anchor="middle">
+        <circle cx="95" cy="77" r="9" fill="#fff" stroke="#232019" stroke-width="2"/>
+        <text x="95" y="110" font-weight="700">① 人車分道</text><text x="95" y="128" fill="#6c6459" font-size="11">Hénard・柯比意・雷特朋</text><text x="95" y="145" fill="#6c6459" font-size="11">車快、道路機械化</text>
+        <circle cx="400" cy="77" r="9" fill="#fff" stroke="#232019" stroke-width="2"/>
+        <text x="400" y="110" font-weight="700">② 低速街道</text><text x="400" y="128" fill="#6c6459" font-size="11">培里・珍雅各・生活化道路</text><text x="400" y="145" fill="#6c6459" font-size="11">車子服務人</text>
+        <circle cx="560" cy="77" r="9" fill="#fff" stroke="#232019" stroke-width="2"/>
+        <text x="560" y="110" font-weight="700">③ 人車共享空間</text><text x="560" y="128" fill="#6c6459" font-size="11">shared space</text><text x="560" y="145" fill="#6c6459" font-size="11">去除車道概念</text>
+        <circle cx="250" cy="77" r="9" fill="#fff" stroke="#232019" stroke-width="2"/>
+        <text x="250" y="110" font-weight="700">④ 完全街道</text><text x="250" y="128" fill="#6c6459" font-size="11">TOD 的道路觀</text><text x="250" y="145" fill="#6c6459" font-size="11">各運具兼顧，不強調低速</text>
+      </g>
+      <text x="320" y="185" font-size="11" text-anchor="middle" fill="#6c6459">完全街道的人車分隔比低速街道「大」，所以畫在低速街道左邊（講義原話）</text>
+    </svg>
+  </div>
+
+  <h3>(1) 人車分道（p152–155）</h3>
+  <table>
+    <tr><th>代表</th><th>內容</th></tr>
+    <tr><td><b>Eugène Hénard</b>（法國）</td><td>1900–1914 年擬定的<b>巴黎綱要計畫</b>；<b>以汽車為主體</b>的交通系統；<b>圓環與人行地下道合併設計</b>（他是現代圓環概念的先驅之一）</td></tr>
+    <tr><td><b>Le Corbusier 柯比意</b></td><td>1924 年提出的現代城市；<b>以小汽車為主</b>；市中心交通分<b>地下、地面、高架三層</b>；大樓<b>地面層架空</b>做為開放空間供行人活動；<b>行人與車行道路完全分離</b></td></tr>
+    <tr><td><b>Radburn 雷特朋</b></td><td>Clarence Stein &amp; Henry Wright；<b>因應汽車時代的郊區規劃</b>；花園城市＋鄰里單元的規劃手法：超大街廓、囊底路、人車分道、道路層級分明</td></tr>
+  </table>
+  <ul>
+    <li><b>基本概念</b>：以<b>工程及規劃的手法將人車分流</b>，維持<b>車行交通順暢</b>及<b>行人安全</b>。</li>
+    <li><b>手法</b>：<b>空間分隔</b>（<b>平面分隔</b>，如人行道、步道系統；<b>立體分隔</b>，如天橋、地下道、高架）；<b>時間分隔</b>（如號誌時相、行人徒步區限時）。</li>
+    <li><b>缺點</b>：造成<b>運輸性能低的行人空間</b>（行人要爬天橋、繞地下道）；路面<b>較機械化及不人性化</b>，<b>僅能供車輛使用，無其他機能</b>。</li>
+    <li><b>一句話</b>：車速快，道路較機械化，少人性化考量。</li>
+  </ul>
+  <h3>(2) 低速街道（p156–158）</h3>
+  <table>
+    <tr><th>代表</th><th>內容</th></tr>
+    <tr><td><b>Clarence Perry 培里</b></td><td>1929 年提出的鄰里單元；<b>小學及鄰里性公共設施為中心</b>；<b>小學生步行距離</b>；<b>周圍以大馬路為邊界、內部以彎曲的出入道路連接</b>；<b>減少通過性交通及車速</b>，增加行人安全；以<b>道路層級、道路線形及道路寬度</b>來控制鄰里社區內車速及車流量，保障社區內行人安全</td></tr>
+    <tr><td><b>Jane Jacobs 珍雅各</b>（1961）</td><td>過度重視道路交通機能會傷害社區生活；社區需要車，<b>不必完全排除</b>；社區道路<b>適度減小寬度、容許車輛慢速通過</b>；重視人行道；<b>小街廓</b>方便行人到達；<b>適度混合使用</b>減少旅次長度、降低車輛依賴</td></tr>
+  </table>
+  <ul>
+    <li><b>核心概念：車子服務人</b>，以<b>社區生活為出發點</b>設計道路。社區的生活需要車輛的服務，但高速的交通會妨礙社區的生活。</li>
+    <li>對街道的想法：<b>不強調嚴格的人車分道，但仍有適度的分隔</b>。</li>
+    <li>此種低速街道的概念<b>為各國規劃社區道路的主流</b>：德國交通抑制措施（Verkehrsberuhigung）、丹麥低速街道（slow street）、澳洲住宅社區交通管理（LATM）、英國交通寧靜區（Traffic Calming）、臺灣交通寧靜區（也叫生活化道路）。</li>
+  </ul>
+  <h3>(3) 人車共享空間（Shared space，p159–163）</h3>
+  <ul>
+    <li><b>性質</b>：一種<b>都市設計手法</b>。</li>
+    <li><b>不劃分車行空間或人行空間，人車完全混合</b>：把車當成人；把街道當成<b>長形的廣場</b>；街道或廣場等公共空間<b>不受車道切割</b>，可多功能整合使用；<b>在不禁止機動車輛進入的情況下</b>改善公共空間與生活環境品質；使空間更具人性化。</li>
+    <li><b>手法</b>：<b>移除緣石、標線、標誌、號誌</b>等設施，<b>弭平空間中的高低差</b>，減低車輛在街道的強勢地位；利用設計手法減低車速、規劃各領域的轉換介面；檢視使用空間的習性，設計行人穿越動線、座椅、鋪面，提高行人優先權且不影響安全。</li>
+    <li><b>原理</b>：<b>淡化行人與車行交通間路權的界線</b>，空間整合；去除車輛優先的意象，減低車輛在街道的強勢地位，<b>增加駕駛人的不確定性 → 車輛會降低速度 → 行人安全性增加</b>。</li>
+    <li>例子：荷蘭工程師 Hans Monderman 推動的共享街道、英國倫敦 Exhibition Road（補充）；臺灣的老街、廟口廣場其實很接近。</li>
+    <li><b>一句話</b>：去除車道的概念，所有運輸工具共享路權。</li>
+  </ul>
+  <h3>(4) 完全街道（Complete streets，p165）</h3>
+  <ul>
+    <li>屬於<b>大眾運輸導向發展（TOD）的概念</b>：路面交通以<b>引導各種運具及步行交通至大眾運輸場站</b>；道路設計<b>允許各種運具相容使用</b>；<b>強調步行環境之設計</b>。</li>
+    <li><b>兼顧各運具間之路權，將所有的交通導向特定的核心</b>。</li>
+    <li>各種運具及行人<b>共存</b>在街道上。</li>
+    <li><b>不會強調低速交通</b>。</li>
+    <li><b>無嚴格的人車分道</b>，但<b>人與車的分隔會比低速街道大</b>（例如有專用公車道、自行車道、寬人行道各自分開）。</li>
+    <li><b>一句話</b>：兼顧各運具間之路權，將所有的交通導向特定的核心。</li>
+  </ul>
+  <div class="key"><b>★ 人車關係論述的結論（p166）：</b><br>汽車裡面也是人。<br>汽車裡的人憑什麼有優先權？<br><b>汽車是用來服務人，不是逼迫行人。</b></div>
+  <h3>四論述總表（p167 再整理）</h3>
+  <div style="overflow-x:auto">
+  <table style="min-width:720px">
+    <tr><th></th><th>人車分道</th><th>低速街道</th><th>人車共享空間</th><th>完全街道</th></tr>
+    <tr><td><b>一句話</b></td><td>車速快，道路機械化，少人性化</td><td>車子服務人，以社區生活為出發點</td><td>去除車道概念，所有運具共享路權</td><td>兼顧各運具路權，交通導向特定核心</td></tr>
+    <tr><td><b>代表</b></td><td>Hénard、柯比意、雷特朋</td><td>培里、珍雅各、生活化道路</td><td>shared space 都市設計</td><td>TOD</td></tr>
+    <tr><td><b>人車分隔程度</b></td><td>完全分離（平面、立體、時間）</td><td>適度分隔</td><td>完全不分隔</td><td>不嚴格分道，但分隔比低速街道大</td></tr>
+    <tr><td><b>車速</b></td><td>高</td><td>低（約 30 km/h 以下）</td><td>很低（靠不確定性）</td><td>不強調低速</td></tr>
+    <tr><td><b>適用</b></td><td>快速道路、主要幹道、新市鎮</td><td>住宅社區、出入道路</td><td>商業街、廣場、老街</td><td>大眾運輸走廊、車站周邊</td></tr>
+    <tr><td><b>缺點</b></td><td>行人空間運輸性能低、街道單一機能</td><td>主幹道仍需另外處理大量車流</td><td>高流量道路不適用、弱勢使用者不安</td><td>路幅需求大、需有大眾運輸支撐</td></tr>
+  </table></div>
+  <h3>最後的討論名詞（p168）</h3>
+  <ul>
+    <li><b>Jane Jacobs</b>：見第 05 節。</li>
+    <li><b>Transit-Oriented Development（TOD）</b>：見第 08 節。</li>
+    <li><b>New pedestrianism</b>（新步行主義）：比新都市主義更強調步行，住宅前門面向步道網、後面才是車道，步道與車道分成兩套網路。</li>
+    <li><b>Smart growth</b>（精明成長）：以填入式發展、混合使用、緊湊發展、多元運具、保護農地與開放空間來對抗郊區蔓延的政策主張。</li>
+    <li><b>Compact city</b>（緊湊城市）：高密度、混合使用、以大眾運輸與步行為主，縮短旅次長度、減少能源消耗的城市型態。</li>
+  </ul>
+</section>
+
+<!-- 12 -->
+<section id="compare">
+  <h2><span class="num">12 · ★</span>比較專區（申論主戰場）</h2>
+  <h3>A. 五大流派總表</h3>
+  <div style="overflow-x:auto">
+  <table style="min-width:880px">
+    <tr><th></th><th>花園城市</th><th>鄰里單元</th><th>雷特朋</th><th>現代城市</th><th>珍雅各</th><th>新都市主義／新傳統／TOD</th></tr>
+    <tr><td><b>人物年代</b></td><td>霍華德 1902</td><td>培里 1929</td><td>Stein &amp; Wright 1929</td><td>柯比意 1922（1925 巴黎方案）</td><td>珍雅各 1961</td><td>1970s 起；CNU 1993；新傳統 1980–</td></tr>
+    <tr><td><b>要解決的問題</b></td><td>工業城擁擠、城鄉失衡</td><td>汽車時代兒童安全、郊區開發</td><td>汽車帶來的擁塞、不安全</td><td>舊城擁擠、不合理、缺效率</td><td>推土機都更、快速道路撕裂社區</td><td>郊區蔓延、小汽車依賴</td></tr>
+    <tr><td><b>思想</b></td><td>社會改革、城鄉結合</td><td>以家庭與小學為中心的社區</td><td>汽車時代的花園城市</td><td>功能主義、理性主義</td><td>由下而上、觀察日常生活</td><td>永續、步行、大眾運輸優先</td></tr>
+    <tr><td><b>規模與密度</b></td><td>3.2 萬人、低密度、綠帶</td><td>5,000–9,000 人、65 公頃、25 戶/公頃</td><td>超大街廓、低密度郊區</td><td>300 萬人、高樓超高密度、佔地 5%</td><td>適當高密度</td><td>中高密度、中心高往外漸減</td></tr>
+    <tr><td><b>土地使用</b></td><td>分區（工住分開）</td><td>住宅為主、商店在角落</td><td>住宅為主</td><td>嚴格功能分區</td><td>混合使用、主張廢除分區</td><td>混合使用</td></tr>
+    <tr><td><b>中心</b></td><td>中央公園＋公共設施</td><td>小學</td><td>中央綠地</td><td>交通中心＋摩天樓</td><td>街道本身</td><td>市鎮中心、大眾運輸站</td></tr>
+    <tr><td><b>路網</b></td><td>放射林蔭大道＋環狀鐵路</td><td>外圍幹道、內部彎曲路</td><td>超大街廓、環形路、囊底路</td><td>矩形＋對角線、三層立體</td><td>小街廓、狹窄、高穿透</td><td>互通棋盤、少用囊底路</td></tr>
+    <tr><td><b>主要運具</b></td><td>鐵路、步行</td><td>步行（內）＋汽車（外）</td><td>汽車</td><td>汽車＋城際軌道</td><td>步行</td><td>步行、自行車、大眾運輸</td></tr>
+    <tr><td><b>人車關係</b></td><td>大眾運輸為主</td><td><b>低速街道</b></td><td><b>人車分道</b></td><td><b>人車分道</b>（立體）</td><td><b>低速街道</b></td><td><b>完全街道</b>／低速，行人優先但包容汽車</td></tr>
+    <tr><td><b>被批評</b></td><td>被稀釋成郊區、財務難複製</td><td>車依賴、蔓延、隔離</td><td>郊區化、車依賴</td><td>激進、夷平歷史、不人性</td><td>仕紳化、非專業</td><td>需夠高密度與大眾運輸才成立</td></tr>
+  </table></div>
+
+  <h3>B. 柯比意 vs 珍雅各（完全對立，最高機率）</h3>
+  <table>
+    <tr><th>比較項</th><th>柯比意</th><th>珍雅各</th></tr>
+    <tr><td>身分</td><td>建築師、專業規劃者</td><td>作家、未受專業訓練、社運者</td></tr>
+    <tr><td>規劃方法</td><td>由上而下、理性演繹、藍圖式</td><td>由下而上、歸納觀察、草根參與</td></tr>
+    <tr><td>對舊城</td><td>拆除重建（巴黎夷平方案）</td><td>保留、新舊混合，反對聯邦推土機</td></tr>
+    <tr><td>土地使用</td><td>嚴格功能分區</td><td>混合使用、主張廢除分區</td></tr>
+    <tr><td>密度</td><td>集中在高樓，地面留給綠地</td><td>分布在街道兩側，維持街道活力</td></tr>
+    <tr><td>街廓</td><td>超大尺度</td><td>小街廓</td></tr>
+    <tr><td>街道角色</td><td>交通機器，分三層</td><td>社交與安全的公共空間（街道之眼）</td></tr>
+    <tr><td>人車關係</td><td>人車分道（立體分隔）</td><td>低速街道（共存但慢）</td></tr>
+    <tr><td>交通工具</td><td>小汽車為主</td><td>步行為主、降低車依賴</td></tr>
+    <tr><td>對快速道路</td><td>高架快速道路是城市骨幹</td><td>成功阻止兩條快速道路</td></tr>
+    <tr><td>代表句</td><td>「城市是一部機器」的效率觀</td><td>「為人還是為車建造城市？」</td></tr>
+  </table>
+
+  <h3>C. 花園城市 vs 現代城市（工業城市的兩種解方）</h3>
+  <table>
+    <tr><th>比較項</th><th>花園城市（霍華德）</th><th>現代城市（柯比意）</th></tr>
+    <tr><td>解方方向</td><td><b>分散</b>：把人移出大城市，建小型新城</td><td><b>集中</b>：在原地蓋高樓，提高密度</td></tr>
+    <tr><td>密度</td><td>低密度，有前後院</td><td>超高密度，摩天大樓</td></tr>
+    <tr><td>綠地</td><td>綠帶包圍城市</td><td>綠地在大樓之間（建築只佔 5%）</td></tr>
+    <tr><td>交通</td><td>鐵路與運河為主</td><td>小汽車為主、三層立體</td></tr>
+    <tr><td>城市成長</td><td>到上限就另建新城</td><td>垂直向上長</td></tr>
+    <tr><td>共同點</td><td colspan="2">都主張<b>功能分區</b>（工住分開）、都重視<b>綠地與陽光空氣</b>、都是<b>由上而下的理想藍圖</b>，也都被珍雅各批評</td></tr>
+  </table>
+
+  <h3>D. 培里鄰里單元 vs 雷特朋（陷阱題）</h3>
+  <table>
+    <tr><th>比較項</th><th>培里鄰里單元</th><th>雷特朋</th></tr>
+    <tr><td>性質</td><td>規劃<b>準則</b>（概念模型）</td><td>實際<b>案例</b>（新市鎮）</td></tr>
+    <tr><td>中心</td><td>小學</td><td>中央綠地與步道系統</td></tr>
+    <tr><td>內部路網</td><td>彎曲的出入道路</td><td>超大街廓、環形路、囊底路</td></tr>
+    <tr><td>處理車的方式</td><td>用道路層級、線形、寬度讓車<b>變慢、變少</b></td><td>步道與車道<b>分成兩套系統</b>，交會處用地下道</td></tr>
+    <tr><td>人車論述歸類</td><td><b>低速街道</b></td><td><b>人車分道</b></td></tr>
+    <tr><td>共同點</td><td colspan="2">都把幹道放在外圍、內部拒絕過境交通、強調兒童與行人安全、道路層級分明</td></tr>
+  </table>
+
+  <h3>E. 雷特朋 vs 新傳統設計（講義 p44 自己提的對比）</h3>
+  <table>
+    <tr><th>比較項</th><th>雷特朋（花園都市派）</th><th>新傳統設計</th></tr>
+    <tr><td>理念</td><td>人車分離</td><td>讓小汽車回到活動地區，但以行人優先</td></tr>
+    <tr><td>對汽車</td><td>把車隔開</td><td>包容汽車，但不鼓勵使用</td></tr>
+    <tr><td>路網</td><td>超大街廓、環形路、囊底路（樹枝狀）</td><td>完整互通、棋盤或修正棋盤；不用囊底路，除非開放行人自行車穿越</td></tr>
+    <tr><td>街道</td><td>幹道寬、禁止停車</td><td>街道較窄、允許路邊停車、行道樹</td></tr>
+    <tr><td>土地使用</td><td>住宅為主</td><td>混合使用、市鎮中心</td></tr>
+    <tr><td>運具</td><td>汽車</td><td>大眾運輸、步行、自行車</td></tr>
+    <tr><td>結果</td><td>郊區化、人車各行其道</td><td>減少 10%–25% 延車公里與車旅次</td></tr>
+  </table>
+
+  <h3>F. 鄰里單元 vs 新都市主義的鄰里（同樣 400m，差在哪）</h3>
+  <table>
+    <tr><th>比較項</th><th>培里鄰里單元（1929）</th><th>新都市主義鄰里（1990s）</th></tr>
+    <tr><td>步行半徑</td><td>400m（最多 800m）</td><td>400m（步行 5–10 分鐘）</td></tr>
+    <tr><td>中心</td><td><b>小學</b>、教堂</td><td><b>大眾運輸站</b>、公共建築、商店</td></tr>
+    <tr><td>商店位置</td><td>角落（邊界幹道交叉處）</td><td>中心</td></tr>
+    <tr><td>內部路網</td><td>彎曲、拒絕穿越</td><td>互通、高穿透性</td></tr>
+    <tr><td>邊界</td><td>幹道包圍</td><td>廊道連接鄰里，開放空間界定邊界</td></tr>
+    <tr><td>土地使用</td><td>住宅為主</td><td>混合、多元（所得、年齡、住宅型式）</td></tr>
+    <tr><td>交通</td><td>汽車在外、步行在內</td><td>步行＋大眾運輸為主、適度容納汽車</td></tr>
+  </table>
+
+  <h3>G. 花園城市 vs 新都市主義／TOD（隔了 80 年的呼應）</h3>
+  <ul>
+    <li><b>相同</b>：都主張<b>以大眾運輸（軌道）組織城市</b>；都要求城市有<b>邊界</b>（綠帶 vs 都會區域邊界）；都重視農地與自然；都以<b>步行尺度</b>的社區為單元；都強調社區中心。</li>
+    <li><b>不同</b>：花園城市是<b>低密度、分區</b>、在鄉村另建新城；新都市主義是<b>中高密度、混合使用</b>，並優先<b>填入式發展</b>（在既有都市內補足），也接受適度的汽車。</li>
+  </ul>
+
+  <h3>H. 跨流派主題：囊底路的評價演變</h3>
+  <table>
+    <tr><th>時期／流派</th><th>對囊底路的態度</th><th>理由</th></tr>
+    <tr><td>傳統棋盤（1928 前）</td><td>沒有</td><td>為了測量登記方便，全部互通</td></tr>
+    <tr><td>雷特朋（1929）</td><td><b>大量使用</b></td><td>擋住過境交通、減少人車衝突、安寧</td></tr>
+    <tr><td>PUD、簇群（1960–80）</td><td><b>大量使用</b></td><td>降低車速、避免不必要交通進入、省道路面積</td></tr>
+    <tr><td>珍雅各（1961）</td><td>反對</td><td>街廓變大、穿透性低、街道沒人</td></tr>
+    <tr><td>新傳統（1980–）</td><td><b>原則不用</b></td><td>除非允許行人或腳踏車穿越；避免孤島式發展</td></tr>
+    <tr><td>Laguna West</td><td>有，但開放行人通行</td><td>車擋住、人可以穿過（折衷）</td></tr>
+    <tr><td>Belmont Forest</td><td>完全不用</td><td>棋盤式、市鎮中心步行 10 分鐘</td></tr>
+  </table>
+
+  <h3>I. 跨流派主題：街廓尺度、密度、分區的演變</h3>
+  <table>
+    <tr><th>議題</th><th>汽車時代派（雷特朋、柯比意、PUD）</th><th>反省派（珍雅各、新都市主義）</th></tr>
+    <tr><td>街廓</td><td>超大街廓</td><td>小街廓</td></tr>
+    <tr><td>密度</td><td>郊區低密度（雷特朋）或高樓集中（柯比意）</td><td>適當密度、街道兩旁</td></tr>
+    <tr><td>分區</td><td>單一使用分區</td><td>混合使用</td></tr>
+    <tr><td>人車</td><td>人車分道</td><td>低速街道、共享、完全街道</td></tr>
+    <tr><td>街道角色</td><td>交通通道</td><td>公共生活空間</td></tr>
+    <tr><td>目標</td><td>效率、安全</td><td>活力、永續、人性化</td></tr>
+  </table>
+</section>
+
+<!-- 13 -->
+<section id="essay">
+  <h2><span class="num">13 · ★</span>申論題庫與範文</h2>
+  <p class="lead">每題先自己在紙上寫骨架（5 分鐘），再點開範文對照。範文長度約為考場 10–15 分鐘可寫完的份量。</p>
+
+  <details class="card"><summary><b>Q1　請比較柯比意與珍雅各的都市規劃論述，並說明兩者對都市交通的看法。（20%）</b></summary>
+  <p><b>一、柯比意的現代城市</b>：柯比意（1887–1965）於 1922 年提出容納 300 萬人的「當代城市」，從功能主義與理性主義出發，以現代建築的角度規劃都市。中心區以 24 棟 60 層摩天大樓容納 40 萬人，建築僅佔地 5%，其餘為大片綠地；外圍依序為環形板式住宅帶與花園住宅，平面為矩形與對角線構成的嚴格幾何。1925 年巴黎改建方案更主張拆除舊建築，將密度由每公頃 800 人提高到 3,500 人。</p>
+  <p><b>二、珍雅各的社區規劃</b>：珍雅各（1916–2006）於 1961 年出版《美國大都市的死與生》，批評現代主義與理性規劃過度簡化都市問題，批評 1950 年代聯邦推土機式的都市更新摧毀社區，主張廢除土地使用分區。她提出多樣性四條件：混合使用、小街廓、新舊建物混合、維持密度，並以「街道之眼」說明有人使用的街道才是安全的街道。</p>
+  <p><b>三、交通看法的差異</b>：柯比意以小汽車為主，市中心交通分地下（重車）、地面（市內）、高架（快速）三層，大樓地面層架空供行人使用，屬「人車分道」中的立體分隔；街道是讓車高效率通過的機器。珍雅各則認為過度重視道路交通機能會傷害社區生活，但社區仍需要車，不必完全排除，而是縮窄道路、容許車輛慢速通過、重視人行道、以小街廓與混合使用縮短旅次，屬「低速街道」；她並以草根運動成功阻止紐約下曼哈頓與多倫多 Spadina 兩條快速道路。</p>
+  <p><b>四、評論</b>：柯比意的方案提升交通效率與綠地，但大尺度、單一分區與汽車優先使街道失去活力，行人被邊緣化；珍雅各的觀點則影響了後來的新都市主義、TOD 與各國的交通寧靜措施。臺灣舊市區住商混合、小街廓、騎樓的形態，正是珍雅各所描述的有活力的城市。正如老師所說，「汽車是用來服務人，不是逼迫行人」。</p>
+  </details>
+
+  <details class="card"><summary><b>Q2　請說明規劃理論中人車關係的四種論述，並各舉代表人物或案例。（20%）</b></summary>
+  <p><b>一、人車分道</b>：以工程與規劃手法將人車分流，維持車行順暢與行人安全，手法有空間分隔（平面、立體）與時間分隔。代表：Hénard 1900–1914 巴黎綱要計畫（圓環結合人行地下道）、柯比意現代城市（交通分三層、地面架空）、雷特朋（超大街廓、囊底路）。缺點是行人空間運輸性能低，道路機械化、不人性化，只供車輛使用。</p>
+  <p><b>二、低速街道</b>：車子服務人，以社區生活為出發點設計道路；社區需要車，但高速交通會妨礙社區生活，因此不強調嚴格人車分道，但仍適度分隔。代表：培里鄰里單元（以道路層級、線形、寬度控制車速與車量）、珍雅各（縮窄道路、小街廓、混合使用）。這是各國社區道路的主流，如德國交通抑制措施、丹麥 slow street、澳洲 LATM、英國 Traffic Calming、臺灣生活化道路。</p>
+  <p><b>三、人車共享空間</b>：都市設計手法，不劃分車行與人行空間，把街道當成長形廣場；移除緣石、標線、標誌、號誌、弭平高低差，淡化路權界線、增加駕駛人的不確定性，使車輛自然降速、行人更安全。</p>
+  <p><b>四、完全街道</b>：TOD 的概念，兼顧各運具路權，將所有交通導向特定核心（大眾運輸場站）；各運具與行人共存、強調步行環境，不強調低速，也無嚴格人車分道，但分隔程度大於低速街道。</p>
+  <p><b>結論</b>：四種論述反映規劃思潮由「以車為主」走向「以人為本」。汽車裡面也是人，汽車是用來服務人，不是逼迫行人；不同層級的道路可依功能選擇適合的論述，例如快速道路採人車分道、社區出入道路採低速街道、商業老街採共享空間、車站周邊採完全街道。</p>
+  </details>
+
+  <details class="card"><summary><b>Q3　請說明培里鄰里單元的規劃原則，並以臺南為例討論其在汽機車時代的問題。（20%）</b></summary>
+  <p><b>一、背景</b>：培里於 1929 年提出鄰里單元，類似花園城市中的一個分區，目的在汽車時代讓兒童安全步行到學校與遊戲場，並作為郊區開發的空間規劃準則。</p>
+  <p><b>二、原則</b>：①以小學為鄰里中心（鄰里的首都），步行半徑 400m、最遠不超過 800m，上學不穿越主要幹道；②規模 5,000–9,000 人、約 65 公頃、每公頃 25 戶；③公園與開放空間佔 10%；④幹道沿周邊，界定邊界且無穿越性交通；⑤內部採彎曲街道，勸退穿越車流、提高安全；⑥商店設在角落幹道交叉處。</p>
+  <p><b>三、交通意涵</b>：鄰里單元是道路層級的空間版本，外圍高層級道路負責移動性，內部低層級道路負責可及性，屬人車關係中的「低速街道」。</p>
+  <p><b>四、臺南的問題</b>：臺南都市計畫以主次要道路圍出鄰里，中間配置國小、公園、市場，是鄰里單元的影子。但臺南巷弄多半互通而非囊底路，且機車體積小、靈活，常把巷弄當捷徑，「騎機車鑽小巷子」反而比走大馬路快，使鄰里內部出現穿越性交通，違背鄰里單元的設計意圖。另外，鄰里單元也被批評造成小汽車依賴、都市蔓延與社會隔離。</p>
+  <p><b>五、改善</b>：在鄰里內部導入生活化道路措施，例如封閉部分路口形成環形路、入口改變鋪面、縮減路寬至雙向 4.5m 使車速降到 30km/h 以下、設置駝峰與昇高路口，讓內部道路回到服務居民的功能。</p>
+  </details>
+
+  <details class="card"><summary><b>Q4　雷特朋的設計手法為何？為什麼說它造成了美國的郊區化？新傳統設計又如何回應？（20%）</b></summary>
+  <p><b>一、手法</b>：雷特朋由 Stein 與 Wright 於 1929 年規劃，號稱「汽車時代的城鎮」，結合花園城市與鄰里單元，四大手法為超大街廓、囊底路、人車分道、道路層級分明。以幹道為分界、幹道禁止停車且兩側避免住戶直接進出；減少次要道路與幹道交叉；街廓內以環形路與囊底路分割住宅區，取代棋盤路網，減少人車衝突點。</p>
+  <p><b>二、郊區化</b>：雷特朋成為汽車時代道路系統設計的典範，造成兩大趨勢：土地發展郊區化，以及住宅區內小汽車與行人各行其道。之後的擴建期（1945–1963）在國民住宅、都市更新、房屋貸款與公路建設推波助瀾下，以及 PUD、簇群式開發大量採用囊底路，使美國郊區低密度、汽車依賴的生活方式定型。</p>
+  <p><b>三、新傳統的回應</b>：新傳統設計師主張相反意見，讓小汽車回到活動地區，但改變街道設計，以行人優先，包容小汽車卻不鼓勵使用。具體作法包括：完整互通的棋盤或修正棋盤路網、不採用囊底路（除非開放行人與腳踏車穿越）、街道較窄並允許路邊停車、混合使用與市鎮中心、400m 步行半徑、減少免費停車。實證研究顯示可減少 10%–25% 延車公里與汽車旅次，如 Laguna West 減少 20%–25% 延車公里。</p>
+  </details>
+
+  <details class="card"><summary><b>Q5　請說明霍華德花園城市的概念與其交通論述，並討論其影響。（20%）</b></summary>
+  <p><b>一、背景與概念</b>：工業革命後都市擁擠混亂，霍華德於 1902 年出版《明日的花園城市》，以「三個磁鐵」說明城市有工作但擁擠污染、鄉村有自然但缺乏機會，主張城鄉結合的花園城市取兩者之長。</p>
+  <p><b>二、空間配置</b>：中心為中央公園與公共設施，向外依序為商業區與水晶宮、低密度住宅（中有林蔭大道與學校）、最外圈工廠與環狀鐵路，再外為農業綠帶。花園城市人口到上限後不再擴張，而在綠帶外另建新城，與中心都市以鐵路、運河相連，形成花園城市群。第一個實例為 1903 年的 Letchworth。</p>
+  <p><b>三、交通論述</b>：以大眾運輸為主。城內尺度可步行，城際以鐵路與運河連結，工廠旁的環狀鐵路使貨運不穿越住宅區，城市成長以「新城＋鐵路」吸收而非蔓延。</p>
+  <p><b>四、影響</b>：新市鎮運動、花園郊區、綠帶管制成長、生態城市、鄰里單元。但許多仿效者只學到低密度外型，沒有學到自足就業與土地共有的財務制度，結果變成依賴汽車的通勤郊區。其以大眾運輸組織城市、設定城市邊界的主張，則在新都市主義與 TOD 中再度被提出。</p>
+  </details>
+
+  <details class="card"><summary><b>Q6　何謂 TOD？請說明其特性，並評論臺南火車站是否符合 TOD。（20%）</b></summary>
+  <p><b>一、定義</b>：大眾運輸導向發展是指建構大眾運輸場站附近地區，以善加利用公共運輸並提升其使用率；創造緊密的鄰里社區，使居住、工作、購物、服務、娛樂都可透過步行距離內的車站完成，減少私有機動車輛使用。</p>
+  <p><b>二、五特性</b>：混合使用、緊密發展（中高強度並限制停車）、步行範圍（在場站步行距離內）、地區節點（車站周邊開放空間與廣場為社區匯集點）、步行導向。亦可用 3D（密度、多樣性、設計）或 5D（再加目的地可及性、到站距離）說明。其道路觀為「完全街道」，兼顧各運具路權，將交通導向車站核心。</p>
+  <p><b>三、臺南火車站</b>：Cervero 主張車站應是「值得停留的地方，而不只是路過」。臺南火車站目前只是「傳送門」，只有站點沒有站區；本身不好逛，只是等車的地方；往新光三越等周邊地點的步行路線層層險阻，是以車內的人為本而非以人為本；周邊明明有豐富活動卻沒有串連。因此只達到運輸節點，尚未達到 TOD 的地區節點與步行導向。</p>
+  <p><b>四、建議</b>：打破交通效率導向思維，利用鐵路地下化與站區再開發，在車站周邊導入混合使用與廣場、優先改善步行動線與穿越設施、限制停車並強化公車與自行車轉乘，讓車站成為城市的目的地。</p>
+  </details>
+
+  <details class="card"><summary><b>Q7　何謂新都市主義？其對鄰里與街道的主張為何？（20%）</b></summary>
+  <p><b>一、起源</b>：新都市主義起於 1970 年代的美國，1993 年成立新都市主義協會（CNU）並發表憲章，是對郊區蔓延與小汽車依賴的反省，承接珍雅各對社區與街道的觀察。</p>
+  <p><b>二、區域與城市</b>：都會區域要有邊界、重視農地與自然、優先填入式發展、以多種交通替代方案支撐，由鄰里、地區、廊道三元素組成；城市實體清楚界定，公共空間與社區機構容易到達；交通要為行人、為大眾運輸，並適度容納汽車；尊重在地歷史、氣候、生態與營建方式。</p>
+  <p><b>三、鄰里</b>：多元（種族、住宅型式、所得、年齡、家庭、工作、土地使用）；每個鄰里有中心（大眾運輸站、公共建築），從多數住宅步行可達；有商店辦公、小學、遊戲場；開放空間分布在鄰里中並用來界定與連接鄰里。</p>
+  <p><b>四、街道</b>：適合行人與自行車、高穿透性、安全、慢速、相對狹窄、行道樹遮蔭、建物貼近街道塑造戶外空間、停車置於建物後方由後巷進出。</p>
+  <p><b>五、評論</b>：與培里鄰里單元同樣以 400m 步行範圍組織社區，但中心由小學改為大眾運輸站，內部路網由彎曲、囊底改為互通、可穿透，並從住宅為主改為混合使用；在人車關係上屬於完全街道與低速街道的結合。其限制是必須有足夠的人口密度與大眾運輸服務才能成立。</p>
+  </details>
+
+  <details class="card"><summary><b>Q8　何謂生活化道路？請說明其特徵、建立策略與實施議題。（20%）</b></summary>
+  <p><b>一、定義</b>：以人為本的交通建設與管理，依社區居民活動的交通需求，並確保生活環境品質與生命安全，使道路發揮多重功能，讓車輛通行的同時確保居民生活品質與安全。德國稱交通抑制措施、丹麥稱 slow street、澳洲稱 LATM、英國稱 Traffic Calming、日本稱人車共存道路，我國運輸政策白皮書稱生活化道路。</p>
+  <p><b>二、特徵</b>：主要位於住宅區；兼具交通與社交、遊戲、休閒功能；多為出入道路；行人、腳踏車、汽車共用路面；極少過境交通。</p>
+  <p><b>三、策略</b>：減少交通量，包括封閉部分路口使棋盤變環形路或死巷、入口設牌樓、改變鋪面、標誌管制時間。減少車速，包括縮減路寬（雙向 4.5m、單向 2.75m 可使車速低於 30km/h）、鋸齒狀路型、槽化島改變路型、路口圓環、跳動路面、標誌限速。ITE 另列 18 種交通寧靜措施，如駝峰、昇高路口、路口瓶頸等。</p>
+  <p><b>四、實施議題</b>：要有法律基礎、要有公民參與程序、要有明確執行機關、要有施行規範、要有示範地區（如公教住宅社區）。柏林實施後交通量、卡車比例、噪音、車速皆明顯降低；臺灣都市密集、街道狹窄，與歐洲日本相似，適合推動。</p>
+  </details>
+
+  <details class="card"><summary><b>Q9　請說明美國住宅社區土地細分設計的歷史演變，並分析各階段的路網與交通特性。（20%）</b></summary>
+  <p>依 Ryan and McNally（1995），可分五階段：</p>
+  <p>①<b>1928 年以前，傳統棋盤式</b>：只考慮地主利益、方便測量登記；適合慢速運具，汽車出現後路口過多、不安全，且造成大量過境交通與污染噪音。</p>
+  <p>②<b>1928–1945，花園都市</b>：Wright 與 Stein 規劃雷特朋，以超大街廓、囊底路、人車分道回應汽車帶來的擁塞與危險。</p>
+  <p>③<b>1945–1963，擴建期</b>：特徵是大量擴張而非設計理念，國民住宅、都市更新、房屋貸款、公路建設四項措施造成郊區蔓延。</p>
+  <p>④<b>1960–1980，PUD 與簇群式開發</b>：政府立法管制土地細分，開發商需自備基礎設施並連地帶屋出售；PUD 以汽車為主、以囊底路減少過境（如 Tucson 1,600m 見方的單元）；簇群式以曲線街道與囊底路降速，道路面積減少 25%、住宅單元增加 3%。</p>
+  <p>⑤<b>1980 年至今，新傳統</b>：以永續發展為理念、以大眾運輸為主幹，抑制私人運具；互通棋盤路網、混合使用、步行導向，如 Laguna West、Belmont Forest。</p>
+  <p><b>分析</b>：路網由「互通棋盤」→「樹枝狀囊底」→「回到互通但較窄、可步行的修正棋盤」，人車關係由「混雜」→「人車分道」→「行人優先、包容汽車」，反映由效率導向走向人本與永續。</p>
+  </details>
+
+  <details class="card"><summary><b>Q10　何謂人車共享空間？與人車分道相比有何優缺點？（20%）</b></summary>
+  <p><b>一、意義</b>：一種都市設計手法，不劃分車行與人行空間，人車完全混合；把車當成人、把街道當成長形廣場，公共空間不受車道切割可多功能使用，在不禁止機動車輛進入下改善生活環境品質。</p>
+  <p><b>二、手法與原理</b>：移除緣石、標線、標誌、號誌，弭平高低差；以設計手法減低車速、規劃領域轉換介面；設計行人穿越動線、座椅、鋪面。原理是淡化路權界線、去除車輛優先意象，增加駕駛人的不確定性，使車輛自然降速，行人安全性提高。</p>
+  <p><b>三、與人車分道比較</b>：人車分道以平面、立體或時間分隔維持車流順暢，適合高流量、高速道路，但造成行人空間運輸性能低、道路機械化且只有交通功能。共享空間則讓街道恢復社交與商業功能、更人性化，且不需大量設施；但不適合高流量、高速或大型車多的道路，且對視障者、兒童等弱勢使用者可能缺乏安全感，需要配合行為習慣與設計細節。</p>
+  </details>
+
+  <details class="card"><summary><b>Q11　請以「道路層級」的觀點，說明經典規劃概念如何安排不同層級的道路。（20%）</b></summary>
+  <p><b>一、道路層級的原則</b>：層級越高移動性越高、可及性越低；道路應逐級連接（服務 → 次要 → 主要 → 快速），不可跨級直連。</p>
+  <p><b>二、鄰里單元與雷特朋</b>：最典型的應用。幹道放在鄰里外圍，負責移動性並界定邊界；內部以彎曲出入道路、環形路、囊底路負責可及性，拒絕過境交通；雷特朋並減少次要道路與幹道的交叉、幹道禁止停車且避免住戶直接進出，使幹道發揮大流量、快速、安全的功能。</p>
+  <p><b>三、柯比意</b>：以立體分層取代平面層級，快速交通在高架、市內交通在地面、重車在地下。</p>
+  <p><b>四、新傳統與新都市主義</b>：仍保有層級，但低層級道路要互通、狹窄、慢速，以提高行人穿透性；主幹道成為連接鄰里的廊道，並配合大眾運輸。</p>
+  <p><b>五、生活化道路</b>：多為出入道路，透過交通寧靜措施確保其可及性與生活功能，不被機動車輛當成捷徑；臺南巷弄被機車穿越就是層級失靈的例子。</p>
+  </details>
+
+  <details class="card"><summary><b>Q12　珍雅各的「多樣性四條件」與「街道之眼」對都市交通規劃有何啟示？（20%）</b></summary>
+  <p><b>一、多樣性四條件</b>：混合使用（不同時段都有人）、小街廓（提高穿透性）、新舊建物混合（容納多元活動與租金）、維持密度。</p>
+  <p><b>二、街道之眼</b>：建物開口面對街道、兩旁使用者看得到街道、人行道持續有人使用、小孩可在街邊遊玩、社區街道儘可能狹窄、有足夠商店與公共空間、良好照明。</p>
+  <p><b>三、交通規劃的啟示</b>：①混合使用縮短旅次長度、降低對汽車的依賴；②小街廓提供多條步行路徑，路網穿透性高，有利行人與自行車；③街道不只是通道，而是公共生活空間，道路設計應考慮社交與安全功能；④狹窄、低速的社區道路比寬大道路更安全；⑤人車關係應採低速街道而非人車分道；⑥大型道路與快速道路可能切斷社區，規劃應重視居民參與。這些啟示發展為新都市主義、TOD、交通寧靜區與生活化道路。</p>
+  </details>
+</section>
+
+<!-- 14 -->
+<section id="numbers">
+  <h2><span class="num">14 · ★</span>數字與名詞速記（選擇題）</h2>
+  <table>
+    <tr><th>主題</th><th>要背的數字／名詞</th></tr>
+    <tr><td>花園城市</td><td>霍華德 1850 生；1902《Garden Cities of To-morrow》；三磁鐵；Letchworth 1903；中心都市約 5.8 萬、花園城市約 3.2 萬；交通＝大眾運輸為主</td></tr>
+    <tr><td>鄰里單元</td><td>培里 1929；小學為中心；400m（1/4 mile），最多 800m（1/2 mile）；5,000–9,000 人；160 英畝＝65 公頃；10 戶/英畝＝25 戶/公頃；開放空間 10%；幹道在周邊；內部彎曲；商店在角落</td></tr>
+    <tr><td>雷特朋</td><td>1929；New Jersey；Stein &amp; Wright；A town for the motor age；超大街廓、囊底路、人車分道、道路層級分明；兩大趨勢＝郊區化、人車各行其道</td></tr>
+    <tr><td>柯比意</td><td>1887–1965；當代城市 1922（p153 寫 1924）；300 萬人；24 棟 60 層住 40 萬人；佔地 5%；環形帶 60 萬；外圍 200 萬；交通三層（地下重車／地面市內／高架快速）；1925 巴黎方案 200m 大樓，密度 800 → 3,500 人/公頃</td></tr>
+    <tr><td>珍雅各</td><td>1916–2006；美裔加拿大作家；1961《美國大都市的死與生》；聯邦推土機；Lower Manhattan、Spadina 快速道路；四條件＝混合、小街廓、新舊混合、密度；街道之眼</td></tr>
+    <tr><td>新都市主義</td><td>1970s 美國；CNU 1993；憲章；鄰里、地區、廊道；填入式發展；停車放後巷</td></tr>
+    <tr><td>新傳統</td><td>特性 6 點、策略 11 點；基地為過去的 3/4；停車位 27㎡；400m 半徑；Laguna West −20~25% 延車公里；Friedman 汽車旅次 54% vs 68%</td></tr>
+    <tr><td>TOD</td><td>五特性：混合使用、緊密發展、步行範圍、地區節點、步行導向；3D／5D；Cervero 2010「A Place to Be」</td></tr>
+    <tr><td>生活化道路</td><td>德 Verkehrsberuhigung、丹 slow street、澳 LATM、英 Traffic Calming、日 人車共存道路；雙向 4.5m、單向 2.75m → 30km/h 以下；駝峰 7–10cm 高、3–4m 長；昇高穿越道 7–10cm、3–6m；ITE 2001 共 18 種；5 個「要有」；柏林案例</td></tr>
+    <tr><td>土地細分五階段</td><td>1928 前棋盤 → 1928–45 花園都市 → 1945–63 擴建期（國宅、都更、房貸、公路）→ 1960–80 PUD 與簇群（簇群道路 −25%、住宅 +3%；Tucson 1,600m 見方）→ 1980– 新傳統</td></tr>
+    <tr><td>人車四論述</td><td>人車分道（Hénard 1900–1914、柯比意、雷特朋）；低速街道（培里、珍雅各）；人車共享空間；完全街道（TOD）</td></tr>
+  </table>
+</section>
+
+<footer>115-1 都市交通計劃 第一次小考 · lec4 申論讀本 · 依《lec 4 經典規劃論述》p1–169 整理，標「補充」者為講義以外的背景知識。</footer>
+</main></div></body></html>
